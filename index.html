@@ -95,7 +95,23 @@ a{color:inherit;text-decoration:none}
 .pv-dots span{width:8px;height:8px;border-radius:50%;background:rgba(74,63,53,.2);transition:all .15s}
 .pv-dots span.on{background:var(--sage);transform:scale(1.35)}
 
-/* ---- 記事 ---- */
+/* ---- 記事（ルーズリーフ調） ---- */
+.notebook{position:relative;background:#fff;border:1.5px solid rgba(74,63,53,.16);border-radius:14px;
+  padding:22px 20px 22px 52px;box-shadow:0 2px 10px rgba(74,63,53,.06)}
+.notebook::before{content:"";position:absolute;top:0;bottom:0;left:40px;width:1.5px;background:rgba(228,164,172,.75)}
+.notebook::after{content:"";position:absolute;left:12px;top:26px;bottom:26px;width:14px;
+  background-image:radial-gradient(circle at 7px 7px, #fff 4.5px, rgba(74,63,53,.22) 5px, rgba(74,63,53,.22) 6px, transparent 6.8px);
+  background-size:14px 64px;background-repeat:repeat-y}
+.notebook.ruled{background-image:repeating-linear-gradient(transparent,transparent 27px,rgba(143,176,196,.30) 27px,rgba(143,176,196,.30) 28px);
+  background-origin:content-box;background-clip:content-box}
+.notebook .article-body{line-height:28px;font-size:14.5px}
+.note-row{display:flex;align-items:center;gap:12px;padding:11px 2px;border-bottom:1.5px solid rgba(143,176,196,.35)}
+.note-row:last-child{border-bottom:none}
+.sashie-wrap{display:block;width:min(78%,300px);margin:4px auto 16px;position:relative;transform:rotate(-1.6deg)}
+.sashie-wrap::before{content:"";position:absolute;top:-12px;left:50%;transform:translateX(-50%) rotate(2deg);
+  width:88px;height:24px;background:rgba(224,184,76,.45);border-left:1px dashed rgba(255,255,255,.7);
+  border-right:1px dashed rgba(255,255,255,.7);z-index:2}
+.sashie-wrap img{width:100%;display:block;border:8px solid #fff;box-shadow:0 3px 12px rgba(74,63,53,.18)}
 .lesson-num{width:34px;height:34px;border-radius:50%;background:rgba(143,176,196,.4);
   display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;flex-shrink:0}
 .pagenav-row{display:flex;gap:10px;margin-top:16px}
@@ -262,11 +278,13 @@ function renderTextbook(){
     ${back("#/","トップ")}
     <span class="pill" style="background:rgba(143,176,196,.4)">教科書</span>
     <h2 style="font-size:24px;margin:6px 0 16px">暮らしを撮る教科書</h2>
-    ${ARTICLES.map((a,i)=>`<a href="#/article/${a.id}"><div class="card tap row">
-      <div class="lesson-num">${i+1}</div>
-      <div class="grow"><div style="font-weight:900;font-size:15px">${esc(a.title)}</div>
-      <div class="small" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(a.body.split("\n")[0])}</div></div>
-      <div class="chev">›</div></div></a>`).join("")}
+    <div class="notebook">
+      ${ARTICLES.map((a,i)=>`<a href="#/article/${a.id}"><div class="note-row tap">
+        <div class="lesson-num">${i+1}</div>
+        <div class="grow"><div style="font-weight:900;font-size:15px">${esc(a.title)}</div>
+        <div class="small" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(a.body.split("\n")[0])}</div></div>
+        <div class="chev">›</div></div></a>`).join("")}
+    </div>
   </div>`;
 }
 
@@ -281,7 +299,10 @@ function renderArticle(id){
       <span class="pill" style="background:rgba(74,63,53,.08)">${idx+1} / ${ARTICLES.length}</span>
       <h2 style="font-size:21px;margin-top:4px">${idx+1}. ${esc(a.title)}</h2></div>
     </div>
-    <div class="card article-body">${esc(a.body)}</div>
+    <div class="notebook ruled">
+      <span class="sashie-wrap"><img src="assets/img/note_${a.id}.png" alt="" onerror="this.parentNode.style.display='none'"></span>
+      <div class="article-body">${esc(a.body)}</div>
+    </div>
     <div class="pointcard">
       <img src="assets/img/shuri_point.png" alt="">
       <div><span class="plabel">POINT</span><p>${esc(a.point)}</p></div>

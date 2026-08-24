@@ -96,6 +96,14 @@ a{color:inherit;text-decoration:none}
 .pv-dots span.on{background:var(--sage);transform:scale(1.35)}
 
 /* ---- 記事 ---- */
+.lesson-num{width:34px;height:34px;border-radius:50%;background:rgba(143,176,196,.4);
+  display:flex;align-items:center;justify-content:center;font-weight:900;font-size:15px;flex-shrink:0}
+.pagenav-row{display:flex;gap:10px;margin-top:16px}
+.pagenav{flex:1 1 0;min-width:0;background:var(--ivory);border:1.5px solid rgba(74,63,53,.12);
+  border-radius:16px;padding:10px 12px;display:flex;flex-direction:column;gap:2px}
+.pagenav.ghost{background:transparent;border:none}
+.pagenav .dir{font-size:11px;font-weight:900;color:rgba(74,63,53,.55)}
+.pagenav .t{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .article-title{display:flex;gap:12px;align-items:center;margin-bottom:14px}
 .article-title img{width:56px;height:56px;object-fit:contain;flex-shrink:0}
 .article-body{white-space:pre-line;font-size:15px}
@@ -254,7 +262,8 @@ function renderTextbook(){
     ${back("#/","トップ")}
     <span class="pill" style="background:rgba(143,176,196,.4)">教科書</span>
     <h2 style="font-size:24px;margin:6px 0 16px">暮らしを撮る教科書</h2>
-    ${ARTICLES.map(a=>`<a href="#/article/${a.id}"><div class="card tap row">
+    ${ARTICLES.map((a,i)=>`<a href="#/article/${a.id}"><div class="card tap row">
+      <div class="lesson-num">${i+1}</div>
       <div class="grow"><div style="font-weight:900;font-size:15px">${esc(a.title)}</div>
       <div class="small" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${esc(a.body.split("\n")[0])}</div></div>
       <div class="chev">›</div></div></a>`).join("")}
@@ -262,18 +271,28 @@ function renderTextbook(){
 }
 
 function renderArticle(id){
-  const a = ARTICLES.find(x=>x.id===id); if(!a) return renderTextbook();
+  const idx = ARTICLES.findIndex(x=>x.id===id); if(idx<0) return renderTextbook();
+  const a = ARTICLES[idx], prev = ARTICLES[idx-1], next = ARTICLES[idx+1];
   app.innerHTML = `<div class="page">
     ${back("#/textbook","教科書")}
     <div class="article-title">
       <img src="assets/img/shuri_happy.png" alt="">
       <div><span class="pill" style="background:rgba(143,176,196,.4)">しゅり直伝</span>
-      <h2 style="font-size:21px;margin-top:4px">${esc(a.title)}</h2></div>
+      <span class="pill" style="background:rgba(74,63,53,.08)">${idx+1} / ${ARTICLES.length}</span>
+      <h2 style="font-size:21px;margin-top:4px">${idx+1}. ${esc(a.title)}</h2></div>
     </div>
     <div class="card article-body">${esc(a.body)}</div>
     <div class="pointcard">
       <img src="assets/img/shuri_point.png" alt="">
       <div><span class="plabel">POINT</span><p>${esc(a.point)}</p></div>
+    </div>
+    <div class="pagenav-row">
+      ${prev
+        ? `<a class="pagenav tap" href="#/article/${prev.id}"><span class="dir">← 前のページ</span><span class="t">${idx}. ${esc(prev.title)}</span></a>`
+        : `<div class="pagenav ghost"></div>`}
+      ${next
+        ? `<a class="pagenav tap" href="#/article/${next.id}" style="text-align:right"><span class="dir">次のページ →</span><span class="t">${idx+2}. ${esc(next.title)}</span></a>`
+        : `<div class="pagenav ghost"></div>`}
     </div>
   </div>`;
 }

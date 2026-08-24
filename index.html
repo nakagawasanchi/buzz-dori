@@ -60,6 +60,13 @@ a{color:inherit;text-decoration:none}
   font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px}
 .media .loop{position:absolute;top:12px;right:12px;background:rgba(198,73,59,.9);color:#fff;
   font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px}
+.swipe-arrow{position:absolute;top:50%;width:42px;height:42px;border-radius:50%;
+  background:rgba(74,63,53,.32);color:rgba(255,255,255,.92);font-size:24px;font-weight:900;
+  display:flex;align-items:center;justify-content:center;pointer-events:none;
+  transform:translateY(-50%)}
+.swipe-arrow.left{left:10px}
+.swipe-arrow.right{right:10px;animation:nudge 1.6s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(5px)}}
 .slide h3{font-size:21px;margin:14px 0 4px}
 .slide .angle{font-size:14px}
 .tipbox{display:flex;gap:10px;align-items:flex-start;background:rgba(228,164,172,.18);
@@ -365,6 +372,8 @@ function renderCuts(id){
                <span class="loop">● ループ再生</span>`
             : `<img src="${c.media.i}" alt="">`}
           <span class="badge">CUT ${i+1}</span>
+          ${i>0?'<span class="swipe-arrow left">‹</span>':''}
+          ${i<N-1?'<span class="swipe-arrow right">›</span>':''}
         </div>
         <h3>${i+1}. ${esc(c.title)}</h3>
         <div class="angle">${esc(c.angle)}</div>

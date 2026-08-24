@@ -131,6 +131,14 @@ const ARTICLES = [
   body:`サムネの型はシンプル。\n上にピル型の一言タグ、下に大きめの2行タイトル。情報は詰め込みすぎない。\n\n1画面1メッセージを守るだけで、スクロールする指が止まりやすくなります。`},
  {id:"cuts", title:"リールの黄金カット割（掴み3秒→変化→結論）", point:"掴みの3秒がすべて。最初に“予告”してあげて◎",
   body:`最初の3秒で「なにが起きるか」を予告する。\n真ん中で変化（開ける・塗る・比べる）を見せる。\n最後に結論（仕上がり・答え）で締める。\n\nこの3段構成に沿ってカットを並べるだけで、離脱しにくいリールになります。`},
+ {id:"fiveshot", title:"1つの動作は「5つの角度」で撮る", point:"手→顔→引き→肩越し→変化球。この5つで動画になるよ！",
+  body:`テレビの現場で使われている「5ショットルール」という型があります。\n1つの作業を、この5つの角度で撮るだけ：\n\n① 手のアップ（何をしているか）\n② 顔のアップ（誰がしているか）\n③ 引き（どこでしているか）\n④ 肩越し（本人の目線に近い角度）\n⑤ 変化球（真上や床すれすれなど意外な角度）\n\nこの5カットが揃うと、それだけで「ちゃんとした動画」に見えます。\n1カット3〜5秒ずつでOK。まずはこの型をなぞってみて。`},
+ {id:"angle45", title:"次のカットは「45度」うごく", point:"寄り引きだけじゃなくて“回り込む”！45度で新鮮に見えるよ◎",
+  body:`カットを変えるとき、ズームで寄ったり引いたりするだけだと単調になりがち。\nプロの目安は「次のカットは前の位置から45度以上動く」こと。\n\n被写体のまわりを回り込むと、背景に映るものも変わって、脳が「新しい情報だ」と感じてくれます。\n高さを変えるのも効果大。目線→ローアングル→真上、と動いてみて。\n\nひとつだけ注意。反対側（180度の向こう）まで回り込むと、向きが逆転して見ている人が混乱します。同じ側の半円の中で動くのが基本です。`},
+ {id:"repeat", title:"同じ動作を「繰り返して」撮る", point:"もう1回やって、角度を変えてもう1回。それだけでプロっぽくなる♪",
+  body:`カメラが1台しかなくても、マルチカメラ風の動画は作れます。\nコツは「同じ動作を何回か繰り返して、そのたびに角度を変えて撮る」こと。\n\n椅子に座る、瓶のフタを開ける、クリームを塗る……\n繰り返せる動作なら何でもOK。\n\n1回目は引きで、2回目は手元に寄って、3回目は真上から。\n撮るときは少し長め（10秒くらい）に回しておいて、編集でいいところだけ使いましょう。`},
+ {id:"actioncut", title:"動作の「途中」で切ると繋がって見える", point:"動きを7:3で分けてみて。座る途中で切り替えると自然だよ〜",
+  body:`別の角度で撮った2つのカットを自然に繋ぐコツは、「動作の途中」で切り替えること。\n映像の世界では「アクションつなぎ」と呼ばれる基本技です。\n\n動き全体を10とすると、7:3くらいで分けるのがきれい。\n「座る」なら、腰を下ろしはじめ（7割）まで見せて、別角度の着席の瞬間（残り3割）に切り替える。\n\n動きが橋渡しになって、カットの切れ目がほとんど気にならなくなります。`},
  {id:"colors", title:"世界観は「色を3つに絞る」", point:"色は3つまで。それだけで“世界観”が出るよ〜",
   body:`背景・小物・服の色を、テーマカラー3色以内でまとめると統一感が出ます。\n色数が増えるほど「ごちゃっと」した印象になりやすいので注意。\n\n迷ったら、ベース1色＋差し色1色＋差し色を支える1色、くらいの配分がちょうどいい。`},
  {id:"phrases", title:"バズる切り口フレーズ集", point:"最初の一言に迷ったら、この中から選んでみて♪",
@@ -142,8 +150,15 @@ const SECTIONS = [
   full:{src:"assets/video/scene_full.mp4", per:0.8}, cuts:[
    {title:"椅子を引く", angle:"少し引きで、部屋の空気ごと写す", tip:"「これから使う」の予感を1カット目に", media:{v:"assets/video/cut1.mp4"}},
    {title:"背もたれに手を添える", angle:"手元にぐっと寄って", tip:"手のアップで動作の始まりを見せる", media:{v:"assets/video/cut2.mp4"}},
-   {title:"腰を下ろす", angle:"横から、動きの瞬間を", tip:"座る瞬間が主役。動きは最後まで見られやすい", media:{v:"assets/video/cut3.mp4"}},
+   {title:"腰を下ろす", angle:"横から、動きの瞬間を", tip:"腰を下ろす途中（7割あたり）で止めると、次のカットが自然に繋がる", media:{v:"assets/video/cut3.mp4"}},
    {title:"座って一息", angle:"座った姿に寄って余韻を", tip:"落ち着いた表情で締めると「暮らし」が伝わる", media:{v:"assets/video/cut4.mp4"}},
+ ]},
+ {id:"fiveshot", title:"なんでも5ショット", subtitle:"どんな動作にも使える万能型", emoji:"✋", cuts:[
+   {title:"手のアップ", angle:"手元にぐっと寄って", tip:"まず「何をしているか」を手で見せる", media:{i:IMG("lifestyle_using")}},
+   {title:"顔のアップ", angle:"表情がわかる距離で", tip:"「誰がしているか」。表情が入ると温度が出る", media:{i:IMG("scene_after")}},
+   {title:"引き", angle:"場所全体がわかる広さで", tip:"「どこでしているか」。前のカットから45度以上動くと新鮮に見える", media:{i:IMG("scene_before")}},
+   {title:"肩越し", angle:"本人の後ろから手元を見下ろして", tip:"本人目線に近づくと「自分ごと」になる", media:{i:IMG("howto_step1")}},
+   {title:"変化球アングル", angle:"真上か、床すれすれから", tip:"最後に1枚、意外な角度で遊ぶと締まる", media:{i:IMG("unbox_contents_flatlay")}},
  ]},
  {id:"unbox", title:"開封", subtitle:"箱を開けるワクワクを見せる", emoji:"📦", cuts:[
    {title:"箱ヒーロー", angle:"正面から、目線の高さで", tip:"冒頭1秒で「何を開けるか」を伝える", media:{i:IMG("unbox_box_hero")}},
@@ -298,7 +313,7 @@ function renderGuide(){
     ${back("#/","トップ")}
     <span class="pill" style="background:rgba(169,196,138,.5)">カットガイド</span>
     <h2 style="font-size:24px;margin:6px 0 4px">撮影カットガイド</h2>
-    <p class="small" style="margin-bottom:16px">目的に合うセクションを選ぶと、カットごとの撮り方が見られます。</p>
+    <p class="small" style="margin-bottom:16px">目的に合うセクションを選ぶと、カットごとの撮り方が見られます。カットを分けて撮るだけで、動画の見られ方は大きく変わります。</p>
     ${SECTIONS.map(s=>`<a href="#/preview/${s.id}"><div class="card tap row">
       <div class="icon-circle" style="background:rgba(169,196,138,.45)">${s.emoji}</div>
       <div class="grow"><div style="font-weight:900;font-size:16px">${s.title} ${s.sample?'<span class="pill" style="background:rgba(224,184,76,.45);font-size:10px">動画サンプル</span>':''}</div>
@@ -389,6 +404,14 @@ function renderCuts(id){
       <button id="next" aria-label="次へ">›</button>
     </div>
     <p class="small" style="text-align:center;margin-top:10px">← スワイプでカットを進められます →</p>
+    <div class="card" style="margin-top:14px">
+      <div style="font-weight:900;font-size:14px;margin-bottom:6px">📷 撮り方のコツ</div>
+      <ul class="small" style="padding-left:18px;display:grid;gap:4px">
+        <li>次のカットは前の位置から<b>45度以上</b>動いて撮る（回り込む・高さを変える）</li>
+        <li>各カットは少し長め（<b>10秒目安</b>）に回して、いいところだけ使う</li>
+        <li>動作の<b>途中（7:3）</b>で次のカットへ切り替えると繋がって見える</li>
+      </ul>
+    </div>
   </div>`;
 
   const car = document.getElementById("car");

@@ -75,6 +75,19 @@ a{color:inherit;text-decoration:none}
 .dots span{width:8px;height:8px;border-radius:50%;background:rgba(74,63,53,.2);transition:all .2s}
 .dots span.on{background:var(--sage);transform:scale(1.35)}
 
+/* ---- 完成イメージプレビュー ---- */
+.pv-media{position:relative;border-radius:24px;overflow:hidden;background:#e8e4dc;
+  border:1.5px solid rgba(74,63,53,.12);margin:14px auto 0}
+.pv-media.v916{width:min(100%,330px);aspect-ratio:9/16}
+.pv-media.v45{width:min(100%,400px);aspect-ratio:4/5}
+.pv-media video,.pv-media img{width:100%;height:100%;object-fit:cover;display:block}
+.cutlabel{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);
+  background:rgba(74,63,53,.85);color:#fff;font-weight:900;font-size:15px;
+  padding:8px 20px;border-radius:999px;white-space:nowrap;max-width:90%}
+.pv-dots{display:flex;gap:7px;justify-content:center;margin-top:12px}
+.pv-dots span{width:8px;height:8px;border-radius:50%;background:rgba(74,63,53,.2);transition:all .15s}
+.pv-dots span.on{background:var(--sage);transform:scale(1.35)}
+
 /* ---- 記事 ---- */
 .article-title{display:flex;gap:12px;align-items:center;margin-bottom:14px}
 .article-title img{width:56px;height:56px;object-fit:contain;flex-shrink:0}
@@ -118,7 +131,8 @@ const ARTICLES = [
 ];
 
 const SECTIONS = [
- {id:"scene", title:"使用シーンを分解", subtitle:"「椅子に座る」を4カットで", emoji:"🪑", sample:true, cuts:[
+ {id:"scene", title:"使用シーンを分解", subtitle:"「椅子に座る」を4カットで", emoji:"🪑", sample:true,
+  full:{src:"assets/video/scene_full.mp4", per:0.8}, cuts:[
    {title:"椅子を引く", angle:"少し引きで、部屋の空気ごと写す", tip:"「これから使う」の予感を1カット目に", media:{v:"assets/video/cut1.mp4"}},
    {title:"背もたれに手を添える", angle:"手元にぐっと寄って", tip:"手のアップで動作の始まりを見せる", media:{v:"assets/video/cut2.mp4"}},
    {title:"腰を下ろす", angle:"横から、動きの瞬間を", tip:"座る瞬間が主役。動きは最後まで見られやすい", media:{v:"assets/video/cut3.mp4"}},
@@ -170,7 +184,9 @@ const DICT = [
 
 /* ================= ルーティング ================= */
 const app = document.getElementById("app");
+let pvTimer = null;
 function route(){
+  if(pvTimer){ clearInterval(pvTimer); pvTimer = null; }
   const h = location.hash.replace(/^#\/?/, "");
   const [p, arg] = h.split("/");
   window.scrollTo(0,0);
@@ -178,6 +194,7 @@ function route(){
   if(p==="article") return renderArticle(arg);
   if(p==="dict") return arg ? renderDictDetail(arg) : renderDict();
   if(p==="guide") return renderGuide();
+  if(p==="preview") return renderPreview(arg);
   if(p==="cuts") return renderCuts(arg);
   renderHome();
 }
@@ -199,11 +216,6 @@ function renderHome(){
     ${pillar("#/textbook","📖","暮らしを撮る教科書","撮り方のコツを学ぶ","rgba(143,176,196,.5)")}
     ${pillar("#/dict","🔎","撮り方逆引き辞典","なにを撮る？から調べる","rgba(228,164,172,.5)")}
     ${pillar("#/guide","🎬","撮影カットガイド","カットごとの撮り方を見る","rgba(169,196,138,.55)")}
-    <div class="card">
-      <h3 style="font-size:16px">はじめてでも大丈夫</h3>
-      <p class="small" style="margin-top:4px">教科書で学ぶ → 逆引きで調べる → カットガイドの順に見ると迷いません。</p>
-      <a href="#/textbook"><button class="btn" style="background:var(--blue)">教科書からはじめる</button></a>
-    </div>
   </div>`;
 }
 function pillar(href, emoji, title, sub, color){
@@ -266,7 +278,7 @@ function renderDictDetail(id){
       <div class="tiprow"><div class="ic">📐</div><div><div class="lbl">角度</div><div class="val">${d.angle}</div></div></div>
     </div>
     <h3 style="font-size:16px;margin:16px 0 10px">おすすめの撮影構成</h3>
-    ${d.rec.map(rid=>{const s=SECTIONS.find(x=>x.id===rid);return `<a href="#/cuts/${s.id}"><div class="card tap row">
+    ${d.rec.map(rid=>{const s=SECTIONS.find(x=>x.id===rid);return `<a href="#/preview/${s.id}"><div class="card tap row">
       <div class="icon-circle" style="background:rgba(169,196,138,.45)">${s.emoji}</div>
       <div class="grow"><div style="font-weight:900;font-size:15px">${s.title}</div>
       <div class="small">${s.cuts.length}カット・${s.subtitle}</div></div>
@@ -280,7 +292,7 @@ function renderGuide(){
     <span class="pill" style="background:rgba(169,196,138,.5)">カットガイド</span>
     <h2 style="font-size:24px;margin:6px 0 4px">撮影カットガイド</h2>
     <p class="small" style="margin-bottom:16px">目的に合うセクションを選ぶと、カットごとの撮り方が見られます。</p>
-    ${SECTIONS.map(s=>`<a href="#/cuts/${s.id}"><div class="card tap row">
+    ${SECTIONS.map(s=>`<a href="#/preview/${s.id}"><div class="card tap row">
       <div class="icon-circle" style="background:rgba(169,196,138,.45)">${s.emoji}</div>
       <div class="grow"><div style="font-weight:900;font-size:16px">${s.title} ${s.sample?'<span class="pill" style="background:rgba(224,184,76,.45);font-size:10px">動画サンプル</span>':''}</div>
       <div class="small">${s.subtitle}・${s.cuts.length}カット</div></div>
@@ -288,12 +300,59 @@ function renderGuide(){
   </div>`;
 }
 
+/* ---- 完成イメージプレビュー ---- */
+function renderPreview(id){
+  const s = SECTIONS.find(x=>x.id===id); if(!s) return renderGuide();
+  const N = s.cuts.length;
+  const media = s.full
+    ? `<video src="${s.full.src}" muted loop autoplay playsinline preload="auto"></video>`
+    : `<img id="pvimg" src="${s.cuts[0].media.i}" alt="">`;
+  app.innerHTML = `<div class="page">
+    ${back("#/guide","セクション一覧")}
+    <span class="pill" style="background:rgba(224,184,76,.45)">完成イメージ</span>
+    <h2 style="font-size:22px;margin-top:6px">${s.title}</h2>
+    <p class="small">${N}カットを繋ぐと、こんな流れの動画になります。</p>
+    <div class="pv-media ${s.full?'v916':'v45'}">
+      ${media}
+      <div class="cutlabel" id="pvlabel">1. ${esc(s.cuts[0].title)}</div>
+    </div>
+    <div class="pv-dots" id="pvdots">${s.cuts.map((_,i)=>`<span class="${i===0?'on':''}"></span>`).join("")}</div>
+    <a href="#/cuts/${s.id}"><button class="btn" style="margin-top:18px">撮影を始める</button></a>
+  </div>`;
+
+  const label = document.getElementById("pvlabel");
+  const dots = [...document.querySelectorAll("#pvdots span")];
+  let cur = 0;
+  const show = i => {
+    if(i===cur) return;
+    cur = i;
+    label.textContent = `${i+1}. ${s.cuts[i].title}`;
+    label.animate(
+      [{transform:"translateX(-50%) scale(.82)",opacity:.4},{transform:"translateX(-50%) scale(1)",opacity:1}],
+      {duration:160,easing:"ease-out"});
+    dots.forEach((d,k)=>d.classList.toggle("on",k===i));
+  };
+  if(s.full){
+    const v = document.querySelector(".pv-media video");
+    v.addEventListener("timeupdate", ()=>{
+      show(Math.min(N-1, Math.floor(v.currentTime / s.full.per)));
+    });
+  }else{
+    const img = document.getElementById("pvimg");
+    pvTimer = setInterval(()=>{
+      const i = (cur+1) % N;
+      img.src = s.cuts[i].media.i;
+      show(i);
+    }, 900);
+  }
+}
+
 /* ---- カットビューア ---- */
 function renderCuts(id){
   const s = SECTIONS.find(x=>x.id===id); if(!s) return renderGuide();
   const N = s.cuts.length;
   app.innerHTML = `<div class="page">
-    ${back("#/guide","セクション一覧")}
+    ${back(`#/preview/${id}`,"完成イメージ")}
     <div class="viewer-head">
       <h2 style="font-size:20px">${s.title}</h2>
       <span class="pill" style="background:rgba(143,176,196,.4)" id="counter">CUT 1 / ${N}</span>

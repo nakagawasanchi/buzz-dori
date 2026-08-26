@@ -135,6 +135,24 @@ a{color:inherit;text-decoration:none}
 .tiprow .ic{width:24px;text-align:center;flex-shrink:0}
 .tiprow .lbl{font-size:11px;color:rgba(74,63,53,.5);font-weight:700}
 .tiprow .val{font-size:14px}
+
+/* ---- しゅりさんメモ（レビュー用・ローンチ時に削除） ---- */
+.fb-card{margin-top:26px;background:#FFF9F0;border:1.5px dashed rgba(224,184,76,.75);
+  border-radius:20px;padding:16px}
+.fb-head{font-weight:900;font-size:14px;margin-bottom:4px}
+.fb-item{background:#fff;border:1.5px solid rgba(74,63,53,.12);border-radius:12px;
+  padding:10px 12px;margin:8px 0;font-size:14px;white-space:pre-line;position:relative}
+.fb-item .fb-date{font-size:10px;color:rgba(74,63,53,.45);margin-top:4px}
+.fb-item .fb-del{position:absolute;top:6px;right:8px;border:none;background:none;
+  color:rgba(74,63,53,.35);font-size:14px;cursor:pointer;padding:4px}
+.fb-card textarea{width:100%;min-height:74px;border:1.5px solid rgba(74,63,53,.2);
+  border-radius:12px;padding:10px 12px;font:inherit;font-size:14px;resize:vertical;
+  background:#fff;margin-top:8px}
+.fb-card textarea:focus{outline:none;border-color:var(--mustard)}
+.fb-send{margin-top:8px;width:100%;border:none;border-radius:999px;padding:12px;
+  font:inherit;font-weight:900;font-size:14px;background:var(--mustard);color:#fff;cursor:pointer}
+.fb-send:disabled{opacity:.5}
+.fb-status{font-size:12px;margin-top:6px;color:rgba(74,63,53,.55);text-align:center}
 </style>
 </head>
 <body>
@@ -478,6 +496,67 @@ function renderCuts(id){
 }
 
 route();
+
+/* ================= しゅりさんメモ（レビュー用・ローンチ時にこのブロックごと削除） =================
+   FB_KEY は Supabase の anon public key（RLS前提でクライアント配布可のキー）。 */
+const FB_URL = "https://frpssjxodattcatzahjy.supabase.co/rest/v1/buzzdori_feedback";
+const FB_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZycHNzanhvZGF0dGNhdHphaGp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjIxMzcsImV4cCI6MjEwMjUzODEzN30.ibnJYLsRgDl1-2KAqRx2JDd1DsrinK7OkoEudzmWX8M";
+const fbHeaders = {"apikey":FB_KEY, "Authorization":`Bearer ${FB_KEY}`, "Content-Type":"application/json"};
+const fbKey = () => (location.hash.replace(/^#\/?/, "") || "home");
+
+async function fbLoad(listEl, key){
+  try{
+    const r = await fetch(`${FB_URL}?page=eq.${encodeURIComponent(key)}&order=created_at.asc&select=id,body,created_at`, {headers:fbHeaders});
+    if(!r.ok) throw 0;
+    const rows = await r.json();
+    listEl.innerHTML = rows.map(x=>{
+      const d = new Date(x.created_at);
+      return `<div class="fb-item" data-id="${x.id}">${esc(x.body)}
+        <div class="fb-date">${d.getMonth()+1}/${d.getDate()} ${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}</div>
+        <button class="fb-del" title="削除">✕</button></div>`;
+    }).join("");
+    listEl.querySelectorAll(".fb-del").forEach(b=>{
+      b.onclick = async ()=>{
+        if(!confirm("このメモを削除しますか？")) return;
+        await fetch(`${FB_URL}?id=eq.${b.parentElement.dataset.id}`, {method:"DELETE", headers:fbHeaders});
+        fbLoad(listEl, key);
+      };
+    });
+  }catch(e){ listEl.innerHTML = `<div class="fb-status">メモの読み込みに失敗しました（通信環境をご確認ください）</div>`; }
+}
+
+function mountFeedback(){
+  const key = fbKey();
+  const old = document.getElementById("fbcard"); if(old) old.remove();
+  const page = app.querySelector(".page"); if(!page) return;
+  const el = document.createElement("div");
+  el.className = "fb-card"; el.id = "fbcard";
+  el.innerHTML = `
+    <div class="fb-head">💬 しゅりさんメモ</div>
+    <div class="small">このページに直してほしいところがあれば、気軽に書いて送ってください（ページごとに保存されます）</div>
+    <div id="fb-list"></div>
+    <textarea id="fb-text" placeholder="このページは、ここをこう直してほしい…など"></textarea>
+    <button class="fb-send" id="fb-send">メモを送る</button>
+    <div class="fb-status" id="fb-status"></div>`;
+  page.appendChild(el);
+  const list = el.querySelector("#fb-list");
+  fbLoad(list, key);
+  el.querySelector("#fb-send").onclick = async ()=>{
+    const ta = el.querySelector("#fb-text"), st = el.querySelector("#fb-status"), btn = el.querySelector("#fb-send");
+    const body = ta.value.trim(); if(!body) return;
+    btn.disabled = true; st.textContent = "送信中…";
+    try{
+      const r = await fetch(FB_URL, {method:"POST", headers:fbHeaders, body:JSON.stringify({page:key, body})});
+      if(!r.ok) throw 0;
+      ta.value = ""; st.textContent = "送信しました！";
+      fbLoad(list, key);
+      setTimeout(()=>{ st.textContent=""; }, 2500);
+    }catch(e){ st.textContent = "送信に失敗しました。もう一度お試しください。"; }
+    btn.disabled = false;
+  };
+}
+window.addEventListener("hashchange", ()=>setTimeout(mountFeedback, 0));
+mountFeedback();
 </script>
 </body>
 </html>

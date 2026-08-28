@@ -1,3 +1,4 @@
+(() => {
 /* ================= コンテンツデータ（将来的にGoogleシート連携予定） =================
    構造:
    - ARTICLES: 教科書の記事
@@ -160,3 +161,4 @@ const DICT = [
 ];
 
 window.CONTENT = { ARTICLES, SECTIONS, DICT };
+})();

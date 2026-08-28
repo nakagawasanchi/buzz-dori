@@ -136,6 +136,26 @@ a{color:inherit;text-decoration:none}
 .tiprow .lbl{font-size:11px;color:rgba(74,63,53,.5);font-weight:700}
 .tiprow .val{font-size:14px}
 
+/* ---- 検索 ---- */
+.searchbox{display:flex;align-items:center;gap:8px;background:var(--ivory);
+  border:1.5px solid rgba(74,63,53,.16);border-radius:999px;padding:10px 16px;margin-bottom:18px}
+.searchbox .ic{font-size:15px;flex-shrink:0;opacity:.6}
+.searchbox input{flex:1;min-width:0;border:none;background:none;font:inherit;font-size:14px;color:var(--ink)}
+.searchbox input:focus{outline:none}
+.searchbox input::placeholder{color:rgba(74,63,53,.4)}
+.search-group{margin:22px 0 8px;font-size:13px;font-weight:900;color:rgba(74,63,53,.55);letter-spacing:.04em}
+.search-empty{text-align:center;padding:36px 10px;color:rgba(74,63,53,.5);font-size:14px}
+
+/* ---- タグ ---- */
+.tags-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tagchip{display:inline-block;font-size:12px;font-weight:700;color:var(--ink);
+  background:rgba(169,196,138,.28);border:1.5px solid rgba(169,196,138,.6);
+  border-radius:999px;padding:5px 13px}
+
+/* ---- 実写サンプル準備中バッジ ---- */
+.media .draft,.pv-media .draft{position:absolute;top:12px;right:12px;background:rgba(224,184,76,.92);
+  color:#fff;font-size:10px;font-weight:700;padding:4px 11px;border-radius:999px}
+
 /* ---- しゅりさんメモ（レビュー用・ローンチ時に削除） ---- */
 .fb-card{margin-top:26px;background:#FFF9F0;border:1.5px dashed rgba(224,184,76,.75);
   border-radius:20px;padding:16px}
@@ -158,93 +178,52 @@ a{color:inherit;text-decoration:none}
 <body>
 <div id="app"></div>
 
+<script src="data/content.js"></script>
 <script>
-/* ================= データ ================= */
-const IMG = k => `assets/img/${k}.png`;
+/* ================= データ(data/content.jsから読み込み。非公開はここで除外) ================= */
+const ARTICLES = window.CONTENT.ARTICLES.filter(x=>x.published);
+const SECTIONS = window.CONTENT.SECTIONS.filter(x=>x.published);
+const DICT = window.CONTENT.DICT.filter(x=>x.published);
 
-const ARTICLES = [
- {id:"light", title:"自然光を味方にする", point:"照明よりまず窓際！これだけで見え方が9割変わるよ〜",
-  body:`いちばん手っ取り早く「映え」に近づくのは、実は照明を頑張ることじゃなくて窓際に立つこと。\nレースカーテン越しの光は柔らかくて、被写体の色をいちばん自然に見せてくれます。\n\n光が足りないと感じたら、白い紙や白い皿をレフ板がわりに置いてみて。\n影がふわっと和らいで、それだけでワンランク上の見え方になります。`},
- {id:"background", title:"背景を「すっきり」させる3つの方法", point:"迷ったら“1個どける”！引き算が正解だよ◎",
-  body:`1. 主役の後ろに置くものを1〜2個までに絞る。\n2. 無地の布・木の板・アイボリーの紙を1枚敷くだけで生活感がぐっと減る。\n3. 撮る前に周りを軽く見渡して、視界に入る余計なものを画角の外に出す。\n\n「引き算」を意識するだけで、同じ商品・同じ部屋でも見違えます。`},
- {id:"hands", title:"手の入れ方で「生活感」を出す", point:"手がひとつ入るだけで、ぐっと“自分ごと”になるよ♪",
-  body:`置き画だけだと綺麗だけど少し他人事に見えがち。\nそこに手が1つ入るだけで「自分でも使えそう」に変わります。\n\n爪や指先を意識してゆっくり動かす、手首のスナップを効かせすぎない。\nこの2つだけ意識すれば十分です。`},
- {id:"thumbnail", title:"サムネの黄金型：ピル型タグ＋大きな2行タイトル", point:"1画面に1メッセージ。欲張らないのがコツ！",
-  body:`サムネの型はシンプル。\n上にピル型の一言タグ、下に大きめの2行タイトル。情報は詰め込みすぎない。\n\n1画面1メッセージを守るだけで、スクロールする指が止まりやすくなります。`},
- {id:"cuts", title:"リールの黄金カット割（掴み3秒→変化→結論）", point:"掴みの3秒がすべて。最初に“予告”してあげて◎",
-  body:`最初の3秒で「なにが起きるか」を予告する。\n真ん中で変化（開ける・塗る・比べる）を見せる。\n最後に結論（仕上がり・答え）で締める。\n\nこの3段構成に沿ってカットを並べるだけで、離脱しにくいリールになります。`},
- {id:"fiveshot", title:"1つの動作は「5つの角度」で撮る", point:"手→顔→引き→肩越し→変化球。この5つで動画になるよ！",
-  body:`テレビの現場で使われている「5ショットルール」という型があります。\n1つの作業を、この5つの角度で撮るだけ：\n\n① 手のアップ（何をしているか）\n② 顔のアップ（誰がしているか）\n③ 引き（どこでしているか）\n④ 肩越し（本人の目線に近い角度）\n⑤ 変化球（真上や床すれすれなど意外な角度）\n\nこの5カットが揃うと、それだけで「ちゃんとした動画」に見えます。\n1カット3〜5秒ずつでOK。まずはこの型をなぞってみて。`},
- {id:"angle45", title:"次のカットは「45度」うごく", point:"寄り引きだけじゃなくて“回り込む”！45度で新鮮に見えるよ◎",
-  body:`カットを変えるとき、ズームで寄ったり引いたりするだけだと単調になりがち。\nプロの目安は「次のカットは前の位置から45度以上動く」こと。\n\n被写体のまわりを回り込むと、背景に映るものも変わって、脳が「新しい情報だ」と感じてくれます。\n高さを変えるのも効果大。目線→ローアングル→真上、と動いてみて。\n\nひとつだけ注意。反対側（180度の向こう）まで回り込むと、向きが逆転して見ている人が混乱します。同じ側の半円の中で動くのが基本です。`},
- {id:"repeat", title:"同じ動作を「繰り返して」撮る", point:"もう1回やって、角度を変えてもう1回。それだけでプロっぽくなる♪",
-  body:`カメラが1台しかなくても、マルチカメラ風の動画は作れます。\nコツは「同じ動作を何回か繰り返して、そのたびに角度を変えて撮る」こと。\n\n椅子に座る、瓶のフタを開ける、クリームを塗る……\n繰り返せる動作なら何でもOK。\n\n1回目は引きで、2回目は手元に寄って、3回目は真上から。\n撮るときは少し長め（10秒くらい）に回しておいて、編集でいいところだけ使いましょう。`},
- {id:"actioncut", title:"動作の「途中」で切ると繋がって見える", point:"動きを7:3で分けてみて。座る途中で切り替えると自然だよ〜",
-  body:`別の角度で撮った2つのカットを自然に繋ぐコツは、「動作の途中」で切り替えること。\n映像の世界では「アクションつなぎ」と呼ばれる基本技です。\n\n動き全体を10とすると、7:3くらいで分けるのがきれい。\n「座る」なら、腰を下ろしはじめ（7割）まで見せて、別角度の着席の瞬間（残り3割）に切り替える。\n\n動きが橋渡しになって、カットの切れ目がほとんど気にならなくなります。`},
- {id:"colors", title:"世界観は「色を3つに絞る」", point:"色は3つまで。それだけで“世界観”が出るよ〜",
-  body:`背景・小物・服の色を、テーマカラー3色以内でまとめると統一感が出ます。\n色数が増えるほど「ごちゃっと」した印象になりやすいので注意。\n\n迷ったら、ベース1色＋差し色1色＋差し色を支える1色、くらいの配分がちょうどいい。`},
- {id:"phrases", title:"バズる切り口フレーズ集", point:"最初の一言に迷ったら、この中から選んでみて♪",
-  body:`「この発想はなかった」「こっちが正解!?」「知らないと損してた」「これ1本で変わる」\n「〇〇な人だけ見て」「地味に神アイテム」\n\n冒頭のテロップや台本の掴みに、こうしたフレーズを添えるだけで最初の3秒の離脱が減ります。`},
-];
-
-const SECTIONS = [
- {id:"scene", title:"使用シーンを分解", subtitle:"「椅子に座る」を4カットで", emoji:"🪑", sample:true,
-  full:{src:"assets/video/scene_full.mp4", per:0.8}, cuts:[
-   {title:"椅子を引く", angle:"少し引きで、部屋の空気ごと写す", tip:"「これから使う」の予感を1カット目に", media:{v:"assets/video/cut1.mp4"}},
-   {title:"背もたれに手を添える", angle:"手元にぐっと寄って", tip:"手のアップで動作の始まりを見せる", media:{v:"assets/video/cut2.mp4"}},
-   {title:"腰を下ろす", angle:"横から、動きの瞬間を", tip:"腰を下ろす途中（7割あたり）で止めると、次のカットが自然に繋がる", media:{v:"assets/video/cut3.mp4"}},
-   {title:"座って一息", angle:"座った姿に寄って余韻を", tip:"落ち着いた表情で締めると「暮らし」が伝わる", media:{v:"assets/video/cut4.mp4"}},
- ]},
- {id:"fiveshot", title:"なんでも5ショット", subtitle:"どんな動作にも使える万能型", emoji:"✋", cuts:[
-   {title:"手のアップ", angle:"手元にぐっと寄って", tip:"まず「何をしているか」を手で見せる", media:{i:IMG("lifestyle_using")}},
-   {title:"顔のアップ", angle:"表情がわかる距離で", tip:"「誰がしているか」。表情が入ると温度が出る", media:{i:IMG("scene_after")}},
-   {title:"引き", angle:"場所全体がわかる広さで", tip:"「どこでしているか」。前のカットから45度以上動くと新鮮に見える", media:{i:IMG("scene_before")}},
-   {title:"肩越し", angle:"本人の後ろから手元を見下ろして", tip:"本人目線に近づくと「自分ごと」になる", media:{i:IMG("howto_step1")}},
-   {title:"変化球アングル", angle:"真上か、床すれすれから", tip:"最後に1枚、意外な角度で遊ぶと締まる", media:{i:IMG("unbox_contents_flatlay")}},
- ]},
- {id:"unbox", title:"開封", subtitle:"箱を開けるワクワクを見せる", emoji:"📦", cuts:[
-   {title:"箱ヒーロー", angle:"正面から、目線の高さで", tip:"冒頭1秒で「何を開けるか」を伝える", media:{i:IMG("unbox_box_hero")}},
-   {title:"開ける瞬間", angle:"斜め上から、手ごと入れて", tip:"開封の瞬間は続きが気になる引きになる", media:{i:IMG("unbox_opening")}},
-   {title:"中身を並べる", angle:"真上から俯瞰で", tip:"全体像が一目でわかると安心感が出る", media:{i:IMG("unbox_contents_flatlay")}},
- ]},
- {id:"spec", title:"仕様・ディテール", subtitle:"質感と作り込みを伝える", emoji:"🔍", cuts:[
-   {title:"全体像", angle:"正面から、背景はすっきりさせて", tip:"主役をまず1枚で見せ切る", media:{i:IMG("spec_overview")}},
-   {title:"質感の寄り", angle:"斜め横からの光で、グッとマクロ", tip:"質感アップは指を止めさせる", media:{i:IMG("spec_texture_macro")}},
-   {title:"気になる部分", angle:"特徴的なパーツに部分アップ", tip:"細部のこだわりが伝わると信頼感が増す", media:{i:IMG("spec_detail")}},
-   {title:"手でサイズ感", angle:"手のひらに乗せて", tip:"実際の大きさが一番伝わるカット", media:{i:IMG("spec_inhand")}},
- ]},
- {id:"lifestyle", title:"それがある暮らし", subtitle:"生活になじむ空気感を見せる", emoji:"🏠", cuts:[
-   {title:"置いた部屋の引き", angle:"窓際の自然光で少し引いて", tip:"世界観が伝わると保存されやすい", media:{i:IMG("lifestyle_room_wide")}},
-   {title:"使う手元", angle:"動作中の手元に寄って", tip:"人の動きが入ると「自分ごと」になる", media:{i:IMG("lifestyle_using")}},
-   {title:"余韻の寄り", angle:"斜めから、背景は軽くボケさせて", tip:"最後の一枚が投稿の余韻を決める", media:{i:IMG("lifestyle_afterglow")}},
- ]},
- {id:"beforeafter", title:"ビフォーアフター", subtitle:"変化の説得力で魅せる", emoji:"✨", cuts:[
-   {title:"ビフォー", angle:"正面から、変化前の状態を", tip:"ビフォーが弱いとアフターも弱く見える", media:{i:IMG("beforeafter_before")}},
-   {title:"作業中", angle:"手元に寄って、変化の途中を", tip:"変化が起きる瞬間は最後まで見られやすい", media:{i:IMG("beforeafter_working")}},
-   {title:"アフター", angle:"ビフォーと同じ構図・同じ距離で", tip:"同じ構図で撮ると変化が一目でわかる", media:{i:IMG("beforeafter_after")}},
- ]},
- {id:"size", title:"サイズ・比較", subtitle:"大きさの実感を伝える", emoji:"📏", cuts:[
-   {title:"定番品と並べる", angle:"見慣れたものを隣に置いて正面から", tip:"身近な比較対象があるとサイズ感が一瞬で伝わる", media:{i:IMG("size_compare_item")}},
-   {title:"手のひらに乗せる", angle:"手のひらに乗せて正面から", tip:"手に乗せるだけで実寸がわかる", media:{i:IMG("size_palm")}},
-   {title:"収納に入れる", angle:"しまう動作を斜め上から", tip:"収まる様子は「使えそう」を後押しする", media:{i:IMG("size_storage")}},
- ]},
- {id:"howto", title:"使い方ステップ", subtitle:"手順を追って理解させる", emoji:"🔢", cuts:[
-   {title:"STEP1", angle:"手元に寄って、最初の動作を", tip:"STEPごとに区切ると迷わず真似できる", media:{i:IMG("howto_step1")}},
-   {title:"STEP2", angle:"手元に寄って、次の動作を", tip:"同じアングルで揃えるとテンポが生まれる", media:{i:IMG("howto_step2")}},
-   {title:"STEP3・仕上がり", angle:"真上俯瞰で、仕上がり全体を", tip:"完成形で締めると満足感が残る", media:{i:IMG("howto_step3")}},
- ]},
-];
-
-const DICT = [
- {id:"cosmetics", cat:"コスメ・スキンケア", light:"柔らかい自然光・逆光ぎみ", bg:"無地／大理石調", angle:"斜め45°＋真上", rec:["spec","lifestyle"]},
- {id:"food", cat:"食べ物・ドリンク", light:"自然光サイド", bg:"木／リネン", angle:"真上＋寄り", rec:["lifestyle","spec"]},
- {id:"gadget", cat:"ガジェット・家電", light:"均一・影控えめ", bg:"グレー／白", angle:"正面＋ディテール", rec:["unbox","spec"]},
- {id:"fashion", cat:"服・ファッション小物", light:"自然光", bg:"白壁／床置き", angle:"真上フラットレイ", rec:["lifestyle","size"]},
- {id:"interior", cat:"インテリア雑貨", light:"窓際自然光", bg:"実際の部屋", angle:"引き＋寄り", rec:["lifestyle","beforeafter"]},
- {id:"kitchen", cat:"キッチン・食器", light:"自然光", bg:"木／タイル", angle:"真上＋斜め", rec:["howto","lifestyle"]},
- {id:"baby", cat:"おもちゃ・ベビー", light:"明るい自然光", bg:"無地明るい", angle:"目線＋俯瞰", rec:["unbox","lifestyle"]},
- {id:"book", cat:"本・文具", light:"柔らかい光", bg:"無地／木", angle:"真上フラットレイ", rec:["spec","size"]},
-];
+/* ================= 検索・タグ ================= */
+const norm = s => (s||"").toLowerCase();
+function searchAll(query){
+  const q = norm(query);
+  const hit = s => norm(s).includes(q);
+  const hitTags = tags => (tags||[]).some(t=>hit(t));
+  const articles = ARTICLES.filter(a => hit(a.title) || hit(a.body) || hit(a.point) || hitTags(a.tags));
+  const sections = SECTIONS.filter(s => hit(s.title) || hit(s.subtitle) || hitTags(s.tags) ||
+    s.cuts.some(c => hit(c.title) || hit(c.tip)));
+  const dicts = DICT.filter(d => hit(d.cat) || hit(d.light) || hit(d.bg) || hit(d.angle) || hitTags(d.tags));
+  return {articles, sections, dicts};
+}
+function byTag(tag){
+  const has = tags => (tags||[]).includes(tag);
+  return {
+    articles: ARTICLES.filter(a=>has(a.tags)),
+    sections: SECTIONS.filter(s=>has(s.tags)),
+    dicts: DICT.filter(d=>has(d.tags)),
+  };
+}
+function tagChips(tags){
+  if(!tags || !tags.length) return "";
+  return `<div class="tags-row">${tags.map(t=>`<a href="#/tag/${encodeURIComponent(t)}"><span class="tagchip tap">#${esc(t)}</span></a>`).join("")}</div>`;
+}
+function searchBox(){
+  return `<form class="searchbox" id="searchform">
+    <span class="ic">🔎</span>
+    <input id="searchinput" type="search" placeholder="なにを撮る?で検索(例:キッチン)" autocomplete="off">
+  </form>`;
+}
+function bindSearchBox(){
+  const f = document.getElementById("searchform");
+  if(!f) return;
+  f.onsubmit = e => {
+    e.preventDefault();
+    const v = document.getElementById("searchinput").value.trim();
+    if(v) location.hash = `#/search/${encodeURIComponent(v)}`;
+  };
+}
 
 /* ================= ルーティング ================= */
 const app = document.getElementById("app");
@@ -254,13 +233,16 @@ function route(){
   const h = location.hash.replace(/^#\/?/, "");
   const [p, arg] = h.split("/");
   window.scrollTo(0,0);
-  if(p==="textbook") return renderTextbook();
-  if(p==="article") return renderArticle(arg);
-  if(p==="dict") return arg ? renderDictDetail(arg) : renderDict();
-  if(p==="guide") return renderGuide();
-  if(p==="preview") return renderPreview(arg);
-  if(p==="cuts") return renderCuts(arg);
-  renderHome();
+  if(p==="textbook") renderTextbook();
+  else if(p==="article") renderArticle(arg);
+  else if(p==="dict") arg ? renderDictDetail(arg) : renderDict();
+  else if(p==="guide") renderGuide();
+  else if(p==="preview") renderPreview(arg);
+  else if(p==="cuts") renderCuts(arg);
+  else if(p==="search") renderSearch(decodeURIComponent(arg||""));
+  else if(p==="tag") renderTag(decodeURIComponent(arg||""));
+  else renderHome();
+  bindSearchBox();
 }
 window.addEventListener("hashchange", route);
 
@@ -277,6 +259,7 @@ function renderHome(){
       </div>
       <img class="avatar" src="assets/img/app_icon.png" alt="しゅり">
     </div>
+    ${searchBox()}
     ${pillar("#/textbook","📖","暮らしを撮る教科書","撮り方のコツを学ぶ","rgba(143,176,196,.5)")}
     ${pillar("#/dict","🔎","撮り方逆引き辞典","なにを撮る？から調べる","rgba(228,164,172,.5)")}
     ${pillar("#/guide","🎬","撮影カットガイド","カットごとの撮り方を見る","rgba(169,196,138,.55)")}
@@ -296,6 +279,7 @@ function renderTextbook(){
     ${back("#/","トップ")}
     <span class="pill" style="background:rgba(143,176,196,.4)">教科書</span>
     <h2 style="font-size:24px;margin:6px 0 16px">暮らしを撮る教科書</h2>
+    ${searchBox()}
     <div class="notebook">
       ${ARTICLES.map((a,i)=>`<a href="#/article/${a.id}"><div class="note-row tap">
         <div class="lesson-num">${i+1}</div>
@@ -325,6 +309,7 @@ function renderArticle(id){
       <img src="assets/img/shuri_point.png" alt="">
       <div><span class="plabel">POINT</span><p>${esc(a.point)}</p></div>
     </div>
+    ${tagChips(a.tags)}
     <div class="pagenav-row">
       ${prev
         ? `<a class="pagenav tap" href="#/article/${prev.id}"><span class="dir">← 前のページ</span><span class="t">${idx}. ${esc(prev.title)}</span></a>`
@@ -341,6 +326,7 @@ function renderDict(){
     ${back("#/","トップ")}
     <span class="pill" style="background:rgba(228,164,172,.45)">逆引き</span>
     <h2 style="font-size:24px;margin:6px 0 16px">撮り方逆引き辞典</h2>
+    ${searchBox()}
     ${DICT.map(d=>`<a href="#/dict/${d.id}"><div class="card tap row">
       <div class="grow" style="font-weight:900;font-size:15px">${d.cat}</div>
       <div class="chev">›</div></div></a>`).join("")}
@@ -358,11 +344,12 @@ function renderDictDetail(id){
       <div class="tiprow"><div class="ic">📐</div><div><div class="lbl">角度</div><div class="val">${d.angle}</div></div></div>
     </div>
     <h3 style="font-size:16px;margin:16px 0 10px">おすすめの撮影構成</h3>
-    ${d.rec.map(rid=>{const s=SECTIONS.find(x=>x.id===rid);return `<a href="#/preview/${s.id}"><div class="card tap row">
+    ${d.rec.map(rid=>{const s=SECTIONS.find(x=>x.id===rid);return s ? `<a href="#/preview/${s.id}"><div class="card tap row">
       <div class="icon-circle" style="background:rgba(169,196,138,.45)">${s.emoji}</div>
       <div class="grow"><div style="font-weight:900;font-size:15px">${s.title}</div>
       <div class="small">${s.cuts.length}カット・${s.subtitle}</div></div>
-      <div class="chev">›</div></div></a>`;}).join("")}
+      <div class="chev">›</div></div></a>` : "";}).join("")}
+    ${tagChips(d.tags)}
   </div>`;
 }
 
@@ -372,6 +359,7 @@ function renderGuide(){
     <span class="pill" style="background:rgba(169,196,138,.5)">カットガイド</span>
     <h2 style="font-size:24px;margin:6px 0 4px">撮影カットガイド</h2>
     <p class="small" style="margin-bottom:16px">目的に合うセクションを選ぶと、カットごとの撮り方が見られます。カットを分けて撮るだけで、動画の見られ方は大きく変わります。</p>
+    ${searchBox()}
     ${SECTIONS.map(s=>`<a href="#/preview/${s.id}"><div class="card tap row">
       <div class="icon-circle" style="background:rgba(169,196,138,.45)">${s.emoji}</div>
       <div class="grow"><div style="font-weight:900;font-size:16px">${s.title} ${s.sample?'<span class="pill" style="background:rgba(224,184,76,.45);font-size:10px">動画サンプル</span>':''}</div>
@@ -394,10 +382,12 @@ function renderPreview(id){
     <p class="small">${N}カットを繋ぐと、こんな流れの動画になります。</p>
     <div class="pv-media ${s.full?'v916':'v45'}">
       ${media}
+      ${s.draftMedia ? `<span class="draft">実写サンプル準備中</span>` : ""}
       <div class="cutlabel" id="pvlabel">1. ${esc(s.cuts[0].title)}</div>
     </div>
     <div class="pv-dots" id="pvdots">${s.cuts.map((_,i)=>`<span class="${i===0?'on':''}"></span>`).join("")}</div>
     <a href="#/cuts/${s.id}"><button class="btn" style="margin-top:18px">撮影を始める</button></a>
+    ${tagChips(s.tags)}
   </div>`;
 
   const label = document.getElementById("pvlabel");
@@ -444,6 +434,7 @@ function renderCuts(id){
             ? `<video src="${c.media.v}" muted loop playsinline autoplay preload="auto"></video>
                <span class="loop">● ループ再生</span>`
             : `<img src="${c.media.i}" alt="">`}
+          ${s.draftMedia ? `<span class="draft">実写サンプル準備中</span>` : ""}
           <span class="badge">CUT ${i+1}</span>
           ${i>0?'<span class="swipe-arrow left">‹</span>':''}
           ${i<N-1?'<span class="swipe-arrow right">›</span>':''}
@@ -470,6 +461,7 @@ function renderCuts(id){
         <li>動作の<b>途中（7:3）</b>で次のカットへ切り替えると繋がって見える</li>
       </ul>
     </div>
+    ${tagChips(s.tags)}
   </div>`;
 
   const car = document.getElementById("car");
@@ -493,6 +485,48 @@ function renderCuts(id){
     if(i!==cur) update(i);
   }, {passive:true});
   update(0);
+}
+
+/* ---- 検索結果 ---- */
+function resultGroup(label, items, render){
+  if(!items.length) return "";
+  return `<div class="search-group">${label}（${items.length}）</div>${items.map(render).join("")}`;
+}
+function renderResultBlocks(r){
+  const hasAny = r.articles.length || r.sections.length || r.dicts.length;
+  if(!hasAny) return `<div class="search-empty">見つかりませんでした。<br>別のキーワードで試してみてください。</div>`;
+  return [
+    resultGroup("📖 教科書", r.articles, a=>`<a href="#/article/${a.id}"><div class="card tap row">
+      <div class="grow"><div style="font-weight:900;font-size:15px">${esc(a.title)}</div>
+      <div class="small">${esc(a.point)}</div></div><div class="chev">›</div></div></a>`),
+    resultGroup("🎬 カットガイド", r.sections, s=>`<a href="#/preview/${s.id}"><div class="card tap row">
+      <div class="icon-circle" style="background:rgba(169,196,138,.45)">${s.emoji}</div>
+      <div class="grow"><div style="font-weight:900;font-size:15px">${esc(s.title)}</div>
+      <div class="small">${s.cuts.length}カット・${esc(s.subtitle)}</div></div><div class="chev">›</div></div></a>`),
+    resultGroup("🔎 逆引き", r.dicts, d=>`<a href="#/dict/${d.id}"><div class="card tap row">
+      <div class="grow" style="font-weight:900;font-size:15px">${esc(d.cat)}</div>
+      <div class="chev">›</div></div></a>`),
+  ].join("");
+}
+function renderSearch(query){
+  const r = searchAll(query);
+  app.innerHTML = `<div class="page">
+    ${back("#/","トップ")}
+    <h2 style="font-size:22px;margin-bottom:14px">「${esc(query)}」の検索結果</h2>
+    ${searchBox()}
+    ${renderResultBlocks(r)}
+  </div>`;
+  const input = document.getElementById("searchinput");
+  if(input) input.value = query;
+}
+function renderTag(tag){
+  const r = byTag(tag);
+  app.innerHTML = `<div class="page">
+    ${back("#/","トップ")}
+    <span class="pill" style="background:rgba(169,196,138,.5)">#タグ</span>
+    <h2 style="font-size:22px;margin:6px 0 14px">#${esc(tag)} の撮り方</h2>
+    ${renderResultBlocks(r)}
+  </div>`;
 }
 
 route();

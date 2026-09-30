@@ -1,9 +1,9 @@
 (() => {
 /* ================= コンテンツデータ（将来的にGoogleシート連携予定） =================
    構造:
-   - ARTICLES: 教科書の記事
+   - ARTICLES: 基本のコツ（逆引き辞典 #/dict/basics に表示。旧・教科書）
    - SECTIONS: カットガイドの撮影セクション（各cutsに角度・POINT・素材）
-   - DICT: 逆引き辞典
+   - PLACES / ACTIONS: 逆引き辞典（場所 → 動作 → 撮り方）
    共通フィールド:
    - tags: string[]  検索・ハッシュタグ用
    - published: true/false  falseは一覧・検索・タグから非表示（シートの「下書き」相当）
@@ -45,6 +45,18 @@ const ARTICLES = [
  {id:"phrases", title:"バズる切り口フレーズ集", point:"最初の一言に迷ったら、この中から選んでみて♪",
   body:`「この発想はなかった」「こっちが正解!?」「知らないと損してた」「これ1本で変わる」\n「〇〇な人だけ見て」「地味に神アイテム」\n\n冒頭のテロップや台本の掴みに、こうしたフレーズを添えるだけで最初の3秒の離脱が減ります。`,
   tags:["フレーズ","タイトル","サムネ"], published:true, source:"local"},
+ {id:"premise", title:"前提条件は変えない", point:"服・髪・机の上・光。カットが変わっても同じにしておく◎",
+  body:`カットごとに服や髪、机の上の物、光の向きが変わると、見ている人は「あれ？」と引っかかります。\n\n・撮り始めたら服・髪・小物の位置をそのままに\n・ロケ地や背景を途中で変えない\n・時系列を崩さない（巻き戻りNG）\n・画角は180度以上まわさない（向きが反転して混乱します）`,
+  tags:["前提条件","画角","カット割り"], published:true, source:"local"},
+ {id:"gesture", title:"所作は丁寧に、手を止める", point:"見せたいものだけ動かす。動かさないものは止める♪",
+  body:`見せたいものを動かして、見せたいもの以外は動かさない。\n\n・撮る用の所作は、ふだんの5倍ていねいに\n・置いたら手を止める（ただし完全停止は短く）\n・迷いのない動きだけを使う\n・指先や爪の位置も、視線が動くので意識する`,
+  tags:["所作","手","動作"], published:true, source:"local"},
+ {id:"tempo", title:"カットのテンポは「短・短・長」", point:"1カット0.7〜1.1秒が目安。傾向であってルールじゃないよ！",
+  body:`カットの長さは「短・短・長」のリズムが心地よい目安です。\n\n・1カットは0.7〜1.1秒くらい\n・2秒を超えると間延びしやすい\n・ズームはゆっくり、動かしすぎない\n\n数字はあくまで目安。まずは撮って、並べて、見て決めましょう。`,
+  tags:["テンポ","編集","カット割り"], published:true, source:"local"},
+ {id:"opening", title:"冒頭は「一番気持ちいい瞬間」", point:"動作のハイライトを最初に。商品は10秒以内に登場させて◎",
+  body:`冒頭は、動作でいちばん気持ちいい瞬間（水が注がれる、扉が開く、ふたを開ける）から。\n\n・撮るときは冒頭を決めず、あとで選ぶ\n・真っ白・暗い・無関係な映像は避ける\n・商品や主役は、10秒以内に見せる`,
+  tags:["冒頭","フック","カット割り"], published:true, source:"local"},
 ];
 
 const SECTIONS = [
@@ -137,28 +149,111 @@ const SECTIONS = [
  ]},
 ];
 
-const DICT = [
- {id:"cosmetics", cat:"コスメ・スキンケア", light:"柔らかい自然光・逆光ぎみ", bg:"無地／大理石調", angle:"斜め45°＋真上", rec:["spec","lifestyle"],
-  tags:["コスメ","スキンケア","光"], published:true, source:"local"},
- {id:"food", cat:"食べ物・ドリンク", light:"自然光サイド", bg:"木／リネン", angle:"真上＋寄り", rec:["lifestyle","spec"],
-  tags:["食べ物","ドリンク","自然光"], published:true, source:"local"},
- {id:"gadget", cat:"ガジェット・家電", light:"均一・影控えめ", bg:"グレー／白", angle:"正面＋ディテール", rec:["unbox","spec"],
-  tags:["ガジェット","家電","開封"], published:true, source:"local"},
- {id:"fashion", cat:"服・ファッション小物", light:"自然光", bg:"白壁／床置き", angle:"真上フラットレイ", rec:["lifestyle","size"],
-  tags:["服","ファッション","フラットレイ"], published:true, source:"local"},
- {id:"interior", cat:"インテリア雑貨", light:"窓際自然光", bg:"実際の部屋", angle:"引き＋寄り", rec:["lifestyle","beforeafter"],
-  tags:["インテリア","雑貨","部屋"], published:true, source:"local"},
- {id:"kitchen", cat:"キッチン・食器", light:"自然光", bg:"木／タイル", angle:"真上＋斜め", rec:["howto","lifestyle"],
-  tags:["キッチン","食器","暮らし"], published:true, source:"local"},
- {id:"baby", cat:"おもちゃ・ベビー", light:"明るい自然光", bg:"無地明るい", angle:"目線＋俯瞰", rec:["unbox","lifestyle"],
-  tags:["おもちゃ","ベビー","開封"], published:true, source:"local"},
- {id:"book", cat:"本・文具", light:"柔らかい光", bg:"無地／木", angle:"真上フラットレイ", rec:["spec","size"],
-  tags:["本","文具","フラットレイ"], published:true, source:"local"},
- {id:"housework", cat:"家事・暮らしの動作", light:"自然光", bg:"実際の部屋・キッチン", angle:"動作の途中でカットを割る", rec:["pour-drink","desk-rest","laundry-fold","grocery-put-away"],
-  tags:["家事","動作","暮らし"], published:true, source:"local"},
- {id:"drink-scene", cat:"ドリンクを飲むシーン", light:"自然光サイド", bg:"キッチン／リビング", angle:"動作を分解して見せる", rec:["pour-drink","desk-rest"],
-  tags:["ドリンク","キッチン","動作"], published:true, source:"local"},
+/* ---- 逆引き辞典：場所 → 動作 ----
+   PLACES: 家の中の撮る場所（トップ）。acts に動作IDを並べる（同じ動作が複数の場所に出てよい）
+   ACTIONS: 動作ページ。sec=SECTIONSのカット指示を流用 / cuts=動作専用のカット / どちらも無ければ「イラスト準備中」
+            tips=POINT（1項目40字以内・3〜5個）。数字は「目安」 */
+const PLACES = [
+ {id:"kitchen", name:"キッチン", emoji:"🍳", color:"rgba(224,184,76,.4)",
+  acts:["pour-water","open-door","open-drawer","put-item","wash-dishes","coffee","put-away","before-after"],
+  tips:["光は日中の窓際。電気は消して撮る","作業台は片付ける。映るものにこだわる","水・金属の反射は「ピカッ」を狙う","引きも入れて生活感を見せる"],
+  tags:["キッチン","台所","料理"], published:true, source:"local"},
+ {id:"living", name:"リビング", emoji:"🛋️", color:"rgba(143,176,196,.5)",
+  acts:["sit-chair","sit-floor","rest-desk","put-item","open-drawer","fold-laundry","unbox","before-after"],
+  tips:["窓2つの日中に一発撮りがきれい","机まわりに置くのは1〜2個まで","見下ろさず、低めの目線で撮る","部屋の奥行きを見せると暮らしが伝わる"],
+  tags:["リビング","居間","部屋"], published:true, source:"local"},
+ {id:"bedroom", name:"寝室", emoji:"🛏️", color:"rgba(228,164,172,.5)",
+  acts:["make-bed","open-door","open-drawer","fold-laundry","sit-floor"],
+  tips:["朝の窓光がいちばんやわらかい","ベッドまわりの色は3色以内に","カメラはベッドに近い低めの高さで","ピントが外れても散らかりは見える"],
+  tags:["寝室","ベッド","朝"], published:true, source:"local"},
+ {id:"entrance", name:"玄関", emoji:"🚪", color:"rgba(169,120,78,.35)",
+  acts:["open-door","arrange-shoes","put-item","put-away","unbox"],
+  tips:["暗くなりがち。日中の明るい時間に","靴・傘は向きをそろえてから撮る","ドアからの光を逆光として活かす","出入りの流れで時系列を崩さない"],
+  tags:["玄関","帰宅","靴"], published:true, source:"local"},
+ {id:"washroom", name:"洗面所・お風呂", emoji:"🛁", color:"rgba(143,176,196,.4)",
+  acts:["wash-hands","open-door","fold-laundry","store-away","skincare"],
+  tips:["鏡にカメラや自分が映らない位置で","水や泡は逆光でピカッと光る","タオル・ボトルは色をそろえる","レンズの曇りは先に拭いておく"],
+  tags:["洗面所","お風呂","バスルーム","水まわり"], published:true, source:"local"},
+ {id:"dining", name:"ダイニング", emoji:"🍽️", color:"rgba(169,196,138,.5)",
+  acts:["sit-chair","pour-water","put-item","rest-desk","arrange-food"],
+  tips:["テーブルは窓の横から光を当てる","器や布の色は3色以内に","真上と斜めの2アングルが基本","奥に生活感を少し見切れさせる"],
+  tags:["ダイニング","食卓","テーブル"], published:true, source:"local"},
+ {id:"kids", name:"子ども部屋", emoji:"🧸", color:"rgba(228,164,172,.4)",
+  acts:["sit-floor","sit-chair","open-drawer","unbox","store-away","before-after"],
+  tips:["子ども目線の低い高さで撮る","おもちゃは色数を絞って並べる","動かすものは見せたいものだけに","明るい自然光。暗い部屋は避ける"],
+  tags:["子ども部屋","おもちゃ","ベビー","育児"], published:true, source:"local"},
+ {id:"veranda", name:"ベランダ・窓辺", emoji:"🪟", color:"rgba(169,196,138,.4)",
+  acts:["open-door","hang-laundry","window-rest","put-item"],
+  tips:["日中の光。逆光は窓の面積を減らす","白飛び注意。露出とWBをロック","外の景色は背景に少し入れる","風・揺れは見せたい動きだけに絞る"],
+  tags:["ベランダ","窓辺","窓","洗濯物"], published:true, source:"local"},
 ];
 
-window.CONTENT = { ARTICLES, SECTIONS, DICT };
+const ACTIONS = [
+ {id:"sit-chair", title:"椅子に座る", sub:"4カットの動画サンプルあり", emoji:"🪑", sec:"scene",
+  tips:["前提条件（服・髪・机の上）を変えない","画角は180度以上まわさない","座る途中（7割）で次のカットへ","冒頭は腰を下ろす一番気持ちいい瞬間","所作は迷わず、ゆっくり丁寧に"],
+  tags:["椅子","座る","動作"], published:true, source:"local"},
+ {id:"sit-floor", title:"床に座る", sub:"低い目線で、一息まで", emoji:"🧘", 
+  tips:["カメラは床に近い低めの高さで","座る前に置く場所を決めておく","座り終えたら手を止めて余韻を見せる","見下ろさず、目線の高さに近づける"],
+  tags:["床","座る","動作"], published:true, source:"local"},
+ {id:"open-door", title:"扉をあける", sub:"開く瞬間を冒頭に", emoji:"🚪",
+  tips:["扉が開く瞬間を冒頭に持ってくる","開ける向きは全カット同じ側で","開けたら手を止めて、奥を見せる","扉の奥行きで暮らしの空気を映す","開ける手は迷わず、丁寧に"],
+  tags:["扉","ドア","動作"], published:true, source:"local"},
+ {id:"open-drawer", title:"引き出しを開ける", sub:"引く手→中身の2カット", emoji:"🗄️",
+  tips:["引くスピードは一定、迷いなく","中身は先に整えておく（空ケース先行）","「引く手→中身」の2カットで十分","見せたいもの以外は動かさない","背景の余計なものは画角の外へ"],
+  tags:["引き出し","収納","動作"], published:true, source:"local"},
+ {id:"pour-water", title:"水を注ぐ", sub:"キッチンで3カット", emoji:"🥤", sec:"pour-drink",
+  tips:["細く一定の速さで、迷いなく注ぐ","映らない側の手でグラスを持つ","水は窓の光で「ピカッ」と光らせる","1カットは0.7〜1.1秒が目安","引きで撮って家の印象も伝える"],
+  tags:["水","飲み物","注ぐ","動作"], published:true, source:"sheet"},
+ {id:"put-item", title:"モノを置く", sub:"置いたら手を止める", emoji:"📦",
+  cuts:[{title:"机にグラスを置く", angle:"手元に寄って", tip:"着地してすぐ手を引っ込めない", media:{v:"assets/video/rest_cut1.mp4"}}],
+  tips:["置いたらすぐ手を引っ込めない","置く場所は事前に決めて迷わない","置く先の背景は1〜2個までに","動かすのは置くモノだけ","目線の高さか少し上から撮る"],
+  tags:["置く","動作","手元"], published:true, source:"sheet"},
+ {id:"unbox", title:"開封する", sub:"箱ヒーロー→開ける→中身", emoji:"🎁", sec:"unbox",
+  tips:["商品は10秒以内に登場させる","箱ヒーローで「何を開けるか」を先に","9割あけておき、開ける瞬間だけ撮る","中身は真上から全体を見せる","見せたいもの以外は動かさない"],
+  tags:["開封","宅配","動作"], published:true, source:"local"},
+ {id:"fold-laundry", title:"洗濯物をたたむ", sub:"3カットで丁寧さを見せる", emoji:"🧺", sec:"laundry-fold",
+  tips:["所作は5倍丁寧に。指先までゆっくり","たたんだら手を止めて仕上がりを見せる","同じ形をそろえて重ねると気持ちいい","光は窓際。洗濯物の白を活かす","締めは真上から整った感じで"],
+  tags:["洗濯物","たたむ","家事","動作"], published:true, source:"local"},
+ {id:"hang-laundry", title:"洗濯物を干す", sub:"繰り返してアングルを変える", emoji:"👕",
+  tips:["光は日中。逆光ならシャドウを調整","同じ動作を繰り返し、角度を変えて撮る","引きで撮ってベランダの生活感を出す","洗濯物の色は3色以内にそろえる","干し終わりの揺れを最後の1カットに"],
+  tags:["洗濯物","干す","家事","動作"], published:true, source:"local"},
+ {id:"coffee", title:"コーヒーを淹れる", sub:"香りと余韻まで3カット", emoji:"☕", sec:"coffee-morning",
+  tips:["湯気は逆光の窓辺でよく見える","細く一定に、円を描くように注ぐ","前のカットから45度まわって真上へ","最後はカップを持つ手で余韻を","撮る用の所作で、手を止める間をつくる"],
+  tags:["コーヒー","朝","飲み物","動作"], published:true, source:"local"},
+ {id:"put-away", title:"買い物を片付ける", sub:"帰宅から片付けまで3カット", emoji:"🛍️", sec:"grocery-put-away",
+  tips:["場所が変わっても前提条件をそろえる","しまう手元は肩越しで「自分ごと」に","同じ形のものは向きをそろえて並べる","動作の途中（7:3）でカットを割る"],
+  tags:["買い物","片付け","家事","動作"], published:true, source:"local"},
+ {id:"rest-desk", title:"机で休憩する", sub:"置く→座るを2カットで", emoji:"🪑", sec:"desk-rest",
+  tips:["グラスを置いたら手を引っ込めない","座る動きは横から追いかける","髪や向きで顔を隠せる","座って一息の余韻は短めに","撮影後に前提条件（机の上）を確認"],
+  tags:["机","休憩","座る","動作"], published:true, source:"sheet"},
+ {id:"wash-hands", title:"手を洗う", sub:"泡と水をピカッと", emoji:"🫧",
+  tips:["水しぶき・泡は逆光でピカッと光る","蛇口の水量など前提条件を変えない","手元に寄って、拭くまでを1流れで","鏡にカメラが映り込まないように","洗面台のまわりを先に整える"],
+  tags:["洗面所","手洗い","水","動作"], published:true, source:"local"},
+ {id:"wash-dishes", title:"食器を洗う", sub:"手元→引きの2カット", emoji:"🍽️",
+  tips:["泡と水は窓際の光で撮る","シンクの汚れは先に拭いておく","洗う手は迷いなく、所作は丁寧に","洗い終わりの水切りかごで整然感","手元と引きの2カットで十分"],
+  tags:["食器","洗う","キッチン","家事","動作"], published:true, source:"local"},
+ {id:"arrange-shoes", title:"靴をそろえる", sub:"整う気持ちよさを見せる", emoji:"👟",
+  tips:["低めの角度で玄関の奥行きを出す","靴の向き・ラベルをそろえる","そろえたら手を止めて仕上がりを見せる","暗い玄関は日中に。朝30分でもOK"],
+  tags:["玄関","靴","整理","動作"], published:true, source:"local"},
+ {id:"make-bed", title:"ベッドを整える", sub:"ビフォーアフターが強い", emoji:"🛏️",
+  tips:["ビフォーは少しだけ乱して丁寧に見せる","整える手は大きく、ゆっくり","アフターは期待以上にきれいに","同じ構図・同じ距離で撮る","朝の窓光がいちばんやわらかい"],
+  tags:["ベッド","朝","整理","動作"], published:true, source:"local"},
+ {id:"skincare", title:"スキンケアをする", sub:"質感で指を止めさせる", emoji:"🧴",
+  tips:["光はやわらかい自然光・逆光ぎみ","全体像を先に見せてから質感へ寄る","手の存在感を減らして容器を主役に","質感アップは指を止めさせる","ラベル・ロゴの映し方に注意"],
+  tags:["スキンケア","コスメ","洗面所","動作"], published:true, source:"local"},
+ {id:"store-away", title:"収納にしまう", sub:"ビフォー→アフターで魅せる", emoji:"🧰",
+  tips:["ビフォーは散らかりを見せて共感を作る","空ケースを先に用意しておく","しまうものは向きをそろえる","アフターは期待以上に整える","見た目→ネタ→台本の順で考える"],
+  tags:["収納","整理","動作"], published:true, source:"local"},
+ {id:"arrange-food", title:"料理を並べる", sub:"全体像→寄りの順で", emoji:"🍱",
+  tips:["全体像を先に見せて、そのあと寄る","真上か斜めで、同じ側から撮る","器・布の色は3色以内にそろえる","自然光は横から。影は白い紙でやわらげる","並べる手は迷わずゆっくり"],
+  tags:["料理","食べ物","食卓","動作"], published:true, source:"local"},
+ {id:"window-rest", title:"窓辺で一息つく", sub:"光と余韻で暮らしを見せる", emoji:"🌤️",
+  tips:["日中の窓際。レース越しがやわらかい","逆光は窓の面積を減らして調整","引きで撮って生活感を見せる","余韻の間は長くしすぎない","露出とホワイトバランスをロック"],
+  tags:["窓辺","窓","休憩","動作"], published:true, source:"local"},
+ {id:"before-after", title:"散らかりを片付ける", sub:"同じ構図で変化を見せる", emoji:"✨", sec:"beforeafter",
+  tips:["ビフォーとアフターは同じ構図・距離で","前提条件（光・位置）を変えない","iPhoneの露出・WBをロックする","途中の手元を1カット入れる","アフターは期待以上に整える"],
+  tags:["片付け","ビフォーアフター","変化","動作"], published:true, source:"local"},
+];
+
+window.CONTENT = { ARTICLES, SECTIONS, PLACES, ACTIONS };
 })();

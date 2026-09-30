@@ -62,7 +62,7 @@ code{background:var(--bg);border-radius:6px;padding:1px 6px;font-size:12px}
   </section>
 
   <section>
-    <h2><span class="dot" style="background:var(--sage)"></span>いつもの部屋（LDK）</h2>
+    <h2><span class="dot" style="background:var(--sage)"></span>いつもの部屋（LDK・最初の6枚）</h2>
     <p class="desc">人がいない状態で、同じ部屋を6つのアングルから。家具の位置・色・光の向きが揃っています。</p>
     <ul class="spec">
       <li><b>床・壁</b>明るいオーク材の床、白い壁</li>
@@ -71,6 +71,14 @@ code{background:var(--bg);border-radius:6px;padding:1px 6px;font-size:12px}
       <li><b>光</b>左側の大きな窓から、やわらかい自然光</li>
     </ul>
     <div class="grid" id="g-room"></div>
+  </section>
+
+  <section>
+    <h2><span class="dot" style="background:#7fa6b8"></span>いつもの家（2LDK・間取りつき）</h2>
+    <p class="desc">間取りを先に決めて、図の番号の位置から撮ったアングルです。写っていない場所もブレないように、家具の配置を固定しています。</p>
+    <a href="img/floorplan_house_v2.svg" target="_blank"><img src="img/floorplan_house_v2.svg" alt="間取り図" style="width:100%;border:1px solid var(--line);border-radius:12px;background:#fff"></a>
+    <div class="group">カメラ位置ごとのアングル</div>
+    <div class="grid" id="g-house"></div>
   </section>
 
   <section id="soul">
@@ -94,12 +102,13 @@ const D={
  "g-dir":[["00_base_front","正面（基準）"],["01_threequarter","斜め"],["02_profile","横"],["03_back","後ろ"]],
  "g-face":[["04_laugh","笑顔"],["05_neutral","真顔"],["06_think","考え中"],["07_surprise","驚き"]],
  "g-act":[["08_sit_chair","椅子に座る"],["09_sit_floor","床に座る"],["10_crouch","しゃがむ"],["11_pour","水を注ぐ"],["12_phone","スマホを見る"]],
+ "g-house":[["01_ldk_window_to_north","1 窓際→LDK全体"],["02_ldk_door_to_window","2 入口→窓"],["03_kitchen_inside","3 キッチンの中"],["04_dining_to_kitchen","4 ダイニング→キッチン"],["05_sofa_side_to_east","5 ソファ横（基準）"],["06_floor_low_sofa","6 床に座った目線"],["07_bedroom_door","7 寝室・入口から"],["08_bedroom_window","8 寝室・窓際から"],["09_kidsroom","9 子ども部屋"],["10_genkan","10 玄関"],["11_washroom","11 洗面所"],["12_balcony","12 ベランダ"]],
  "g-room":[["01_front","正面"],["02_reverse","反対側から"],["03_dining","ダイニング"],["04_living","リビング"],["05_kitchen","キッチン側"],["06_lowangle","床に座った目線"]]
 };
 const SOUL=window.SOUL||[];
 function fig(src,cap){return `<figure data-src="${src}" data-cap="${cap}"><img loading="lazy" src="${src}" alt="${cap}"><figcaption>${cap}</figcaption></figure>`}
 for(const [id,list] of Object.entries(D)){
-  const sub=id==="g-room"?"room_ldk":"set_v1";
+  const sub=id==="g-room"?"room_ldk":id==="g-house"?"house_v2":"set_v1";
   document.getElementById(id).innerHTML=list.map(([f,c])=>fig(`img/${sub}__${f}.jpg`,c)).join("");
 }
 if(SOUL.length){document.getElementById("g-soul").innerHTML=SOUL.map(([f,c])=>fig(`img/${f}.jpg`,c)).join("");const s=document.getElementById("soul-status");s.textContent="学習済み";s.classList.add("ok")}

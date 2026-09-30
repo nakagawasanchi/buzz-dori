@@ -81,6 +81,17 @@ code{background:var(--bg);border-radius:6px;padding:1px 6px;font-size:12px}
     <div class="grid" id="g-house"></div>
   </section>
 
+  <section>
+    <h2><span class="dot" style="background:#e0a17d"></span>カット試作①：開封リール（6秒・8カット）</h2>
+    <p class="desc">しゅりさんの「撮影の裏側」（6秒の開封リール）の作り方どおりに割ったカット。0.7秒×7カット＋最後だけ1.3秒（トントンスー）。箱の中身は動かさず、箱の方を引き抜いて退場させます。</p>
+    <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start">
+      <video src="img/unbox_preview.mp4" controls loop muted playsinline style="width:220px;border-radius:12px;background:#000"></video>
+      <p class="desc" style="flex:1;min-width:200px;margin:0">▶ 静止画をリズムどおりにつないだプレビューです（動画生成はまだ）。<br>次は各カットを開始画像にして、短い動画にします。</p>
+    </div>
+    <div class="group">カット</div>
+    <div class="grid" id="g-unbox"></div>
+  </section>
+
   <section id="soul">
     <h2><span class="dot" style="background:#b9a3c9"></span>Soul ID（顔の学習） <span class="status" id="soul-status">学習中</span></h2>
     <p class="desc">上の12枚でHiggsFieldの「Soul ID」を学習させています。学習後は、どんなポーズ・場所でも同じ顔で作れるようになります。</p>
@@ -103,12 +114,13 @@ const D={
  "g-face":[["04_laugh","笑顔"],["05_neutral","真顔"],["06_think","考え中"],["07_surprise","驚き"]],
  "g-act":[["08_sit_chair","椅子に座る"],["09_sit_floor","床に座る"],["10_crouch","しゃがむ"],["11_pour","水を注ぐ"],["12_phone","スマホを見る"]],
  "g-house":[["01_ldk_window_to_north","1 窓際→LDK全体"],["02_ldk_door_to_window","2 入口→窓"],["03_kitchen_inside","3 キッチンの中"],["04_dining_to_kitchen","4 ダイニング→キッチン"],["05_sofa_side_to_east","5 ソファ横（基準）"],["06_floor_low_sofa","6 床に座った目線"],["07_bedroom_door","7 寝室・入口から"],["08_bedroom_window","8 寝室・窓際から"],["09_kidsroom","9 子ども部屋"],["10_genkan","10 玄関"],["11_washroom","11 洗面所"],["12_balcony","12 ベランダ"]],
+ "g-unbox":[["c1_box","1 箱の全景"],["c2_twine","2 ひもを解く"],["c3_lid","3 フタを開ける"],["c4_topdown","4 中身（真上）"],["c5_boxaway","5 箱を引き抜く"],["c6_turn","6 クルッと回す"],["c7_setdown","7 置いて止める"],["c8_smile","8 一息（1.3秒）"]],
  "g-room":[["01_front","正面"],["02_reverse","反対側から"],["03_dining","ダイニング"],["04_living","リビング"],["05_kitchen","キッチン側"],["06_lowangle","床に座った目線"]]
 };
 const SOUL=window.SOUL||[];
 function fig(src,cap){return `<figure data-src="${src}" data-cap="${cap}"><img loading="lazy" src="${src}" alt="${cap}"><figcaption>${cap}</figcaption></figure>`}
 for(const [id,list] of Object.entries(D)){
-  const sub=id==="g-room"?"room_ldk":id==="g-house"?"house_v2":"set_v1";
+  const sub=id==="g-room"?"room_ldk":id==="g-house"?"house_v2":id==="g-unbox"?"unbox":"set_v1";
   document.getElementById(id).innerHTML=list.map(([f,c])=>fig(`img/${sub}__${f}.jpg`,c)).join("");
 }
 if(SOUL.length){document.getElementById("g-soul").innerHTML=SOUL.map(([f,c])=>fig(`img/${f}.jpg`,c)).join("");const s=document.getElementById("soul-status");s.textContent="学習済み";s.classList.add("ok")}

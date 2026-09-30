@@ -83,7 +83,7 @@ const SECTIONS = [
    {title:"ひもを解く", angle:"手元に寄って", tip:"左手は箱に添えたまま動かさない。動くのは右手だけ", media:{v:"assets/video/unbox6_c2.mp4"}},
    {title:"フタを開ける", angle:"同じ位置から、手ごと入れて", tip:"事前に9割開けておき（オフレコ開封）、本番は一発で", media:{v:"assets/video/unbox6_c3.mp4"}},
    {title:"中身が見える", angle:"真上から俯瞰で", tip:"「何が入ってた？」に0.7秒で答えるカット", media:{v:"assets/video/unbox6_c4.mp4"}},
-   {title:"箱を引き抜く", angle:"最初と同じ画角に戻って", tip:"見せたいものは動かさず、脇役（箱）の方を引っ込める", media:{v:"assets/video/unbox6_c5.mp4"}},
+   {title:"中身を取り出す", angle:"最初と同じ画角に戻って", tip:"箱は動かさず、中身だけをまっすぐ上へ。ゆっくり丁寧に持ち上げる", media:{v:"assets/video/unbox6_c5.mp4"}},
    {title:"クルッと回す", angle:"手に持って、グッと寄る", tip:"一番きれいな面が正面に来たところで止める", media:{v:"assets/video/unbox6_c6.mp4"}},
    {title:"置いて手を止める", angle:"引きに戻して", tip:"置いたら手を止める。止める時間は短く（長いとブツブツ感）", media:{v:"assets/video/unbox6_c7.mp4"}},
    {title:"使って一息", angle:"人ごと入れて、表情まで", tip:"ここだけ1.3秒。最後を長くすると「トントンスー」のリズムになる", media:{v:"assets/video/unbox6_c8.mp4"}},

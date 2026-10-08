@@ -194,12 +194,13 @@ details.basic .tags-row{padding:0 18px 14px;margin-top:8px}
   font:inherit;font-weight:900;font-size:14px;background:var(--mustard);color:#fff;cursor:pointer}
 .fb-send:disabled{opacity:.5}
 .fb-status{font-size:12px;margin-top:6px;color:rgba(74,63,53,.55);text-align:center}
+.old-imgs{display:flex;gap:6px}.old-imgs img{width:32%;border-radius:10px}.old-ver summary{cursor:pointer}
 </style>
 </head>
 <body>
 <div id="app"></div>
 
-<script src="data/content.js?v=20260930d"></script>
+<script src="data/content.js?v=20261008a"></script>
 <script>
 /* ================= データ(data/content.jsから読み込み。非公開はここで除外) ================= */
 const ARTICLES = window.CONTENT.ARTICLES.filter(x=>x.published);
@@ -366,6 +367,7 @@ function renderAction(pid, aid){
       <div class="soon-txt">イラスト準備中</div></div>`}
     ${pointCard("POINT", a.tips)}
     ${cs ? `<a href="#/cuts/${cs.id}/${p?p.id:placesOf(a)[0].id}/${a.id}"><button class="btn" style="margin-top:16px">カットごとに見る</button></a>` : ""}
+    ${cs && cs.old ? oldVersionMarkup(cs.old) : ""}
     ${others.length ? `<div class="search-group">この動作は他の場所でも</div>
       <div class="tags-row" style="margin-top:0">${others.map(o=>`<a href="#/dict/${o.id}/${a.id}"><span class="tagchip tap">${o.emoji} ${esc(o.name)}</span></a>`).join("")}</div>` : ""}
     ${tagChips(a.tags)}
@@ -405,6 +407,18 @@ function renderGuide(){
       <div class="small">${s.subtitle}・${s.cuts.length}カット</div></div>
       <div class="chev">›</div></div></a>`).join("")}
   </div>`;
+}
+
+/* ---- 作り直す前の版（比較用・ページの下に残す） ---- */
+function oldVersionMarkup(o){
+  const media = o.full
+    ? `<div class="pv-media v916" style="max-width:220px;margin:0 auto"><video src="${o.full}" muted loop autoplay playsinline preload="metadata"></video></div>`
+    : `<div class="old-imgs">${(o.imgs||[]).map(i=>`<img src="${i}" alt="">`).join("")}</div>`;
+  return `<details class="card old-ver" style="margin-top:22px" open>
+    <summary style="font-weight:900">🕘 前のバージョン（比較用）<span class="small" style="font-weight:400"> ${esc(o.label||"")}</span></summary>
+    <div style="margin-top:10px">${media}</div>
+    ${o.cuts ? `<ol class="small" style="margin:10px 0 0 18px">${o.cuts.map(c=>`<li>${esc(c)}</li>`).join("")}</ol>` : ""}
+  </details>`;
 }
 
 /* ---- 完成イメージプレビュー ---- */

@@ -145,18 +145,32 @@ const SECTIONS = [
  ]},
 
  /* ---- ここからGoogleシート連携データ（source:"sheet"） ---- */
- {id:"pour-drink", title:"飲み物を注ぐ", subtitle:"キッチンでの一連の動作を3カットで", emoji:"🥤",
-  tags:["キッチン","動作","飲み物"], published:true, source:"sheet", draftMedia:true, cuts:[
-   {title:"シンクに向かって歩く", angle:"引きで、部屋の空気ごと写す", tip:"引きで家の印象を伝えよう", media:{i:IMG("lifestyle_room_wide")}},
-   {title:"グラスをシンクに置く", angle:"手元に寄って", tip:"手の印象を減らすために、カメラに映らない側の手でグラスを持とう", media:{i:IMG("howto_step1")}},
-   {title:"水を注ぐ", angle:"手元にぐっと寄って", tip:"迷いなく注ごう", media:{i:IMG("howto_step2")}},
- ]},
- {id:"desk-rest", title:"机で休憩する", subtitle:"腰を下ろすまでの流れを2カットで", emoji:"🪑",
+ {id:"pour-drink", title:"飲み物を注ぐ", subtitle:"キッチンへ歩く→置く→注ぐを3カットで", emoji:"🥤", sample:true,
+  tags:["キッチン","動作","飲み物"], published:true, source:"sheet",
+  full:{src:"assets/video/pour3_full.mp4", per:2.0}, cuts:[
+   {title:"キッチンに向かって歩く", angle:"背中側から。全身＋家の様子が伝わる引きの画角", tip:"タンブラーやコップが見えるように持つ", media:{v:"assets/video/pour3_c1.mp4"}},
+   {title:"キッチンの台にコップを置く", angle:"カメラの角度は変えずに、そのまま台に近づく", tip:"①と持つ手の左右を変えない。置いたら手は静止、すぐに引っ込めない", media:{v:"assets/video/pour3_c2.mp4"}},
+   {title:"ケトルや浄水器から水を注ぐ", angle:"カメラの位置は変えない", tip:"注ぐ水に光を当ててキラキラさせると尚よし", media:{v:"assets/video/pour3_c3.mp4"}},
+  ],
+  old:{label:"前のイラスト版（2026-08）", imgs:[IMG("lifestyle_room_wide"),IMG("howto_step1"),IMG("howto_step2")],
+   cuts:["シンクに向かって歩く（引きで、部屋の空気ごと）","グラスをシンクに置く（手元に寄って）","水を注ぐ（手元にぐっと寄って）"]}},
+ {id:"desk-rest", title:"机で休憩する", subtitle:"置く→座る→一息を3カットで", emoji:"🪑", sample:true,
   tags:["机","休憩","動作"], published:true, source:"sheet",
-  full:{src:"assets/video/rest_full.mp4", per:0.9}, cuts:[
-   {title:"机にグラスを置く", angle:"手元に寄って", tip:"着地してすぐ手を引っ込めない", media:{v:"assets/video/rest_cut1.mp4"}},
-   {title:"椅子に腰掛ける", angle:"横から、座る動きを追って", tip:"髪の毛や向きで顔を隠せる", media:{v:"assets/video/rest_cut2.mp4"}},
- ]},
+  full:{src:"assets/video/rest3_full.mp4", per:2.0}, cuts:[
+   {title:"机にグラスを置く", angle:"手元に寄って", tip:"着地してすぐ手を引っ込めない", media:{v:"assets/video/rest3_c1.mp4"}},
+   {title:"椅子に腰掛ける", angle:"横から、座る動きを追って", tip:"髪の毛や向きで顔を隠せる", media:{v:"assets/video/rest3_c2.mp4"}},
+   {title:"飲む・読む", angle:"横から少し引きで", tip:"飲み物を飲んだり本を読む仕草を入れると自然に。読むものや飲むもので世界観や人感を出せる", media:{v:"assets/video/rest3_c3.mp4"}},
+  ],
+  old:{label:"前の版：しゅりさんの実写（2カット）", full:"assets/video/rest_full.mp4",
+   cuts:["机にグラスを置く（手元に寄って）","椅子に腰掛ける（横から、座る動きを追って）"]}},
+ {id:"pouch-mess", title:"ポーチがごちゃごちゃ", subtitle:"置く→開く→漁るを3カットで", emoji:"👝", sample:true,
+  tags:["洗面所","コスメ","ポーチ","動作"], published:true, source:"shuri-memo",
+  full:{src:"assets/video/pouch3_full.mp4", per:2.0}, cuts:[
+   {title:"ポーチを机に置く", angle:"手前アングル。ポーチが中心になるように", tip:"ポーチを持つ手はそのままキープ", media:{v:"assets/video/pouch3_c1.mp4"}},
+   {title:"ポーチの上部を持って左右に開く", angle:"上からのアングル", tip:"ガバッと開ければクール、ゆったり開ければ丁寧なイメージ。チャック等は先に全開にして、ポーチ自体が動かないように", media:{v:"assets/video/pouch3_c2.mp4"}},
+   {title:"ポーチの中を漁る", angle:"アングルは変えない", tip:"ポーチは動かさず中身だけガサゴソ。手先を見せたいので腕はあまり動かさない。編集でキーフレームを少しつけると効果的", media:{v:"assets/video/pouch3_c3.mp4"}},
+  ]},
+
 
  /* ---- ここからローカル追加（source:"local"・しゅりさん式の型で新規作成） ---- */
  {id:"coffee-morning", title:"朝のコーヒーを淹れる", subtitle:"香りと余韻まで伝える3カット", emoji:"☕",
@@ -185,7 +199,7 @@ const SECTIONS = [
             tips=POINT（1項目40字以内・3〜5個）。数字は「目安」 */
 const PLACES = [
  {id:"kitchen", name:"キッチン", emoji:"🍳", color:"rgba(224,184,76,.4)",
-  acts:["pour-water","open-door","open-drawer","put-item","wash-dishes","coffee","put-away","before-after"],
+  acts:["pour-water","faucet-water","open-door","open-drawer","put-item","wash-dishes","coffee","put-away","before-after"],
   tips:["光は日中の窓際。電気は消して撮る","作業台は片付ける。映るものにこだわる","水・金属の反射は「ピカッ」を狙う","引きも入れて生活感を見せる"],
   tags:["キッチン","台所","料理"], published:true, source:"local"},
  {id:"living", name:"リビング", emoji:"🛋️", color:"rgba(143,176,196,.5)",
@@ -201,7 +215,7 @@ const PLACES = [
   tips:["暗くなりがち。日中の明るい時間に","靴・傘は向きをそろえてから撮る","ドアからの光を逆光として活かす","出入りの流れで時系列を崩さない"],
   tags:["玄関","帰宅","靴"], published:true, source:"local"},
  {id:"washroom", name:"洗面所・お風呂", emoji:"🛁", color:"rgba(143,176,196,.4)",
-  acts:["wash-hands","open-door","fold-laundry","store-away","skincare"],
+  acts:["pouch-mess","wash-hands","faucet-water","open-door","fold-laundry","store-away","skincare"],
   tips:["鏡にカメラや自分が映らない位置で","水や泡は逆光でピカッと光る","タオル・ボトルは色をそろえる","レンズの曇りは先に拭いておく"],
   tags:["洗面所","お風呂","バスルーム","水まわり"], published:true, source:"local"},
  {id:"dining", name:"ダイニング", emoji:"🍽️", color:"rgba(169,196,138,.5)",
@@ -231,7 +245,7 @@ const ACTIONS = [
  {id:"open-drawer", title:"引き出しを開ける", sub:"5カットの動画サンプルあり", emoji:"🗄️", sec:"drawer5",
   tips:["引くスピードは一定、迷いなく","中身は先に整えておく（空ケース先行）","「引く手→中身」の2カットで十分","見せたいもの以外は動かさない","背景の余計なものは画角の外へ"],
   tags:["引き出し","収納","動作"], published:true, source:"local"},
- {id:"pour-water", title:"水を注ぐ", sub:"キッチンで3カット", emoji:"🥤", sec:"pour-drink",
+ {id:"pour-water", title:"水を注ぐ", sub:"3カットの動画サンプルあり", emoji:"🥤", sec:"pour-drink",
   tips:["細く一定の速さで、迷いなく注ぐ","映らない側の手でグラスを持つ","水は窓の光で「ピカッ」と光らせる","1カットは0.7〜1.1秒が目安","引きで撮って家の印象も伝える"],
   tags:["水","飲み物","注ぐ","動作"], published:true, source:"sheet"},
  {id:"put-item", title:"モノを置く", sub:"置いたら手を止める", emoji:"📦",
@@ -253,9 +267,15 @@ const ACTIONS = [
  {id:"put-away", title:"買い物を片付ける", sub:"帰宅から片付けまで3カット", emoji:"🛍️", sec:"grocery-put-away",
   tips:["場所が変わっても前提条件をそろえる","しまう手元は肩越しで「自分ごと」に","同じ形のものは向きをそろえて並べる","動作の途中（7:3）でカットを割る"],
   tags:["買い物","片付け","家事","動作"], published:true, source:"local"},
- {id:"rest-desk", title:"机で休憩する", sub:"置く→座るを2カットで", emoji:"🪑", sec:"desk-rest",
+ {id:"rest-desk", title:"机で休憩する", sub:"置く→座る→一息を3カットで", emoji:"🪑", sec:"desk-rest",
   tips:["グラスを置いたら手を引っ込めない","座る動きは横から追いかける","髪や向きで顔を隠せる","座って一息の余韻は短めに","撮影後に前提条件（机の上）を確認"],
   tags:["机","休憩","座る","動作"], published:true, source:"sheet"},
+ {id:"pouch-mess", title:"ポーチがごちゃごちゃ", sub:"3カットの動画サンプルあり", emoji:"👝", sec:"pouch-mess",
+  tips:["チャックは先に全開にしておく","ポーチ自体は動かさず、中身だけ動かす","手先を見せたいので腕はあまり動かさない","開き方でイメージが変わる（ガバッ＝クール／ゆったり＝丁寧）","参考リール：ドレッサーなしで大満足"],
+  tags:["洗面所","コスメ","ポーチ","動作"], published:true, source:"shuri-memo"},
+ {id:"faucet-water", title:"蛇口から水を注ぐ", sub:"注意点はしゅりさんが追記予定", emoji:"🚰",
+  tips:["水に光を当ててキラキラさせる","蛇口の水量など前提条件を変えない","コップは映らない側の手で持つ"],
+  tags:["キッチン","洗面所","水","注ぐ","動作"], published:true, source:"local"},
  {id:"wash-hands", title:"手を洗う", sub:"泡と水をピカッと", emoji:"🫧",
   tips:["水しぶき・泡は逆光でピカッと光る","蛇口の水量など前提条件を変えない","手元に寄って、拭くまでを1流れで","鏡にカメラが映り込まないように","洗面台のまわりを先に整える"],
   tags:["洗面所","手洗い","水","動作"], published:true, source:"local"},

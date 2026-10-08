@@ -157,13 +157,14 @@ const SECTIONS = [
    cuts:["シンクに向かって歩く（引きで、部屋の空気ごと）","グラスをシンクに置く（手元に寄って）","水を注ぐ（手元にぐっと寄って）"]}]},
  {id:"desk-rest", title:"机で休憩する", subtitle:"置く→座る→一息を3カットで", emoji:"🪑", sample:true,
   tags:["机","休憩","動作"], published:true, source:"sheet",
-  full:{src:"assets/video/rest3_full.mp4", per:2.0}, cuts:[
-   {title:"机にグラスを置く", angle:"手元に寄って", tip:"着地してすぐ手を引っ込めない", media:{v:"assets/video/rest3_c1.mp4"}},
-   {title:"椅子に腰掛ける", angle:"横から、座る動きを追って", tip:"髪の毛や向きで顔を隠せる", media:{v:"assets/video/rest3_c2.mp4"}},
-   {title:"飲む・読む", angle:"横から少し引きで", tip:"飲み物を飲んだり本を読む仕草を入れると自然に。読むものや飲むもので世界観や人感を出せる", media:{v:"assets/video/rest3_c3.mp4"}},
+  full:{src:"assets/video/rest4_full.mp4", per:2.6}, cuts:[
+   {title:"机にグラスを置く", angle:"手元に寄って", tip:"着地してすぐ手を引っ込めない", media:{v:"assets/video/rest4_c1.mp4"}},
+   {title:"椅子に腰掛ける", angle:"横から、座る動きを追って", tip:"髪の毛や向きで顔を隠せる", media:{v:"assets/video/rest4_c2.mp4"}},
+   {title:"飲む・読む", angle:"横から少し引きで", tip:"飲み物を飲んだり本を読む仕草を入れると自然に。読むものや飲むもので世界観や人感を出せる", media:{v:"assets/video/rest4_c3.mp4"}},
   ],
-  old:{label:"前の版：しゅりさんの実写（2カット）", full:"assets/video/rest_full.mp4",
-   cuts:["机にグラスを置く（手元に寄って）","椅子に腰掛ける（横から、座る動きを追って）"]}},
+  old:[{label:"10/8 1本目（座るカットでカメラが追っていたので作り直し）", full:"assets/video/rest3_full.mp4"},
+   {label:"前の版：しゅりさんの実写（2カット）", full:"assets/video/rest_full.mp4",
+   cuts:["机にグラスを置く（手元に寄って）","椅子に腰掛ける（横から、座る動きを追って）"]}]},
  {id:"pouch-mess", title:"ポーチがごちゃごちゃ", subtitle:"置く→開く→漁るを3カットで", emoji:"👝", sample:true,
   tags:["洗面所","コスメ","ポーチ","動作"], published:true, source:"shuri-memo",
   full:{src:"assets/video/pouch4_full.mp4", per:2.2}, cuts:[

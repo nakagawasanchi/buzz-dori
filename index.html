@@ -200,7 +200,7 @@ details.basic .tags-row{padding:0 18px 14px;margin-top:8px}
 <body>
 <div id="app"></div>
 
-<script src="data/content.js?v=20261008a"></script>
+<script src="data/content.js?v=20261008b"></script>
 <script>
 /* ================= データ(data/content.jsから読み込み。非公開はここで除外) ================= */
 const ARTICLES = window.CONTENT.ARTICLES.filter(x=>x.published);
@@ -367,7 +367,7 @@ function renderAction(pid, aid){
       <div class="soon-txt">イラスト準備中</div></div>`}
     ${pointCard("POINT", a.tips)}
     ${cs ? `<a href="#/cuts/${cs.id}/${p?p.id:placesOf(a)[0].id}/${a.id}"><button class="btn" style="margin-top:16px">カットごとに見る</button></a>` : ""}
-    ${cs && cs.old ? oldVersionMarkup(cs.old) : ""}
+    ${cs && cs.old ? [].concat(cs.old).map(oldVersionMarkup).join("") : ""}
     ${others.length ? `<div class="search-group">この動作は他の場所でも</div>
       <div class="tags-row" style="margin-top:0">${others.map(o=>`<a href="#/dict/${o.id}/${a.id}"><span class="tagchip tap">${o.emoji} ${esc(o.name)}</span></a>`).join("")}</div>` : ""}
     ${tagChips(a.tags)}

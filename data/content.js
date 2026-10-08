@@ -147,13 +147,14 @@ const SECTIONS = [
  /* ---- ここからGoogleシート連携データ（source:"sheet"） ---- */
  {id:"pour-drink", title:"飲み物を注ぐ", subtitle:"キッチンへ歩く→置く→注ぐを3カットで", emoji:"🥤", sample:true,
   tags:["キッチン","動作","飲み物"], published:true, source:"sheet",
-  full:{src:"assets/video/pour3_full.mp4", per:2.0}, cuts:[
-   {title:"キッチンに向かって歩く", angle:"背中側から。全身＋家の様子が伝わる引きの画角", tip:"タンブラーやコップが見えるように持つ", media:{v:"assets/video/pour3_c1.mp4"}},
-   {title:"キッチンの台にコップを置く", angle:"カメラの角度は変えずに、そのまま台に近づく", tip:"①と持つ手の左右を変えない。置いたら手は静止、すぐに引っ込めない", media:{v:"assets/video/pour3_c2.mp4"}},
-   {title:"ケトルや浄水器から水を注ぐ", angle:"カメラの位置は変えない", tip:"注ぐ水に光を当ててキラキラさせると尚よし", media:{v:"assets/video/pour3_c3.mp4"}},
+  full:{src:"assets/video/pour4_full.mp4", per:2.5}, cuts:[
+   {title:"キッチンに向かって歩く", angle:"背中側から。全身＋家の様子が伝わる引きの画角", tip:"タンブラーやコップが見えるように持つ", media:{v:"assets/video/pour4_c1.mp4"}},
+   {title:"キッチンの台にコップを置く", angle:"カメラの角度は変えずに、そのまま台に近づく", tip:"①と持つ手の左右を変えない。置いたら手は静止、すぐに引っ込めない", media:{v:"assets/video/pour4_c2.mp4"}},
+   {title:"ケトルや浄水器から水を注ぐ", angle:"カメラの位置は変えない", tip:"注ぐ水に光を当ててキラキラさせると尚よし", media:{v:"assets/video/pour4_c3.mp4"}},
   ],
-  old:{label:"前のイラスト版（2026-08）", imgs:[IMG("lifestyle_room_wide"),IMG("howto_step1"),IMG("howto_step2")],
-   cuts:["シンクに向かって歩く（引きで、部屋の空気ごと）","グラスをシンクに置く（手元に寄って）","水を注ぐ（手元にぐっと寄って）"]}},
+  old:[{label:"10/8 1本目（カット内でカメラが寄っていたので作り直し）", full:"assets/video/pour3_full.mp4"},
+   {label:"前のイラスト版（2026-08）", imgs:[IMG("lifestyle_room_wide"),IMG("howto_step1"),IMG("howto_step2")],
+   cuts:["シンクに向かって歩く（引きで、部屋の空気ごと）","グラスをシンクに置く（手元に寄って）","水を注ぐ（手元にぐっと寄って）"]}]},
  {id:"desk-rest", title:"机で休憩する", subtitle:"置く→座る→一息を3カットで", emoji:"🪑", sample:true,
   tags:["机","休憩","動作"], published:true, source:"sheet",
   full:{src:"assets/video/rest3_full.mp4", per:2.0}, cuts:[
@@ -165,11 +166,12 @@ const SECTIONS = [
    cuts:["机にグラスを置く（手元に寄って）","椅子に腰掛ける（横から、座る動きを追って）"]}},
  {id:"pouch-mess", title:"ポーチがごちゃごちゃ", subtitle:"置く→開く→漁るを3カットで", emoji:"👝", sample:true,
   tags:["洗面所","コスメ","ポーチ","動作"], published:true, source:"shuri-memo",
-  full:{src:"assets/video/pouch3_full.mp4", per:2.0}, cuts:[
-   {title:"ポーチを机に置く", angle:"手前アングル。ポーチが中心になるように", tip:"ポーチを持つ手はそのままキープ", media:{v:"assets/video/pouch3_c1.mp4"}},
-   {title:"ポーチの上部を持って左右に開く", angle:"上からのアングル", tip:"ガバッと開ければクール、ゆったり開ければ丁寧なイメージ。チャック等は先に全開にして、ポーチ自体が動かないように", media:{v:"assets/video/pouch3_c2.mp4"}},
-   {title:"ポーチの中を漁る", angle:"アングルは変えない", tip:"ポーチは動かさず中身だけガサゴソ。手先を見せたいので腕はあまり動かさない。編集でキーフレームを少しつけると効果的", media:{v:"assets/video/pouch3_c3.mp4"}},
-  ]},
+  full:{src:"assets/video/pouch4_full.mp4", per:2.2}, cuts:[
+   {title:"ポーチを机に置く", angle:"手前アングル。ポーチが中心になるように", tip:"ポーチを持つ手はそのままキープ", media:{v:"assets/video/pouch4_c1.mp4"}},
+   {title:"ポーチの上部を持って左右に開く", angle:"上からのアングル", tip:"ガバッと開ければクール、ゆったり開ければ丁寧なイメージ。チャック等は先に全開にして、ポーチ自体が動かないように", media:{v:"assets/video/pouch4_c2.mp4"}},
+   {title:"ポーチの中を漁る", angle:"アングルは変えない", tip:"ポーチは動かさず中身だけガサゴソ。手先を見せたいので腕はあまり動かさない。編集でキーフレームを少しつけると効果的", media:{v:"assets/video/pouch4_c3.mp4"}},
+  ],
+  old:[{label:"10/8 1本目（2カット目以降に1カット目に無い壁が出ていたので作り直し）", full:"assets/video/pouch3_full.mp4"}]},
 
 
  /* ---- ここからローカル追加（source:"local"・しゅりさん式の型で新規作成） ---- */

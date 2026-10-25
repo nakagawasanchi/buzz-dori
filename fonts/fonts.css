@@ -1,0 +1,4 @@
+/* selfhost_fonts.py で生成（Google Fonts を使わずサイト内から配信） */
+@font-face { font-family: 'Zen Maru Gothic'; font-style: normal; font-weight: 500; font-display: swap; src: url('zen-maru-gothic-500.woff') format('woff'); }
+@font-face { font-family: 'Zen Maru Gothic'; font-style: normal; font-weight: 700; font-display: swap; src: url('zen-maru-gothic-700.woff') format('woff'); }
+@font-face { font-family: 'Zen Maru Gothic'; font-style: normal; font-weight: 900; font-display: swap; src: url('zen-maru-gothic-900.woff') format('woff'); }

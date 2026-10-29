@@ -23,7 +23,11 @@ header{padding-block:22px 10px}
 .crumb a{color:var(--accent-ink);text-decoration:none}
 h1{font-family:var(--display);font-weight:700;font-size:26px;margin:0 0 4px;letter-spacing:.01em}
 .lead{color:var(--muted);margin:0;font-size:14px}
-.who{display:flex;gap:8px;align-items:center;margin-top:12px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.who{display:flex;gap:8px;align-items:center;margin-top:12px;font-size:14px;color:var(--fg);flex-wrap:wrap;padding:10px 12px;border:1px dashed var(--line);border-radius:12px;background:var(--paper)}
+.who.unset{border-color:var(--fix);background:var(--fix-bg)}
+.who.flash{outline:3px solid var(--fix);outline-offset:2px}
+#toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:#3a332c;color:#fff;padding:10px 16px;border-radius:999px;font-size:14px;opacity:0;pointer-events:none;transition:.2s;z-index:20;max-width:90vw;text-align:center}
+#toast.on{opacity:1;transform:translateX(-50%)}
 .who button{border:1px solid var(--line);background:var(--paper);color:var(--fg);border-radius:999px;padding:4px 12px;font:inherit;font-size:13px;cursor:pointer}
 .who button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
 .sum{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
@@ -109,6 +113,8 @@ let who = ''; try { who = localStorage.getItem('bz_who') || ''; } catch {}
 const $ = (s, r=document) => r.querySelector(s);
 const el = (t, a={}, ...k) => { const e=document.createElement(t); for (const [n,v] of Object.entries(a)) { if (n==='text') e.textContent=v; else if (n==='html') e.innerHTML=v; else e.setAttribute(n,v);} for (const c of k) e.append(c); return e; };
 const route = () => { const h=(location.hash||'').replace('#',''); return STAGES[h] ? h : 'top'; };
+function toast(msg){ let t=document.getElementById('toast'); if(!t){ t=el('div',{id:'toast',role:'status'}); document.body.append(t);} t.textContent=msg; t.classList.add('on'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('on'),2600); }
+function needWho(){ if (who) return false; toast('先に上の「レビューする人」で名前を選んでください'); const w=document.querySelector('.who'); if (w){ w.scrollIntoView({behavior:'smooth',block:'center'}); w.classList.add('flash'); setTimeout(()=>w.classList.remove('flash'),1600);} return true; }
 const counts = (key) => { const n = v => Object.values(state[key]).filter(x=>x.status===v).length; return {ok:n('ok'), fix:n('fix'), drop:n('drop'), total:DATA.groups.length}; };
 const H = {apikey:SUPABASE_KEY, Authorization:'Bearer '+SUPABASE_KEY, 'Content-Type':'application/json'};
 
@@ -137,7 +143,7 @@ async function save(stage, gid, patch){
 function render(){
   const r = route(); const hdr=$('#hdr'), main=$('#main'), tabs=$('#tabs'), foot=$('#foot');
   hdr.textContent=''; main.textContent=''; tabs.textContent=''; tabs.hidden = (r==='top');
-  const whoBar = el('div',{class:'who'}, el('span',{text:'レビューする人:'}));
+  const whoBar = el('div',{class:'who'+(who?'':' unset')}, el('span',{text: who ? 'レビューする人:' : 'まず選んでください → レビューする人:'}));
   for (const n of ['中川','しゅり']) { const b=el('button',{type:'button','aria-pressed':String(who===n),text:n}); b.addEventListener('click',()=>{ who=n; try{localStorage.setItem('bz_who',n);}catch{}; render(); }); whoBar.append(b); }
   if (r==='top'){
     hdr.append(el('h1',{text:'FBダッシュボード'}), el('p',{class:'lead',text:`${DATA.groups.length}グループ／${DATA.itemCount}アイテム（${DATA.version}）`}), whoBar);
@@ -176,7 +182,7 @@ function card(stage, g){
   if (stage==='items'){
     c.append(el('p',{class:'motion'}, el('span',{text:'代表の動き'}), g.motion), el('p',{class:'why',text:g.why}));
     const chips = el('div',{class:'chips'});
-    for (const it of g.items){ const b=el('button',{class:'chipi',type:'button','aria-pressed':String((st.dropped||[]).includes(it)),text:it}); b.addEventListener('click',()=>{ if(!who) return; const cur=new Set(state[stage][g.id]?.dropped||[]); cur.has(it)?cur.delete(it):cur.add(it); b.setAttribute('aria-pressed',String(cur.has(it))); save(stage,g.id,{dropped:[...cur]}); }); chips.append(b); }
+    for (const it of g.items){ const b=el('button',{class:'chipi',type:'button','aria-pressed':String((st.dropped||[]).includes(it)),text:it}); b.addEventListener('click',()=>{ if(needWho()) return; const cur=new Set(state[stage][g.id]?.dropped||[]); cur.has(it)?cur.delete(it):cur.add(it); b.setAttribute('aria-pressed',String(cur.has(it))); save(stage,g.id,{dropped:[...cur]}); }); chips.append(b); }
     c.append(chips);
   } else {
     c.append(el('p',{class:'why',text:'アイテム: '+g.items.join('、')}));
@@ -199,11 +205,11 @@ function card(stage, g){
     c.append(cuts);
   }
   const seg = el('div',{class:'seg',role:'group','aria-label':'判定'});
-  for (const [v,label] of Object.entries(STATUS)){ const b=el('button',{type:'button','data-v':v,'aria-pressed':String(st.status===v),text:label}); b.addEventListener('click',()=>{ if(!who) return; const nv = state[stage][g.id]?.status===v ? '' : v; for (const x of seg.children) x.setAttribute('aria-pressed',String(x.dataset.v===nv)); c.dataset.status=nv; save(stage,g.id,{status:nv}); }); seg.append(b); }
+  for (const [v,label] of Object.entries(STATUS)){ const b=el('button',{type:'button','data-v':v,'aria-pressed':String(st.status===v),text:label}); b.addEventListener('click',()=>{ if(needWho()) return; const nv = state[stage][g.id]?.status===v ? '' : v; for (const x of seg.children) x.setAttribute('aria-pressed',String(x.dataset.v===nv)); c.dataset.status=nv; save(stage,g.id,{status:nv}); }); seg.append(b); }
   const by = st.by ? el('span',{class:'by',text:`${st.by}・${(st.at||'').slice(5,16).replace('T',' ')}`}) : el('span',{class:'by'});
   c.append(el('div',{class:'ctl'}, seg, el('span',{class:'saved',id:'s-'+g.id,text:''}), by));
   const ta = el('textarea',{id:'c-'+g.id,rows:'1',placeholder:STAGES[stage].ph}); ta.value = st.comment||'';
-  let t; ta.addEventListener('input',()=>{ if(!who) return; clearTimeout(t); t=setTimeout(()=>save(stage,g.id,{comment:ta.value}),700); });
+  let t; ta.addEventListener('input',()=>{ if(needWho()) return; clearTimeout(t); t=setTimeout(()=>save(stage,g.id,{comment:ta.value}),700); });
   c.append(ta);
   return c;
 }

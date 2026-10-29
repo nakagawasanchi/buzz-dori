@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
-<title>バズ撮り 物リスト（レビュー）</title>
+<title>FBダッシュボード</title>
 <style>
 /* ライトモード固定。トップ=工程フロー（アイテム編集→カット割→静止画→動画）。各工程=場所タブ＋グループカード。判定は Supabase buzzdori_feedback（page=review:<工程>:<gid>）に追記し、最新行を採用 */
 :root{
@@ -140,7 +140,7 @@ function render(){
   const whoBar = el('div',{class:'who'}, el('span',{text:'レビューする人:'}));
   for (const n of ['中川','しゅり']) { const b=el('button',{type:'button','aria-pressed':String(who===n),text:n}); b.addEventListener('click',()=>{ who=n; try{localStorage.setItem('bz_who',n);}catch{}; render(); }); whoBar.append(b); }
   if (r==='top'){
-    hdr.append(el('h1',{text:'バズ撮り 物リスト'}), el('p',{class:'lead',text:`${DATA.groups.length}グループ／${DATA.itemCount}アイテム（${DATA.version}）`}), whoBar);
+    hdr.append(el('h1',{text:'FBダッシュボード'}), el('p',{class:'lead',text:`${DATA.groups.length}グループ／${DATA.itemCount}アイテム（${DATA.version}）`}), whoBar);
     const flow = el('div',{class:'flow'}); const keys = Object.keys(STAGES);
     keys.forEach((k, i) => {
       const s = STAGES[k], c = counts(k), rest = c.total-c.ok-c.fix-c.drop;
@@ -154,7 +154,7 @@ function render(){
     return;
   }
   const s = STAGES[r];
-  hdr.append(el('p',{class:'crumb',html:'<a href="#">バズ撮り 物リスト</a> › STEP '+s.no}), el('h1',{text:s.title}), el('p',{class:'lead',text:s.desc}), whoBar, el('div',{class:'sum',id:'sum'}));
+  hdr.append(el('p',{class:'crumb',html:'<a href="#">FBダッシュボード</a> › STEP '+s.no}), el('h1',{text:s.title}), el('p',{class:'lead',text:s.desc}), whoBar, el('div',{class:'sum',id:'sum'}));
   if (!who) hdr.append(el('div',{class:'note',text:'先に「レビューする人」を選んでください（誰の判定か記録されます）。'}));
   tabs.append(el('button',{class:'tab',role:'tab','aria-selected':'true',text:'すべて','data-p':'all'}));
   for (const p of DATA.places) tabs.append(el('button',{class:'tab',role:'tab','aria-selected':'false',text:p.name,'data-p':p.id}));

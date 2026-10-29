@@ -1,0 +1,66 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>バズ撮りカメラ 動線アイデア</title>
+<style>
+body{margin:0;background:#f3efe6;font-family:-apple-system,"Hiragino Sans",sans-serif;color:#3a342c}
+h1{font-size:20px;margin:20px 16px 4px}p.lead{margin:0 16px 16px;font-size:13px;color:#776}
+section{margin:0 0 28px;padding:16px;border-top:1px solid #ddd5c4}
+section>h2{font-size:16px;margin:0 0 4px}section>p{font-size:13px;margin:0 0 12px;line-height:1.6}
+.row{display:flex;gap:14px;overflow-x:auto;padding-bottom:8px}
+.ph{flex:0 0 190px;width:190px;height:380px;background:#fffdf8;border:6px solid #3a342c;border-radius:26px;position:relative;overflow:hidden;font-size:11px}
+.cap{width:190px;font-size:11px;text-align:center;margin-top:4px;color:#776}
+.bar{padding:10px 10px 4px;font-weight:bold;font-size:13px}
+.chip{display:inline-block;background:#fff;border:1px solid #d9cfb9;border-radius:12px;padding:3px 8px;margin:2px;font-size:10px}
+.chip.on{background:#e8845c;color:#fff;border-color:#e8845c}
+.card{background:#fff;border-radius:10px;margin:6px 8px;padding:7px 9px;box-shadow:0 1px 0 #e5dccb}
+.vid{background:linear-gradient(135deg,#d9cdb5,#efe6d3);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#a99;font-size:16px}
+.tab{position:absolute;bottom:0;left:0;right:0;height:44px;background:#fff;border-top:1px solid #e5dccb;display:flex;justify-content:space-around;align-items:center;font-size:10px}
+.btn{background:#e8845c;color:#fff;border-radius:18px;padding:7px 12px;text-align:center;font-weight:bold;font-size:12px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#d9cfb9;margin:0 2px}.dot.on{background:#e8845c}
+.g{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:0 8px}
+.tile{background:#fff;border-radius:10px;padding:6px;text-align:center;font-size:10px}
+.tile .vid{height:50px;margin-bottom:4px}
+.rec{position:absolute;bottom:12px;left:50%;margin-left:-20px;width:40px;height:40px;border-radius:50%;background:#e33;border:4px solid #fff}
+</style></head><body>
+<h1>各カットに辿り着く動線：アイデア</h1>
+<p class="lead">現状は「検索＋61件のフラット一覧、撮り方ページ（全カット縦スクロール）、撮影ボタン」の順です。どの案も、文字だけの一覧から“動画が主役”の入口に寄せています。</p>
+
+<section><h2>0. 現状（参考）</h2><p>一覧のカードは文字のみ。撮り方ページで全カットが縦に積まれ、撮影は別画面。</p>
+<div class="row"><div><div class="ph"><div class="bar">何を撮る？</div><div class="card" style="color:#999">検索：モノ・場所・動作</div>
+<div class="card"><b>持って使う調理ツール</b><br>キッチン／フライ返し・おたま…<span style="float:right">3カット</span></div>
+<div class="card"><b>切る道具</b><br>キッチン／包丁・まな板…</div><div class="card"><b>フライパン・鍋</b><br>キッチン／…</div><div class="card"><b>お皿・器</b></div></div></div>
+<div><div class="ph"><div class="bar">‹ 持って使う調理ツール</div><div style="padding:0 10px"><b>CUT 1 引き出しから取る</b><div class="vid" style="height:90px;margin:4px 0">▶</div>寄り<br><b>CUT 2 …</b><div class="vid" style="height:60px;margin:4px 0">▶</div></div><div class="btn" style="position:absolute;bottom:10px;right:10px">この撮り方で撮影</div></div></div></div></section>
+
+<section><h2>A. 場所（おうち）から入る</h2><p>最初の画面を部屋の選択にして、タップした部屋のモノだけを動画サムネで出す。「家の中を歩く」感覚で探せるので、検索語を思いつかなくても迷わない。物リストの「場所」分類をそのまま使える。</p>
+<div class="row"><div><div class="ph"><div class="bar">どこで撮る？</div><div class="g" style="margin-top:6px">
+<div class="tile"><div style="font-size:22px">🍳</div>キッチン<br><span style="color:#e8845c">22グループ</span></div><div class="tile"><div style="font-size:22px">🍽️</div>ダイニング</div>
+<div class="tile"><div style="font-size:22px">🛋️</div>リビング</div><div class="tile"><div style="font-size:22px">🚿</div>洗面所・お風呂</div>
+<div class="tile"><div style="font-size:22px">🛏️</div>寝室</div><div class="tile"><div style="font-size:22px">🚪</div>玄関</div>
+<div class="tile"><div style="font-size:22px">🧸</div>子ども部屋</div><div class="tile"><div style="font-size:22px">💻</div>ワークスペース</div></div>
+<div class="tab"><span>さがす</span><span>撮る</span><span>撮影済み</span></div></div><div class="cap">1. 部屋を選ぶ</div></div>
+<div><div class="ph"><div class="bar">‹ キッチン</div><div class="g"><div class="tile"><div class="vid">▶</div>調理ツール</div><div class="tile"><div class="vid">▶</div>切る道具</div><div class="tile"><div class="vid">▶</div>フライパン</div><div class="tile"><div class="vid">▶</div>お皿・器</div><div class="tile"><div class="vid">▶</div>グラス</div><div class="tile"><div class="vid">▶</div>水筒</div></div></div><div class="cap">2. 動画サムネで選ぶ</div></div></div></section>
+
+<section><h2>B. 動画フィード（TikTok型）</h2><p>ホームを縦スワイプのフィードにする。完成見本が自動再生され、気に入ったらその場で「撮る」。モノの名前を知らなくても、見て選べる。上の場所チップで絞り込み。</p>
+<div class="row"><div><div class="ph" style="background:#2a2520;color:#fff"><div style="padding:8px"><span class="chip on">すべて</span><span class="chip">キッチン</span><span class="chip">洗面所</span></div>
+<div class="vid" style="position:absolute;top:44px;bottom:0;left:0;right:0;border-radius:0;background:linear-gradient(160deg,#6b5a45,#2a2520);color:#fff6">完成見本が自動ループ</div>
+<div style="position:absolute;bottom:14px;left:12px;right:12px"><b style="font-size:14px">持って使う調理ツール</b><br>3カット・約9秒<div class="btn" style="margin-top:8px">この撮り方で撮る</div></div></div><div class="cap">縦スワイプで次の撮り方へ</div></div></div></section>
+
+<section><h2>C. カットが主役：コマ割り＋1カットずつ撮影</h2><p>撮り方ページをコマ割り（ストーリーボード）にする。各コマをタップすると、そのカットから撮影開始。撮ったコマは「撮影済」になり、カット単位で撮り直せる。撮影画面に直結するので「見る」と「撮る」の行き来がなくなる。</p>
+<div class="row"><div><div class="ph"><div class="bar">‹ 持って使う調理ツール</div>
+<div class="vid" style="height:120px;margin:0 10px">完成見本 9秒 ▶</div>
+<div style="display:flex;gap:5px;padding:8px 10px">
+<div style="flex:1"><div class="vid" style="height:70px">1</div><div style="text-align:center">寄り<br>撮影済</div></div>
+<div style="flex:1"><div class="vid" style="height:70px;outline:2px solid #e8845c">2</div><div style="text-align:center">俯瞰<br><b style="color:#e8845c">次はここ</b></div></div>
+<div style="flex:1"><div class="vid" style="height:70px">3</div><div style="text-align:center">横</div></div></div>
+<div class="btn" style="margin:6px 10px">カット2から撮る</div><div style="text-align:center;color:#776">最初から全部撮る</div></div><div class="cap">コマが撮影の入口</div></div>
+<div><div class="ph" style="background:#222;color:#fff"><div style="padding:8px">CUT 2 / 3　俯瞰</div><div style="position:absolute;top:50px;left:20px;right:20px;height:230px;border:2px dashed #fff8;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff8;text-align:center">構図ガイド<br>見本（小窓）</div><div style="position:absolute;bottom:60px;left:0;right:0;text-align:center">フライパンで返す手元</div><div class="rec"></div></div><div class="cap">そのまま撮影</div></div></div></section>
+
+<section><h2>D. 抜本案：撮影ウィザード（選ぶ、すぐカメラ）</h2><p>一覧、詳細、撮影の3画面をやめて「モノを選ぶ、すぐカメラ」の1本道にする。見本はカメラ画面の中の小窓で見る。迷う余地を消して撮影完走率を上げる案。撮り方の読み物は「あとで見る」に格下げ。</p>
+<div class="row"><div><div class="ph"><div class="bar">何を撮る？</div><div style="padding:0 10px"><div class="card" style="margin:0 0 6px;color:#999">検索：フライ返し</div><span class="chip">最近</span><span class="chip">おすすめ</span><div class="card"><b>持って使う調理ツール</b><br>フライ返し・おたま・菜箸<div class="btn" style="margin-top:5px">撮る ▶</div></div><div class="card"><b>切る道具</b><div class="btn" style="margin-top:5px">撮る ▶</div></div></div></div><div class="cap">1. 選んで即「撮る」</div></div>
+<div><div class="ph" style="background:#222;color:#fff"><div style="padding:8px">1/3 寄り・引き出しから取る</div><div class="vid" style="position:absolute;top:50px;right:10px;width:70px;height:110px;font-size:12px">見本</div><div style="position:absolute;bottom:60px;left:0;right:0;text-align:center"><span class="dot on"></span><span class="dot"></span><span class="dot"></span></div><div class="rec"></div></div><div class="cap">2. 見本を見て撮影、自動で次へ</div></div>
+<div><div class="ph"><div class="bar">できた！</div><div style="display:flex;gap:4px;padding:6px 10px"><div class="vid" style="flex:1;height:80px">1</div><div class="vid" style="flex:1;height:80px">2</div><div class="vid" style="flex:1;height:80px">3</div></div><div class="btn" style="margin:8px 10px">カメラロールに保存済み</div><div style="text-align:center;color:#776">2を撮り直す／次のモノへ</div></div><div class="cap">3. 撮り直しは1コマ単位</div></div></div></section>
+
+<section><h2>E. 組み合わせ案（おすすめ）：A + C + 検索</h2><p>下タブ3つ「さがす／撮る／撮影済み」。「さがす」は場所チップ＋動画サムネのグリッド＋検索。カードを開くとC（コマ割りから各カットを直接撮影）。段階導入しやすく、最初は「サムネグリッド化」と「コマ、撮影の直結」の2点だけでも体感がかなり変わります。</p>
+<div class="row"><div><div class="ph"><div style="padding:8px 8px 2px"><div class="card" style="margin:0;color:#999">検索：モノ・場所</div><div style="margin-top:4px"><span class="chip on">すべて</span><span class="chip">キッチン</span><span class="chip">洗面所</span><span class="chip">玄関</span></div></div>
+<div class="g"><div class="tile"><div class="vid">▶</div>調理ツール<br><span style="color:#e8845c">3カット</span></div><div class="tile"><div class="vid">▶</div>切る道具<br>撮影済</div><div class="tile"><div class="vid">▶</div>フライパン</div><div class="tile"><div class="vid">▶</div>お皿・器</div></div>
+<div class="tab"><span><b>さがす</b></span><span>撮る</span><span>撮影済み</span></div></div></div></div></section>
+</body></html>

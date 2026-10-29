@@ -91,6 +91,52 @@ section{padding:16px;border-top:1px solid var(--line)}section h2{font-size:16px;
 
 </div></section>
 
+<section><h2>「探す」画面の比較：A カード／B 2列タイル（連結プレビュー）</h2><p>
+<b>A（現行v3）</b>：1列カード。カットの並びを横一列のサムネで見せる。<br>
+<b>B（新）</b>：2列タイル。各タイルの中で、<b>全カットをつないだ完成見本が自動でループ再生</b>（5カットなら12秒でカット1→5へ切り替わる）。タイトル・カット数・場所・秒数はタイルの中に収めました。一覧のまま「こんなに分けて撮るんだ」が動きで伝わります。<br>
+※モックでは静止画の切り替えで再生を表現しています。本番は実際に連結した動画を再生します。</p>
+<style>
+.tg{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:0 10px}
+.tl{position:relative;height:150px;overflow:hidden;border-radius:2px;background:#eee}
+.tl .fr{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;animation:fr5 12s infinite}
+.tl.c4 .fr{animation-name:fr4;animation-duration:10s}
+.tl .fr:nth-child(1){animation-delay:0s}.tl .fr:nth-child(2){animation-delay:2.4s}.tl .fr:nth-child(3){animation-delay:4.8s}.tl .fr:nth-child(4){animation-delay:7.2s}.tl .fr:nth-child(5){animation-delay:9.6s}
+.tl.c4 .fr:nth-child(2){animation-delay:2.5s}.tl.c4 .fr:nth-child(3){animation-delay:5s}.tl.c4 .fr:nth-child(4){animation-delay:7.5s}
+@keyframes fr5{0%{opacity:1}19%{opacity:1}20%{opacity:0}100%{opacity:0}}
+@keyframes fr4{0%{opacity:1}24%{opacity:1}25%{opacity:0}100%{opacity:0}}
+.tl .ov{position:absolute;left:0;right:0;bottom:0;padding:16px 6px 5px;background:linear-gradient(transparent,rgba(40,20,28,.78));color:#fff;line-height:1.35}
+.tl .ov b{font-size:10.5px;display:block}
+.tl .ov span{font-size:8.5px;opacity:.9}
+.tl .nb{position:absolute;top:5px;left:5px;background:var(--rose);color:#fff;font-size:8.5px;font-weight:700;padding:1px 5px;border-radius:2px}
+.tl .pl{position:absolute;top:5px;right:5px;background:rgba(0,0,0,.45);color:#fff;font-size:8px;padding:1px 4px;border-radius:2px}
+.tl .bar{position:absolute;left:0;bottom:0;height:2px;background:var(--rose);width:0;animation:bar 12s linear infinite}
+.tl.c4 .bar{animation-duration:10s}
+@keyframes bar{from{width:0}to{width:100%}}
+</style>
+<div class="row">
+
+<div><div class="ph">
+<div class="top"><img src="https://nakagawasanchi.github.io/buzz-dori/assets/img/shuri_avatar.png" alt=""><div><b>今日はなにを撮る？</b><span>1シーン、4〜6カットで完成</span></div></div>
+<div class="search">モノ・場面で探す（フライパン、朝の支度…）</div>
+<div class="chips"><span class="chip on">すべて</span><span class="chip">キッチン</span><span class="chip">洗面所</span><span class="chip">玄関</span></div>
+<div class="card"><div class="strip"><i class="p1">寄り</i><i class="p2">俯瞰</i><i class="p3">横</i><i class="f">つなぎ</i><i class="p4">引き</i></div><div class="t">フライ返し・おたま<span class="badge">5カット</span></div><div class="m">キッチン ・ 約12秒</div></div>
+<div class="card"><div class="strip"><i class="p4">寄り</i><i class="p5">横</i><i class="f">つなぎ</i><i class="p2">俯瞰</i></div><div class="t">お皿・器<span class="badge">4カット</span></div><div class="m">ダイニング ・ 約10秒</div></div>
+<div class="tab"><b>さがす</b><span>撮る</span><span>マイ動画</span></div></div><div class="cap">A. カード（現行）</div></div>
+
+<div><div class="ph">
+<div class="top"><img src="https://nakagawasanchi.github.io/buzz-dori/assets/img/shuri_avatar.png" alt=""><div><b>今日はなにを撮る？</b><span>1シーン、4〜6カットで完成</span></div></div>
+<div class="search">モノ・場面で探す（フライパン、朝の支度…）</div>
+<div class="chips"><span class="chip on">すべて</span><span class="chip">キッチン</span><span class="chip">洗面所</span><span class="chip">玄関</span></div>
+<div class="tg" style="margin-top:6px">
+<div class="tl"><div class="fr" style="background-image:url(media/ui_k1.png)"></div><div class="fr" style="background-image:url(media/ui_k2.png)"></div><div class="fr" style="background-image:url(media/ui_k3.png)"></div><div class="fr" style="background-image:url(media/ui_k4.png)"></div><div class="fr" style="background-image:url(media/ui_k5.png)"></div><span class="nb">5カット</span><span class="pl">▶</span><div class="ov"><b>フライ返し・おたま</b><span>キッチン ・ 約12秒</span></div><div class="bar"></div></div>
+<div class="tl c4"><div class="fr" style="background-image:url(media/ui_k5.png)"></div><div class="fr" style="background-image:url(media/ui_k3.png)"></div><div class="fr" style="background-image:url(media/ui_k4.png)"></div><div class="fr" style="background-image:url(media/ui_k2.png)"></div><span class="nb">4カット</span><span class="pl">▶</span><div class="ov"><b>お皿・器</b><span>ダイニング ・ 約10秒</span></div><div class="bar"></div></div>
+<div class="tl"><div class="fr" style="background-image:url(media/ui_k3.png)"></div><div class="fr" style="background-image:url(media/ui_k1.png)"></div><div class="fr" style="background-image:url(media/ui_k5.png)"></div><div class="fr" style="background-image:url(media/ui_k4.png)"></div><div class="fr" style="background-image:url(media/ui_k2.png)"></div><span class="nb">5カット</span><span class="pl">▶</span><div class="ov"><b>グラス・マグ</b><span>キッチン ・ 約12秒</span></div><div class="bar"></div></div>
+<div class="tl c4"><div class="fr" style="background-image:url(media/ui_k4.png)"></div><div class="fr" style="background-image:url(media/ui_k2.png)"></div><div class="fr" style="background-image:url(media/ui_k1.png)"></div><div class="fr" style="background-image:url(media/ui_k3.png)"></div><span class="nb">4カット</span><span class="pl">▶</span><div class="ov"><b>切る道具</b><span>キッチン ・ 約10秒</span></div><div class="bar"></div></div>
+</div>
+<div class="tab"><b>さがす</b><span>撮る</span><span>マイ動画</span></div></div><div class="cap">B. 2列タイル＋連結プレビュー（新）</div></div>
+
+</div></section>
+
 <section><h2>配色（案）</h2><p>
 <span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:#e8688a;vertical-align:middle"></span> ローズ（アクセント・ボタン）
 <span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:#f9d5df;vertical-align:middle"></span> ブラッシュ（チップ・背景）

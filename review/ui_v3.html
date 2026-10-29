@@ -18,13 +18,14 @@ section{padding:16px;border-top:1px solid var(--line)}section h2{font-size:16px;
 .card{margin:8px 14px;background:#fff;border-radius:16px;box-shadow:0 4px 14px rgba(232,104,138,.15);padding:7px}
 .strip{display:flex;gap:3px}
 .strip i{flex:1;height:70px;border-radius:8px;font-style:normal;font-size:8px;color:#fff;display:flex;align-items:flex-end;justify-content:center;padding-bottom:2px;text-shadow:0 1px 2px #0006}
-.p1{background:linear-gradient(135deg,#f4b7a5,#f9d9cc)}.p2{background:linear-gradient(135deg,#e9a1b4,#f7cfdb)}.p3{background:linear-gradient(135deg,#c9a9d6,#e9d8f0)}.p4{background:linear-gradient(135deg,#f6c98f,#fbe5c4)}.p5{background:linear-gradient(135deg,#a9cbb8,#d6ebdf)}
-.strip i.f{background:repeating-linear-gradient(45deg,#fbe3ea,#fbe3ea 4px,#fff 4px,#fff 8px);color:var(--rose);text-shadow:none;border:1px dashed var(--rose)}
+.p1{background:url(media/ui_k1.png) center/cover}.p2{background:url(media/ui_k2.png) center/cover}.p3{background:url(media/ui_k3.png) center/cover}.p4{background:url(media/ui_k5.png) center/cover}.p5{background:url(media/ui_k3.png) center/cover}
+.strip i.f{background:url(media/ui_k4.png) center/cover;border:2px dashed var(--rose);box-sizing:border-box}
+.strip i.f::after{content:"";}
 .t{font-weight:700;margin:6px 2px 0;font-size:12px}.m{color:var(--sub);font-size:10px;margin:0 2px 2px}
 .badge{display:inline-block;background:var(--rose2);color:var(--plum);border-radius:8px;padding:1px 6px;font-size:9px;margin-left:4px}
 .tab{position:absolute;bottom:0;left:0;right:0;height:46px;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;font-size:10px;color:var(--sub)}
 .tab b{color:var(--rose)}
-.hero{margin:4px 14px;height:150px;border-radius:18px;background:linear-gradient(135deg,var(--peach),var(--rose2));display:flex;align-items:flex-end;justify-content:space-between;padding:10px;box-sizing:border-box;color:#fff;font-weight:700;position:relative}
+.hero{margin:4px 14px;height:150px;border-radius:18px;background:linear-gradient(rgba(0,0,0,.05),rgba(0,0,0,.35)),url(media/ui_k2.png) center/cover;display:flex;align-items:flex-end;justify-content:space-between;padding:10px;box-sizing:border-box;color:#fff;font-weight:700;position:relative}
 .hero img{position:absolute;right:8px;top:6px;width:64px}
 .step{display:flex;gap:8px;margin:7px 14px;align-items:center}
 .step .th{flex:0 0 50px;height:62px;border-radius:12px}
@@ -41,7 +42,7 @@ section{padding:16px;border-top:1px solid var(--line)}section h2{font-size:16px;
 </style></head><body>
 <h1>UI案 v3：女性らしい配色＋しゅりさんが案内役</h1>
 <p class="lead">v2の構造（カードにカット帯が見える／つなぎ用カットを区別／場面で探す）はそのまま、配色と雰囲気を「ローズ×ピーチ×白」の明るく軽い女性向けに変更。くすみ色は使わず、しゅりさんのアイコンを“案内役”として各画面に置きました。<br>
-注意：Higgsfieldの生成ツールが今回は権限未許可で使えなかったため、<b>写真部分は色面のプレースホルダ</b>です（本番はここに実写サムネが入ります）。</p>
+写真はHiggsfieldで生成したキッチン1シーン分（いつもの女性＋家の参照を使用）。<b>画像は仮で、一覧では別アングルの流用もあります</b>。</p>
 
 <section><h2>3画面の流れ</h2><p>探す（カット帯つきカード）、シーン詳細（手順＋理由＋つなぎ用）、撮影（しゅりさんのひとこと付き）。</p>
 <div class="row">
@@ -59,7 +60,7 @@ section{padding:16px;border-top:1px solid var(--line)}section h2{font-size:16px;
 <div style="padding:4px 14px 0"><b style="font-size:15px">フライ返し・おたま</b><div class="m">1シーンを5カットに分けて撮ります</div></div>
 <div class="step"><div class="th p1"></div><div><span class="no">1</span><span class="tag">寄り</span>引き出しから取る<div class="why">まず手元を大きく。「何の動画か」が伝わる</div></div></div>
 <div class="step"><div class="th p2"></div><div><span class="no">2</span><span class="tag">俯瞰</span>フライパンで返す<div class="why">真上からだと動きがきれいに見える</div></div></div>
-<div class="step"><div class="th p3" style="background:repeating-linear-gradient(45deg,#fbe3ea,#fbe3ea 4px,#fff 4px,#fff 8px);border:1px dashed var(--rose)"></div><div><span class="no">3</span><span class="tag o">つなぎ</span>湯気のアップ<div class="why">なくてもOK。入れると一気に上手に見える</div></div></div>
+<div class="step"><div class="th" style="background:url(media/ui_k4.png) center/cover;border:2px dashed var(--rose);box-sizing:border-box"></div><div><span class="no">3</span><span class="tag o">つなぎ</span>湯気のアップ<div class="why">なくてもOK。入れると一気に上手に見える</div></div></div>
 <div class="cta">このシーンを撮る</div></div><div class="cap">2. 詳細：なぜそのカットかを一言で</div></div>
 
 <div><div class="ph dark">
@@ -82,5 +83,5 @@ section{padding:16px;border-top:1px solid var(--line)}section h2{font-size:16px;
 
 <section><h2>確認したいこと</h2><p>
 1. このローズ系の方向でよいですか？（もう少し甘く／大人っぽく、などの調整もできます）<br>
-2. 実写サムネの画像はHiggsfieldで作りたいので、Higgsfieldの生成ツールを許可いただければ、キッチンの5カット分（寄り／俯瞰／横／つなぎ／引き）をモックに差し込みます。</p></section>
+2. 実写サムネは今回5枚（寄り／俯瞰／横／つなぎ／引き）。この雰囲気・女性の見え方でよいですか？</p></section>
 </body></html>

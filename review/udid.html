@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>iPhoneの識別番号（UDID）を送る手順</title>
+<style>
+body{font-family:-apple-system,"Hiragino Sans",sans-serif;background:#faf6ef;color:#3b3532;max-width:560px;margin:0 auto;padding:20px;line-height:1.7}
+h1{font-size:20px} h2{font-size:16px;margin-top:28px;border-left:5px solid #e08a7a;padding-left:8px}
+.box{background:#fff;border-radius:12px;padding:14px 16px;margin:10px 0}
+code{background:#eee;padding:2px 6px;border-radius:4px;word-break:break-all}
+.note{font-size:13px;color:#777}
+</style></head><body>
+<h1>バズ撮りカメラ テスト版を入れるための準備</h1>
+<p>テスト版アプリは、事前に登録した iPhone にだけ入れられます。登録のため、iPhone の「識別番号（UDID）」を中川さんに送ってください。個人情報ではなく、端末を区別する番号です。</p>
+
+<h2>方法A：Mac につないで調べる（いちばん確実）</h2>
+<div class="box">
+<ol>
+<li>iPhone を Mac に USB でつなぐ（「このコンピュータを信頼」→信頼）</li>
+<li>Finder を開き、左のサイドバーで iPhone を選ぶ</li>
+<li>画面上部の、iPhone の名前の下にある小さな文字（容量・バッテリー）をクリックし続ける</li>
+<li>「シリアル番号」→「UDID」の表示に切り替わる。右クリック→「UDIDをコピー」</li>
+<li>Slack の #work-with-bot に貼り付けて送る</li>
+</ol>
+</div>
+
+<h2>方法B：iPhone だけで調べる</h2>
+<div class="box">
+<ol>
+<li>iPhone の Safari で、UDID を表示してくれる外部サイト（例：<code>get.udid.io</code>）を開く</li>
+<li>案内に従って構成プロファイルをダウンロードし、「設定」→「一般」→「VPNとデバイス管理」でインストール</li>
+<li>表示された 25〜40文字ほどの番号（例 <code>00008110-001234567890401E</code>）をコピーして Slack に送る</li>
+<li>終わったら、入れたプロファイルは「VPNとデバイス管理」から削除してOK</li>
+</ol>
+<p class="note">※外部サイトを使うため、気になる場合は方法Aをおすすめします。</p>
+</div>
+
+<h2>送ったあと</h2>
+<div class="box">
+<p>登録が終わったら、こちらから「インストールできます」とご連絡します。配布ページの案内に従ってインストールしてください。</p>
+</div>
+</body></html>

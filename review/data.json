@@ -104,8 +104,16 @@
           "text": "切ったものを寄せる"
         }
       ],
-      "stills": [],
-      "videos": []
+      "stills": [
+        "media/k02_c1.jpg",
+        "media/k02_c2.jpg",
+        "media/k02_c3.jpg"
+      ],
+      "videos": [
+        "media/k02_c1.mp4",
+        "media/k02_c2.mp4",
+        "media/k02_c3.mp4"
+      ]
     },
     {
       "id": "k03",
@@ -135,8 +143,16 @@
           "text": "蓋を開けて湯気"
         }
       ],
-      "stills": [],
-      "videos": []
+      "stills": [
+        "media/k03_c1.jpg",
+        "media/k03_c2.jpg",
+        "media/k03_c3.jpg"
+      ],
+      "videos": [
+        "media/k03_c1.mp4",
+        "media/k03_c2.mp4",
+        "media/k03_c3.mp4"
+      ]
     },
     {
       "id": "k04",
@@ -167,8 +183,16 @@
           "text": "テーブルに置く"
         }
       ],
-      "stills": [],
-      "videos": []
+      "stills": [
+        "media/k04_c1.jpg",
+        "media/k04_c2.jpg",
+        "media/k04_c3.jpg"
+      ],
+      "videos": [
+        "media/k04_c1.mp4",
+        "media/k04_c2.mp4",
+        "media/k04_c3.mp4"
+      ]
     },
     {
       "id": "k05",
@@ -182,9 +206,30 @@
       ],
       "reuse": "pour-drink",
       "why": "家で使う飲み物の器。既存「飲み物を注ぐ」を流用",
-      "cuts": [],
-      "stills": [],
-      "videos": []
+      "cuts": [
+        {
+          "angle": "寄り",
+          "text": "注ぐ"
+        },
+        {
+          "angle": "中",
+          "text": "持ち上げる"
+        },
+        {
+          "angle": "寄り",
+          "text": "飲む"
+        }
+      ],
+      "stills": [
+        "media/k05_c1.jpg",
+        "media/k05_c2.jpg",
+        "media/k05_c3.jpg"
+      ],
+      "videos": [
+        "media/k05_c1.mp4",
+        "media/k05_c2.mp4",
+        "media/k05_c3.mp4"
+      ]
     },
     {
       "id": "k05b",
@@ -212,8 +257,16 @@
           "text": "玄関で持って出る"
         }
       ],
-      "stills": [],
-      "videos": []
+      "stills": [
+        "media/k05b_c1.jpg",
+        "media/k05b_c2.jpg",
+        "media/k05b_c3.jpg"
+      ],
+      "videos": [
+        "media/k05b_c1.mp4",
+        "media/k05b_c2.mp4",
+        "media/k05b_c3.mp4"
+      ]
     },
     {
       "id": "k06",
@@ -242,8 +295,16 @@
           "text": "食べる"
         }
       ],
-      "stills": [],
-      "videos": []
+      "stills": [
+        "media/k06_c1.jpg",
+        "media/k06_c2.jpg",
+        "media/k06_c3.jpg"
+      ],
+      "videos": [
+        "media/k06_c1.mp4",
+        "media/k06_c2.mp4",
+        "media/k06_c3.mp4"
+      ]
     },
     {
       "id": "k07",
@@ -272,8 +333,16 @@
           "text": "冷蔵庫に入れる"
         }
       ],
-      "stills": [],
-      "videos": []
+      "stills": [
+        "media/k07_c1.jpg",
+        "media/k07_c2.jpg",
+        "media/k07_c3.jpg"
+      ],
+      "videos": [
+        "media/k07_c1.mp4",
+        "media/k07_c2.mp4",
+        "media/k07_c3.mp4"
+      ]
     },
     {
       "id": "k08",
@@ -301,8 +370,16 @@
           "text": "戻す"
         }
       ],
-      "stills": [],
-      "videos": []
+      "stills": [
+        "media/k08_c1.jpg",
+        "media/k08_c2.jpg",
+        "media/k08_c3.jpg"
+      ],
+      "videos": [
+        "media/k08_c1.mp4",
+        "media/k08_c2.mp4",
+        "media/k08_c3.mp4"
+      ]
     },
     {
       "id": "k09",
@@ -332,8 +409,16 @@
           "text": "取り出す"
         }
       ],
-      "stills": [],
-      "videos": []
+      "stills": [
+        "media/k09_c1.jpg",
+        "media/k09_c2.jpg",
+        "media/k09_c3.jpg"
+      ],
+      "videos": [
+        "media/k09_c1.mp4",
+        "media/k09_c2.mp4",
+        "media/k09_c3.mp4"
+      ]
     },
     {
       "id": "k10",
@@ -363,8 +448,16 @@
           "text": "水切りかごへ（wash-dishes発展）"
         }
       ],
-      "stills": [],
-      "videos": []
+      "stills": [
+        "media/k10_c1.jpg",
+        "media/k10_c2.jpg",
+        "media/k10_c3.jpg"
+      ],
+      "videos": [
+        "media/k10_c1.mp4",
+        "media/k10_c2.mp4",
+        "media/k10_c3.mp4"
+      ]
     },
     {
       "id": "k11",
@@ -379,9 +472,30 @@
       ],
       "reuse": "drawer5",
       "why": "既存「引き出しを開ける」5カットを流用",
-      "cuts": [],
-      "stills": [],
-      "videos": []
+      "cuts": [
+        {
+          "angle": "中",
+          "text": "引き出しを開ける"
+        },
+        {
+          "angle": "俯瞰",
+          "text": "整った中身"
+        },
+        {
+          "angle": "中",
+          "text": "閉める"
+        }
+      ],
+      "stills": [
+        "media/k11_c1.jpg",
+        "media/k11_c2.jpg",
+        "media/k11_c3.jpg"
+      ],
+      "videos": [
+        "media/k11_c1.mp4",
+        "media/k11_c2.mp4",
+        "media/k11_c3.mp4"
+      ]
     },
     {
       "id": "d01",

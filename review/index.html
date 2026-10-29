@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex,nofollow">
 <title>バズ撮り 物リスト（レビュー）</title>
 <style>
-/* トップ=4工程カード（アイテム編集／カット割／静止画／動画）。各工程=場所タブ＋グループカード。判定は Supabase buzzdori_feedback（page=review:<工程>:<gid>）に追記し、最新行を採用 */
+/* ライトモード固定。トップ=工程フロー（アイテム編集→カット割→静止画→動画）。各工程=場所タブ＋グループカード。判定は Supabase buzzdori_feedback（page=review:<工程>:<gid>）に追記し、最新行を採用 */
 :root{
   --bg:#f8f4ec; --paper:#fffdf8; --fg:#3a332c; --muted:#7d7367; --line:#e4dccd;
   --accent:#d98b8b; --accent-ink:#8a3f3f; --ok:#6fa884; --ok-bg:#e6f2ea; --fix:#d9a24a; --fix-bg:#faefd8; --drop:#9a948c; --drop-bg:#ecE8e1;
@@ -14,10 +14,6 @@
   --display:"Hiragino Maru Gothic ProN","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;
   --body:"Hiragino Sans","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
 }
-@media (prefers-color-scheme: dark){ :root{
-  --bg:#1f1b17; --paper:#2a2520; --fg:#efe8dd; --muted:#aaa093; --line:#3d362f;
-  --accent-ink:#f0c2c2; --ok:#7fbf95; --ok-bg:#243a2d; --fix:#e0b060; --fix-bg:#3d3220; --drop:#8d857b; --drop-bg:#35302a;
-  --chip:#352f29; --chip-fg:#e4dcd0; --shadow:none; color-scheme:dark }}
 *{box-sizing:border-box}
 html,body{margin:0}
 body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.6;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
@@ -35,19 +31,18 @@ h1{font-family:var(--display);font-weight:700;font-size:26px;margin:0 0 4px;lett
 .pill b{font-weight:700}
 .pill.ok{background:var(--ok-bg)} .pill.fix{background:var(--fix-bg)} .pill.drop{background:var(--drop-bg)}
 .note{margin-top:12px;padding:10px 12px;border-radius:10px;background:var(--fix-bg);font-size:13px}
-.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
-@media (max-width:480px){.steps{grid-template-columns:1fr}}
-.step{display:block;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;text-decoration:none;color:var(--fg);box-shadow:var(--shadow);min-width:0}
+.flow{display:flex;align-items:stretch;gap:6px;margin-top:22px}
+.flow .arrow{align-self:center;color:var(--muted);font-size:22px;flex:none;line-height:1}
+.step{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 12px;text-decoration:none;color:var(--fg);box-shadow:var(--shadow)}
 .step:hover{border-color:var(--accent)}
-.step .no{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--muted);letter-spacing:.08em}
-.step h2{font-family:var(--display);font-size:18px;margin:4px 0 6px}
-.step p{margin:0;font-size:13px;color:var(--muted)}
-.step .prog{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
-.step .prog span{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--chip);font-variant-numeric:tabular-nums}
-.step .prog span.ok{background:var(--ok-bg)} .step .prog span.fix{background:var(--fix-bg)}
-.rules{margin-top:22px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
-.rules h3{font-family:var(--display);font-size:15px;margin:0 0 8px}
-.rules ul{margin:0;padding-left:18px;font-size:13.5px}
+.step .no{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--muted);letter-spacing:.08em}
+.step h2{font-family:var(--display);font-size:17px;margin:0;line-height:1.3}
+.step .prog{display:grid;gap:4px;margin-top:auto}
+.step .prog span{display:flex;justify-content:space-between;font-size:12.5px;padding:3px 8px;border-radius:8px;background:var(--chip);font-variant-numeric:tabular-nums}
+.step .prog span.ok{background:var(--ok-bg)} .step .prog span.fix{background:var(--fix-bg)} .step .prog span.drop{background:var(--drop-bg)}
+.step .bar{height:6px;border-radius:999px;background:var(--chip);overflow:hidden;display:flex}
+.step .bar i{display:block;height:100%} .step .bar .ok{background:var(--ok)} .step .bar .fix{background:var(--fix)} .step .bar .drop{background:var(--drop)}
+@media (max-width:560px){.flow{flex-direction:column}.flow .arrow{transform:rotate(90deg);align-self:center}}
 .tabs{position:sticky;top:0;z-index:5;background:var(--bg);padding-block:10px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line)}
 .tabs::-webkit-scrollbar{display:none}
 .tab{flex:none;border:1px solid var(--line);background:var(--paper);color:var(--fg);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
@@ -145,17 +140,17 @@ function render(){
   const whoBar = el('div',{class:'who'}, el('span',{text:'レビューする人:'}));
   for (const n of ['中川','しゅり']) { const b=el('button',{type:'button','aria-pressed':String(who===n),text:n}); b.addEventListener('click',()=>{ who=n; try{localStorage.setItem('bz_who',n);}catch{}; render(); }); whoBar.append(b); }
   if (r==='top'){
-    hdr.append(el('h1',{text:'バズ撮り 物リスト'}), el('p',{class:'lead',text:`家の中にあるもの ${DATA.groups.length}グループ／${DATA.itemCount}アイテム（${DATA.version}・${DATA.generated}）。工程ごとに確認・修正指示ができます。`}), whoBar);
-    const steps = el('div',{class:'steps'});
-    for (const [k,s] of Object.entries(STAGES)){
-      const c = counts(k);
-      const a = el('a',{class:'step',href:'#'+k}, el('div',{class:'no',text:'STEP '+s.no}), el('h2',{text:s.title}), el('p',{text:s.desc}));
-      a.append(el('div',{class:'prog'}, el('span',{class:'ok',text:`OK ${c.ok}`}), el('span',{class:'fix',text:`要修正 ${c.fix}`}), el('span',{text:`未判定 ${c.total-c.ok-c.fix-c.drop}`})));
-      steps.append(a);
-    }
-    main.append(steps);
-    main.append(el('div',{class:'rules'}, el('h3',{text:'分け方の基準（10/29 中川さんFBから）'}), el('ul',{html:'<li>「同じ動き」ではなく「モノの種類」で1グループ。軸は 家具／家電（スイッチあり）／用具／消耗品／収納・入れ物</li><li>入れ物と中身は分ける。据え付けの大型収納は対象外、収納グッズは対象</li><li>家で使うものと持ち歩くものは別。カバン類はひと括り（防災バッグは独立）、身につけるものは1種類ずつ</li><li>用途が曖昧なものは入れない。迷ったら「独立」</li><li>撮影: IHコンロで撮る／子ども用グッズは子どもを写す</li>'})));
-    foot.textContent='判定とコメントは保存され、Slack の @claude（Air）とMac側のClaudeが読み取って次の工程に反映します。';
+    hdr.append(el('h1',{text:'バズ撮り 物リスト'}), el('p',{class:'lead',text:`${DATA.groups.length}グループ／${DATA.itemCount}アイテム（${DATA.version}）`}), whoBar);
+    const flow = el('div',{class:'flow'}); const keys = Object.keys(STAGES);
+    keys.forEach((k, i) => {
+      const s = STAGES[k], c = counts(k), rest = c.total-c.ok-c.fix-c.drop;
+      const a = el('a',{class:'step',href:'#'+k}, el('div',{class:'no',text:'STEP '+s.no}), el('h2',{text:s.title}));
+      const bar = el('div',{class:'bar'}); for (const [v,n] of [['ok',c.ok],['fix',c.fix],['drop',c.drop]]) if (n) bar.append(el('i',{class:v,style:`width:${n/c.total*100}%`}));
+      a.append(bar, el('div',{class:'prog'}, el('span',{class:'ok',html:`OK<b>${c.ok}</b>`}), el('span',{class:'fix',html:`要修正<b>${c.fix}</b>`}), el('span',{class:'drop',html:`不要<b>${c.drop}</b>`}), el('span',{html:`未判定<b>${rest}</b>`})));
+      flow.append(a); if (i < keys.length-1) flow.append(el('div',{class:'arrow','aria-hidden':'true',text:'→'}));
+    });
+    main.append(flow);
+    foot.textContent='';
     return;
   }
   const s = STAGES[r];

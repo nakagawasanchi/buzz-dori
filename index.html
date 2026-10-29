@@ -58,20 +58,26 @@ a{color:inherit;text-decoration:none}
   font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px}
 .media .loop{position:absolute;top:12px;right:12px;background:rgba(198,73,59,.9);color:#fff;
   font-size:11px;font-weight:700;padding:4px 12px;border-radius:999px}
-.swipe-arrow{position:absolute;top:50%;width:42px;height:42px;border-radius:50%;
-  background:rgba(74,63,53,.32);color:rgba(255,255,255,.92);font-size:24px;font-weight:900;
-  display:flex;align-items:center;justify-content:center;pointer-events:none;
-  transform:translateY(-50%)}
-.swipe-arrow.left{left:10px}
-.swipe-arrow.right{right:10px;animation:nudge 1.6s ease-in-out infinite}
-@keyframes nudge{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(5px)}}
+.swipe-arrow{position:absolute;top:50%;width:52px;height:52px;border-radius:50%;
+  background:rgba(255,255,255,.92);color:var(--brick);font-size:34px;font-weight:900;line-height:1;
+  display:flex;align-items:center;justify-content:center;cursor:pointer;
+  box-shadow:0 2px 10px rgba(74,63,53,.35);border:2px solid rgba(74,63,53,.15);
+  transform:translateY(-50%);z-index:3;padding-bottom:4px}
+.swipe-arrow.left{left:8px}
+.swipe-arrow.right{right:8px;animation:nudge 1.4s ease-in-out infinite}
+@keyframes nudge{0%,100%{transform:translateY(-50%) translateX(0)}50%{transform:translateY(-50%) translateX(6px)}}
 .slide h3{font-size:21px;margin:14px 0 4px}
-.slide .angle{font-size:14px}
-.tipbox{display:flex;gap:10px;align-items:flex-start;background:rgba(228,164,172,.18);
-  border:1.5px solid rgba(228,164,172,.55);border-radius:18px;padding:12px 14px;margin-top:10px}
-.tipbox img{width:44px;height:44px;object-fit:contain;flex-shrink:0}
-.tipbox .label{font-size:10px;font-weight:900;color:var(--brick);letter-spacing:.08em}
-.tipbox p{font-size:13px}
+.talk{display:flex;gap:10px;align-items:flex-start;margin-top:14px}
+.talk .face{width:60px;height:60px;border-radius:50%;object-fit:cover;flex-shrink:0;
+  border:2px solid rgba(228,164,172,.8);background:#fff}
+.talk .who{font-size:11px;font-weight:900;color:var(--brick);margin-bottom:3px}
+.bubble{position:relative;flex:1;background:#fff;border:2px solid rgba(228,164,172,.8);
+  border-radius:20px;padding:12px 14px}
+.bubble:before{content:"";position:absolute;left:-9px;top:22px;width:14px;height:14px;background:#fff;
+  border-left:2px solid rgba(228,164,172,.8);border-bottom:2px solid rgba(228,164,172,.8);transform:rotate(45deg)}
+.bubble .angle{font-size:14px;font-weight:700}
+.bubble .tip{font-size:13px;margin-top:8px;padding-top:8px;border-top:1.5px dashed rgba(228,164,172,.7)}
+.bubble .tip b{color:var(--brick);font-size:10px;letter-spacing:.08em;margin-right:6px}
 .nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:14px}
 .nav button{font-family:inherit;width:44px;height:44px;border-radius:50%;border:1.5px solid rgba(74,63,53,.18);
   background:var(--ivory);color:var(--ink);font-size:17px;font-weight:900;cursor:pointer}
@@ -497,14 +503,17 @@ function renderCuts(id, fromPlace, fromAct){
             : `<img src="${c.media.i}" alt="">`}
           ${s.draftMedia ? `<span class="draft">実写サンプル準備中</span>` : ""}
           <span class="badge">CUT ${i+1}</span>
-          ${i>0?'<span class="swipe-arrow left">‹</span>':''}
-          ${i<N-1?'<span class="swipe-arrow right">›</span>':''}
+          ${i>0?'<span class="swipe-arrow left" data-d="-1">‹</span>':''}
+          ${i<N-1?'<span class="swipe-arrow right" data-d="1">›</span>':''}
         </div>
         <h3>${i+1}. ${esc(c.title)}</h3>
-        <div class="angle">${esc(c.angle)}</div>
-        <div class="tipbox">
-          <img src="assets/img/shuri_point.png" alt="">
-          <div><div class="label">POINT</div><p>${esc(c.tip)}</p></div>
+        <div class="talk">
+          <img class="face" src="assets/img/shuri_avatar.png" alt="">
+          <div class="bubble">
+            <div class="who">しゅり</div>
+            <div class="angle">${esc(c.angle)}</div>
+            <div class="tip"><b>POINT</b>${esc(c.tip)}</div>
+          </div>
         </div>
       </div>`).join("")}
     </div>
@@ -540,6 +549,7 @@ function renderCuts(id, fromPlace, fromAct){
     document.querySelectorAll("#car video").forEach((v,k)=>{ k===cur||!dots.length ? v.play().catch(()=>{}) : v.pause(); });
   };
   const goto = i => { car.scrollTo({left: i*car.clientWidth, behavior:"smooth"}); update(i); };
+  document.querySelectorAll('.swipe-arrow').forEach(a=>a.onclick=()=>goto(cur+(+a.dataset.d)));
   prev.onclick = ()=>goto(cur-1);
   next.onclick = ()=>goto(cur+1);
   car.addEventListener("scroll", ()=>{

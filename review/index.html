@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>バズ撮り 物リスト（レビュー）</title>
+<style>
+/* トップ=4工程カード（アイテム編集／カット割／静止画／動画）。各工程=場所タブ＋グループカード。判定は Supabase buzzdori_feedback（page=review:<工程>:<gid>）に追記し、最新行を採用 */
+:root{
+  --bg:#f8f4ec; --paper:#fffdf8; --fg:#3a332c; --muted:#7d7367; --line:#e4dccd;
+  --accent:#d98b8b; --accent-ink:#8a3f3f; --ok:#6fa884; --ok-bg:#e6f2ea; --fix:#d9a24a; --fix-bg:#faefd8; --drop:#9a948c; --drop-bg:#ecE8e1;
+  --chip:#f1ece2; --chip-fg:#4a4238; --shadow:0 1px 0 rgba(90,70,40,.06);
+  --display:"Hiragino Maru Gothic ProN","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif;
+  --body:"Hiragino Sans","Hiragino Kaku Gothic ProN",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root{
+  --bg:#1f1b17; --paper:#2a2520; --fg:#efe8dd; --muted:#aaa093; --line:#3d362f;
+  --accent-ink:#f0c2c2; --ok:#7fbf95; --ok-bg:#243a2d; --fix:#e0b060; --fix-bg:#3d3220; --drop:#8d857b; --drop-bg:#35302a;
+  --chip:#352f29; --chip-fg:#e4dcd0; --shadow:none; color-scheme:dark }}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.6;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 48px}
+.wrap{max-width:760px;margin:0 auto}
+header{padding-block:22px 10px}
+.crumb{font-size:13px;color:var(--muted);margin:0 0 6px}
+.crumb a{color:var(--accent-ink);text-decoration:none}
+h1{font-family:var(--display);font-weight:700;font-size:26px;margin:0 0 4px;letter-spacing:.01em}
+.lead{color:var(--muted);margin:0;font-size:14px}
+.who{display:flex;gap:8px;align-items:center;margin-top:12px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.who button{border:1px solid var(--line);background:var(--paper);color:var(--fg);border-radius:999px;padding:4px 12px;font:inherit;font-size:13px;cursor:pointer}
+.who button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.sum{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:13px;background:var(--chip);color:var(--chip-fg);font-variant-numeric:tabular-nums}
+.pill b{font-weight:700}
+.pill.ok{background:var(--ok-bg)} .pill.fix{background:var(--fix-bg)} .pill.drop{background:var(--drop-bg)}
+.note{margin-top:12px;padding:10px 12px;border-radius:10px;background:var(--fix-bg);font-size:13px}
+.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}
+@media (max-width:480px){.steps{grid-template-columns:1fr}}
+.step{display:block;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;text-decoration:none;color:var(--fg);box-shadow:var(--shadow);min-width:0}
+.step:hover{border-color:var(--accent)}
+.step .no{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--muted);letter-spacing:.08em}
+.step h2{font-family:var(--display);font-size:18px;margin:4px 0 6px}
+.step p{margin:0;font-size:13px;color:var(--muted)}
+.step .prog{margin-top:10px;display:flex;gap:6px;flex-wrap:wrap}
+.step .prog span{font-size:12px;padding:2px 8px;border-radius:999px;background:var(--chip);font-variant-numeric:tabular-nums}
+.step .prog span.ok{background:var(--ok-bg)} .step .prog span.fix{background:var(--fix-bg)}
+.rules{margin-top:22px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.rules h3{font-family:var(--display);font-size:15px;margin:0 0 8px}
+.rules ul{margin:0;padding-left:18px;font-size:13.5px}
+.tabs{position:sticky;top:0;z-index:5;background:var(--bg);padding-block:10px;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;border-bottom:1px solid var(--line)}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;border:1px solid var(--line);background:var(--paper);color:var(--fg);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.tab:focus-visible,.seg button:focus-visible,.chipi:focus-visible,textarea:focus-visible,.step:focus-visible,.who button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section.place{padding-block:18px 6px}
+section.place>h2{font-family:var(--display);font-size:19px;margin:0 0 10px;display:flex;align-items:baseline;gap:10px}
+section.place>h2 small{font-family:var(--body);font-weight:400;color:var(--muted);font-size:13px}
+.cards{display:grid;gap:12px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;box-shadow:var(--shadow);display:grid;gap:10px;min-width:0}
+.card[data-status="ok"]{border-color:var(--ok)} .card[data-status="fix"]{border-color:var(--fix)} .card[data-status="drop"]{opacity:.62}
+.head{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.gid{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.gname{font-family:var(--display);font-weight:700;font-size:17px;margin:0}
+.reuse{font-size:11px;padding:2px 8px;border-radius:999px;background:var(--ok-bg);color:var(--ok);border:1px solid var(--ok)}
+.motion{margin:0;font-size:14px}
+.motion span{color:var(--muted);font-size:12px;margin-right:6px;letter-spacing:.06em}
+.why{margin:0;font-size:12.5px;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chipi{border:1px solid var(--line);background:var(--chip);color:var(--chip-fg);border-radius:999px;padding:4px 11px;font:inherit;font-size:13.5px;cursor:pointer;line-height:1.3}
+.chipi[aria-pressed="true"]{text-decoration:line-through;color:var(--muted);background:transparent}
+.cuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.cut{border:1px dashed var(--line);border-radius:10px;padding:8px 10px;min-width:0}
+.cut .n{font-family:ui-monospace,Menlo,monospace;font-size:11px;color:var(--muted);letter-spacing:.06em}
+.cut .a{display:inline-block;font-size:11px;padding:1px 7px;border-radius:999px;background:var(--chip);margin:2px 0 4px}
+.cut .t{font-size:13.5px;margin:0}
+.slot{aspect-ratio:9/16;max-height:220px;width:100%;max-width:100%;border:1px dashed var(--line);border-radius:10px;display:grid;place-items:center;color:var(--muted);font-size:12px;background:var(--chip);margin-top:6px;overflow:hidden}
+.slot img,.slot video{width:100%;height:100%;object-fit:cover}
+.ctl{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{border:0;background:transparent;color:var(--fg);font:inherit;font-size:13px;padding:6px 12px;cursor:pointer;border-right:1px solid var(--line)}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{font-weight:700;color:#fff}
+.seg button[data-v="ok"][aria-pressed="true"]{background:var(--ok)}
+.seg button[data-v="fix"][aria-pressed="true"]{background:var(--fix)}
+.seg button[data-v="drop"][aria-pressed="true"]{background:var(--drop)}
+.saved{font-size:12px;color:var(--muted);min-width:4em}
+.by{font-size:11px;color:var(--muted)}
+textarea{width:100%;min-width:0;border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:10px;padding:8px 10px;font:inherit;font-size:14px;resize:vertical;min-height:40px}
+textarea::placeholder{color:var(--muted)}
+footer{padding-block:26px 0;font-size:12.5px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header id="hdr"></header>
+<nav class="tabs" id="tabs" role="tablist" aria-label="場所" hidden></nav>
+<main id="main"><p class="lead">読み込み中…</p></main>
+<footer id="foot"></footer>
+</div>
+<script>
+const SUPABASE_URL = "https://frpssjxodattcatzahjy.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZycHNzanhvZGF0dGNhdHphaGp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY5NjIxMzcsImV4cCI6MjEwMjUzODEzN30.ibnJYLsRgDl1-2KAqRx2JDd1DsrinK7OkoEudzmWX8M";
+const TABLE = "buzzdori_feedback";          // 既存テーブル (page, body, created_at)。page = review:<stage>:<gid>、body = JSON
+const STAGES = {
+  items:  {no:'1', title:'アイテム編集', desc:'家の中にあるもの候補。グループ（＝1本の動画で代表する括り）ごとに OK／要修正／不要。アイテム名タップで外す', ph:'コメント（分け方・足したいもの・動画の動きなど）'},
+  cuts:   {no:'2', title:'カット割', desc:'グループごとのカット案（固定カメラ・カットごとに別撮り・3カット基本）。OKになったものから静止画→動画へ進む', ph:'修正指示（アングル・動き・カット数・順番など）'},
+  stills: {no:'3', title:'静止画', desc:'各カットの構図確認用の静止画（Higgsfield生成）。OKになったカットから動画化する', ph:'修正指示（構図・背景・モノの見え方など）'},
+  videos: {no:'4', title:'動画', desc:'カットごとの実写風サンプル動画（Higgsfield生成）。OKでアプリに掲載', ph:'修正指示（動き・速さ・つなぎなど）'},
+};
+const STATUS = {ok:"OK", fix:"要修正", drop:"不要"};
+let DATA = null; const state = {items:{}, cuts:{}, stills:{}, videos:{}};
+let who = ''; try { who = localStorage.getItem('bz_who') || ''; } catch {}
+const $ = (s, r=document) => r.querySelector(s);
+const el = (t, a={}, ...k) => { const e=document.createElement(t); for (const [n,v] of Object.entries(a)) { if (n==='text') e.textContent=v; else if (n==='html') e.innerHTML=v; else e.setAttribute(n,v);} for (const c of k) e.append(c); return e; };
+const route = () => { const h=(location.hash||'').replace('#',''); return STAGES[h] ? h : 'top'; };
+const counts = (key) => { const n = v => Object.values(state[key]).filter(x=>x.status===v).length; return {ok:n('ok'), fix:n('fix'), drop:n('drop'), total:DATA.groups.length}; };
+const H = {apikey:SUPABASE_KEY, Authorization:'Bearer '+SUPABASE_KEY, 'Content-Type':'application/json'};
+
+async function loadFeedback(){
+  const r = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE}?select=page,body,created_at&page=like.review:*&order=created_at.asc&limit=5000`, {headers:H});
+  if (!r.ok) throw new Error('feedback load '+r.status);
+  for (const row of await r.json()){
+    const m = /^review:(\w+):(.+)$/.exec(row.page); if (!m || !state[m[1]]) continue;
+    let b={}; try { b = JSON.parse(row.body)||{}; } catch {}
+    state[m[1]][m[2]] = {status:b.status||'', comment:b.comment||'', dropped:Array.isArray(b.dropped)?b.dropped:[], by:b.by||'', at:row.created_at};
+  }
+}
+const pending = {};
+async function save(stage, gid, patch){
+  const cur = state[stage][gid] = Object.assign({status:'',comment:'',dropped:[]}, state[stage][gid]||{}, patch, {by: who, at: new Date().toISOString()});
+  summary(); const ind=$('#s-'+gid); const k=stage+':'+gid;
+  pending[k] = (pending[k]||Promise.resolve()).then(async()=>{
+    if (ind) ind.textContent='保存中…';
+    try {
+      const r = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE}`, {method:'POST', headers:{...H, Prefer:'return=minimal'}, body: JSON.stringify({page:'review:'+k, body: JSON.stringify({status:cur.status, comment:cur.comment, dropped:cur.dropped, by:who})})});
+      if (!r.ok) throw new Error(r.status);
+      if (ind) ind.textContent='保存済み';
+    } catch(e){ if (ind) ind.textContent='保存できません（通信）'; console.error(e); }
+  });
+}
+function render(){
+  const r = route(); const hdr=$('#hdr'), main=$('#main'), tabs=$('#tabs'), foot=$('#foot');
+  hdr.textContent=''; main.textContent=''; tabs.textContent=''; tabs.hidden = (r==='top');
+  const whoBar = el('div',{class:'who'}, el('span',{text:'レビューする人:'}));
+  for (const n of ['中川','しゅり']) { const b=el('button',{type:'button','aria-pressed':String(who===n),text:n}); b.addEventListener('click',()=>{ who=n; try{localStorage.setItem('bz_who',n);}catch{}; render(); }); whoBar.append(b); }
+  if (r==='top'){
+    hdr.append(el('h1',{text:'バズ撮り 物リスト'}), el('p',{class:'lead',text:`家の中にあるもの ${DATA.groups.length}グループ／${DATA.itemCount}アイテム（${DATA.version}・${DATA.generated}）。工程ごとに確認・修正指示ができます。`}), whoBar);
+    const steps = el('div',{class:'steps'});
+    for (const [k,s] of Object.entries(STAGES)){
+      const c = counts(k);
+      const a = el('a',{class:'step',href:'#'+k}, el('div',{class:'no',text:'STEP '+s.no}), el('h2',{text:s.title}), el('p',{text:s.desc}));
+      a.append(el('div',{class:'prog'}, el('span',{class:'ok',text:`OK ${c.ok}`}), el('span',{class:'fix',text:`要修正 ${c.fix}`}), el('span',{text:`未判定 ${c.total-c.ok-c.fix-c.drop}`})));
+      steps.append(a);
+    }
+    main.append(steps);
+    main.append(el('div',{class:'rules'}, el('h3',{text:'分け方の基準（10/29 中川さんFBから）'}), el('ul',{html:'<li>「同じ動き」ではなく「モノの種類」で1グループ。軸は 家具／家電（スイッチあり）／用具／消耗品／収納・入れ物</li><li>入れ物と中身は分ける。据え付けの大型収納は対象外、収納グッズは対象</li><li>家で使うものと持ち歩くものは別。カバン類はひと括り（防災バッグは独立）、身につけるものは1種類ずつ</li><li>用途が曖昧なものは入れない。迷ったら「独立」</li><li>撮影: IHコンロで撮る／子ども用グッズは子どもを写す</li>'})));
+    foot.textContent='判定とコメントは保存され、Slack の @claude（Air）とMac側のClaudeが読み取って次の工程に反映します。';
+    return;
+  }
+  const s = STAGES[r];
+  hdr.append(el('p',{class:'crumb',html:'<a href="#">バズ撮り 物リスト</a> › STEP '+s.no}), el('h1',{text:s.title}), el('p',{class:'lead',text:s.desc}), whoBar, el('div',{class:'sum',id:'sum'}));
+  if (!who) hdr.append(el('div',{class:'note',text:'先に「レビューする人」を選んでください（誰の判定か記録されます）。'}));
+  tabs.append(el('button',{class:'tab',role:'tab','aria-selected':'true',text:'すべて','data-p':'all'}));
+  for (const p of DATA.places) tabs.append(el('button',{class:'tab',role:'tab','aria-selected':'false',text:p.name,'data-p':p.id}));
+  for (const p of DATA.places){
+    const gs = DATA.groups.filter(g=>g.place===p.id);
+    const sec = el('section',{class:'place',id:'p-'+p.id});
+    sec.append(el('h2',{}, p.name, el('small',{text:`${gs.length}グループ`})));
+    const cards = el('div',{class:'cards'}); for (const g of gs) cards.append(card(r, g)); sec.append(cards); main.append(sec);
+  }
+  foot.textContent = r==='items' ? '流用＝buzz-dori サイトの既存サンプルを使えるグループ。' : 'アングル略号: 寄り=手元・モノのアップ／中=腰上／引き=部屋・棚の全体／俯瞰=真上／横=真横。';
+  summary();
+}
+function card(stage, g){
+  const st = state[stage][g.id] || {};
+  const c = el('article',{class:'card',id:'g-'+g.id,'data-status':st.status||''});
+  const head = el('div',{class:'head'}, el('span',{class:'gid',text:g.id}), el('h3',{class:'gname',text:g.name}));
+  if (g.reuse) head.append(el('span',{class:'reuse',text:'流用: '+g.reuse}));
+  c.append(head);
+  if (stage==='items'){
+    c.append(el('p',{class:'motion'}, el('span',{text:'代表の動き'}), g.motion), el('p',{class:'why',text:g.why}));
+    const chips = el('div',{class:'chips'});
+    for (const it of g.items){ const b=el('button',{class:'chipi',type:'button','aria-pressed':String((st.dropped||[]).includes(it)),text:it}); b.addEventListener('click',()=>{ if(!who) return; const cur=new Set(state[stage][g.id]?.dropped||[]); cur.has(it)?cur.delete(it):cur.add(it); b.setAttribute('aria-pressed',String(cur.has(it))); save(stage,g.id,{dropped:[...cur]}); }); chips.append(b); }
+    c.append(chips);
+  } else {
+    c.append(el('p',{class:'why',text:'アイテム: '+g.items.join('、')}));
+    const cuts = el('div',{class:'cuts'});
+    const list = (g.cuts && g.cuts.length) ? g.cuts : [{angle:'', text: g.reuse ? `既存サンプル「${g.reuse}」を流用` : '（カット案なし）'}];
+    list.forEach((cu, i) => {
+      const box = el('div',{class:'cut'}, el('div',{class:'n',text: cu.angle ? 'CUT '+(i+1) : 'CUTS'}));
+      if (cu.angle) box.append(el('span',{class:'a',text:cu.angle}));
+      box.append(el('p',{class:'t',text:cu.text}));
+      if (stage==='stills' || stage==='videos'){
+        const m = (stage==='stills' ? (g.stills||[]) : (g.videos||[]))[i];
+        const slot = el('div',{class:'slot'});
+        if (m && stage==='stills') slot.append(el('img',{src:m,alt:`${g.name} カット${i+1}`,loading:'lazy'}));
+        else if (m) slot.append(el('video',{src:m,muted:'',loop:'',playsinline:'',controls:'',preload:'metadata'}));
+        else slot.textContent = cu.angle ? '未生成' : '流用';
+        box.append(slot);
+      }
+      cuts.append(box);
+    });
+    c.append(cuts);
+  }
+  const seg = el('div',{class:'seg',role:'group','aria-label':'判定'});
+  for (const [v,label] of Object.entries(STATUS)){ const b=el('button',{type:'button','data-v':v,'aria-pressed':String(st.status===v),text:label}); b.addEventListener('click',()=>{ if(!who) return; const nv = state[stage][g.id]?.status===v ? '' : v; for (const x of seg.children) x.setAttribute('aria-pressed',String(x.dataset.v===nv)); c.dataset.status=nv; save(stage,g.id,{status:nv}); }); seg.append(b); }
+  const by = st.by ? el('span',{class:'by',text:`${st.by}・${(st.at||'').slice(5,16).replace('T',' ')}`}) : el('span',{class:'by'});
+  c.append(el('div',{class:'ctl'}, seg, el('span',{class:'saved',id:'s-'+g.id,text:''}), by));
+  const ta = el('textarea',{id:'c-'+g.id,rows:'1',placeholder:STAGES[stage].ph}); ta.value = st.comment||'';
+  let t; ta.addEventListener('input',()=>{ if(!who) return; clearTimeout(t); t=setTimeout(()=>save(stage,g.id,{comment:ta.value}),700); });
+  c.append(ta);
+  return c;
+}
+function summary(){
+  const r=route(); if (r==='top') return; const s=$('#sum'); if(!s) return; s.textContent='';
+  const c=counts(r);
+  const dropped = r==='items' ? Object.values(state.items).reduce((a,x)=>a+(x.dropped||[]).length,0) : 0;
+  s.append(el('span',{class:'pill',html:`<b>${DATA.groups.length}</b> グループ`}));
+  if (r==='items') s.append(el('span',{class:'pill',html:`<b>${DATA.itemCount - dropped}</b> アイテム`}));
+  s.append(el('span',{class:'pill ok',html:`OK <b>${c.ok}</b>`}), el('span',{class:'pill fix',html:`要修正 <b>${c.fix}</b>`}), el('span',{class:'pill drop',html:`不要 <b>${c.drop}</b>`}), el('span',{class:'pill',html:`未判定 <b>${c.total-c.ok-c.fix-c.drop}</b>`}));
+}
+document.addEventListener('click', e=>{ const b=e.target.closest('.tab'); if(!b) return; for(const t of $('#tabs').children) t.setAttribute('aria-selected', String(t===b)); const p=b.dataset.p; for (const s of document.querySelectorAll('section.place')) s.hidden = (p!=='all' && s.id!=='p-'+p); });
+window.addEventListener('hashchange', render);
+(async()=>{
+  try {
+    DATA = await (await fetch('data.json?v='+Date.now())).json();
+    try { await loadFeedback(); } catch(e){ console.error(e); }
+    render();
+    setInterval(async()=>{ try { await loadFeedback(); if (route()==='top') render(); else summary(); } catch{} }, 30000);
+  } catch(e){ $('#main').textContent='data.json を読み込めませんでした。'; console.error(e); }
+})();
+</script>
+</body>
+</html>

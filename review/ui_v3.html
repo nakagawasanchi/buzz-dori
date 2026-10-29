@@ -1,0 +1,86 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>バズ撮りカメラ UI案 v3（女性らしい配色）</title>
+<style>
+:root{--rose:#e8688a;--rose2:#f9d5df;--blush:#fff3f6;--peach:#ffb59a;--ink:#3b2a30;--sub:#9a8289;--line:#f1dde3;--plum:#7a3b57}
+body{margin:0;background:linear-gradient(#fff8fa,#fff);font-family:-apple-system,"Hiragino Sans",sans-serif;color:var(--ink)}
+h1{font-size:20px;margin:20px 16px 4px}p.lead{margin:0 16px 12px;font-size:13px;color:var(--sub);line-height:1.7}
+section{padding:16px;border-top:1px solid var(--line)}section h2{font-size:16px;margin:0 0 4px}section>p{font-size:13px;line-height:1.7;margin:0 0 12px}
+.row{display:flex;gap:18px;overflow-x:auto;padding-bottom:10px}
+.ph{flex:0 0 210px;width:210px;height:440px;background:#fff;border:6px solid var(--ink);border-radius:30px;position:relative;overflow:hidden;font-size:11px}
+.cap{width:210px;font-size:11px;text-align:center;margin-top:6px;color:var(--sub)}
+.top{display:flex;align-items:center;gap:8px;padding:14px 14px 6px}
+.top img{width:34px;height:34px;border-radius:50%;object-fit:cover;background:var(--rose2)}
+.top b{font-size:15px;display:block}.top span{font-size:10px;color:var(--sub)}
+.search{margin:6px 14px;background:var(--blush);border:1px solid var(--line);border-radius:20px;padding:8px 12px;color:var(--sub)}
+.chips{padding:2px 10px;white-space:nowrap;overflow:hidden}
+.chip{display:inline-block;background:var(--blush);border-radius:16px;padding:4px 10px;margin:2px;font-size:10px;color:var(--plum)}
+.chip.on{background:var(--rose);color:#fff}
+.card{margin:8px 14px;background:#fff;border-radius:16px;box-shadow:0 4px 14px rgba(232,104,138,.15);padding:7px}
+.strip{display:flex;gap:3px}
+.strip i{flex:1;height:70px;border-radius:8px;font-style:normal;font-size:8px;color:#fff;display:flex;align-items:flex-end;justify-content:center;padding-bottom:2px;text-shadow:0 1px 2px #0006}
+.p1{background:linear-gradient(135deg,#f4b7a5,#f9d9cc)}.p2{background:linear-gradient(135deg,#e9a1b4,#f7cfdb)}.p3{background:linear-gradient(135deg,#c9a9d6,#e9d8f0)}.p4{background:linear-gradient(135deg,#f6c98f,#fbe5c4)}.p5{background:linear-gradient(135deg,#a9cbb8,#d6ebdf)}
+.strip i.f{background:repeating-linear-gradient(45deg,#fbe3ea,#fbe3ea 4px,#fff 4px,#fff 8px);color:var(--rose);text-shadow:none;border:1px dashed var(--rose)}
+.t{font-weight:700;margin:6px 2px 0;font-size:12px}.m{color:var(--sub);font-size:10px;margin:0 2px 2px}
+.badge{display:inline-block;background:var(--rose2);color:var(--plum);border-radius:8px;padding:1px 6px;font-size:9px;margin-left:4px}
+.tab{position:absolute;bottom:0;left:0;right:0;height:46px;background:#fff;border-top:1px solid var(--line);display:flex;justify-content:space-around;align-items:center;font-size:10px;color:var(--sub)}
+.tab b{color:var(--rose)}
+.hero{margin:4px 14px;height:150px;border-radius:18px;background:linear-gradient(135deg,var(--peach),var(--rose2));display:flex;align-items:flex-end;justify-content:space-between;padding:10px;box-sizing:border-box;color:#fff;font-weight:700;position:relative}
+.hero img{position:absolute;right:8px;top:6px;width:64px}
+.step{display:flex;gap:8px;margin:7px 14px;align-items:center}
+.step .th{flex:0 0 50px;height:62px;border-radius:12px}
+.step .no{width:16px;height:16px;border-radius:50%;background:var(--rose);color:#fff;font-size:9px;display:inline-flex;align-items:center;justify-content:center;margin-right:4px}
+.tag{display:inline-block;background:var(--rose2);color:var(--plum);border-radius:8px;padding:1px 6px;font-size:9px;margin-right:4px}
+.tag.o{background:#fff;color:var(--rose);border:1px dashed var(--rose)}
+.why{color:var(--sub);font-size:9.5px;margin-top:2px;line-height:1.4}
+.cta{position:absolute;bottom:56px;left:14px;right:14px;background:var(--rose);color:#fff;border-radius:26px;padding:11px;text-align:center;font-weight:700;box-shadow:0 6px 14px rgba(232,104,138,.4)}
+.dark{background:#241a1e;color:#fff}
+.rec{position:absolute;bottom:16px;left:50%;margin-left:-24px;width:48px;height:48px;border-radius:50%;border:4px solid #fff;background:var(--rose)}
+.prog{display:flex;gap:4px;padding:12px 14px 4px}.prog u{flex:1;height:3px;border-radius:2px;background:#fff4;text-decoration:none}.prog u.d{background:#fff}.prog u.n{background:var(--rose)}
+.bubble{background:#fff;color:var(--ink);border-radius:14px;padding:7px 10px;font-size:10px;line-height:1.5;position:absolute;left:62px;right:12px;bottom:78px}
+.sh{position:absolute;left:10px;bottom:68px;width:46px}
+</style></head><body>
+<h1>UI案 v3：女性らしい配色＋しゅりさんが案内役</h1>
+<p class="lead">v2の構造（カードにカット帯が見える／つなぎ用カットを区別／場面で探す）はそのまま、配色と雰囲気を「ローズ×ピーチ×白」の明るく軽い女性向けに変更。くすみ色は使わず、しゅりさんのアイコンを“案内役”として各画面に置きました。<br>
+注意：Higgsfieldの生成ツールが今回は権限未許可で使えなかったため、<b>写真部分は色面のプレースホルダ</b>です（本番はここに実写サムネが入ります）。</p>
+
+<section><h2>3画面の流れ</h2><p>探す（カット帯つきカード）、シーン詳細（手順＋理由＋つなぎ用）、撮影（しゅりさんのひとこと付き）。</p>
+<div class="row">
+
+<div><div class="ph">
+<div class="top"><img src="https://nakagawasanchi.github.io/buzz-dori/assets/img/shuri_avatar.png" alt=""><div><b>今日はなにを撮る？</b><span>1シーン、4〜6カットで完成</span></div></div>
+<div class="search">モノ・場面で探す（フライパン、朝の支度…）</div>
+<div class="chips"><span class="chip on">すべて</span><span class="chip">キッチン</span><span class="chip">洗面所</span><span class="chip">玄関</span><span class="chip">リビング</span></div>
+<div class="card"><div class="strip"><i class="p1">寄り</i><i class="p2">俯瞰</i><i class="p3">横</i><i class="f">つなぎ</i><i class="p4">引き</i></div><div class="t">フライ返し・おたま<span class="badge">5カット</span></div><div class="m">キッチン ・ 約12秒</div></div>
+<div class="card"><div class="strip"><i class="p4">寄り</i><i class="p5">横</i><i class="f">つなぎ</i><i class="p2">俯瞰</i></div><div class="t">お皿・器<span class="badge">4カット</span></div><div class="m">ダイニング ・ 約10秒</div></div>
+<div class="tab"><b>さがす</b><span>撮る</span><span>マイ動画</span></div></div><div class="cap">1. 探す：カットの並びが見える</div></div>
+
+<div><div class="ph">
+<div class="hero"><span>つないだ完成見本 ▶</span><img src="https://nakagawasanchi.github.io/buzz-dori/assets/img/shuri_happy.png" alt=""></div>
+<div style="padding:4px 14px 0"><b style="font-size:15px">フライ返し・おたま</b><div class="m">1シーンを5カットに分けて撮ります</div></div>
+<div class="step"><div class="th p1"></div><div><span class="no">1</span><span class="tag">寄り</span>引き出しから取る<div class="why">まず手元を大きく。「何の動画か」が伝わる</div></div></div>
+<div class="step"><div class="th p2"></div><div><span class="no">2</span><span class="tag">俯瞰</span>フライパンで返す<div class="why">真上からだと動きがきれいに見える</div></div></div>
+<div class="step"><div class="th p3" style="background:repeating-linear-gradient(45deg,#fbe3ea,#fbe3ea 4px,#fff 4px,#fff 8px);border:1px dashed var(--rose)"></div><div><span class="no">3</span><span class="tag o">つなぎ</span>湯気のアップ<div class="why">なくてもOK。入れると一気に上手に見える</div></div></div>
+<div class="cta">このシーンを撮る</div></div><div class="cap">2. 詳細：なぜそのカットかを一言で</div></div>
+
+<div><div class="ph dark">
+<div class="prog"><u class="d"></u><u class="n"></u><u></u><u></u><u></u></div>
+<div style="padding:4px 14px;display:flex;justify-content:space-between"><span>2 / 5　俯瞰</span><span>0:03</span></div>
+<div style="position:absolute;top:62px;left:14px;right:14px;height:270px;border:2px dashed #fff7;border-radius:16px;display:flex;align-items:center;justify-content:center;color:#fff8;text-align:center">構図ガイド<br>（イラストの線）</div>
+<div style="position:absolute;top:70px;right:22px;width:52px;height:78px;border-radius:10px;background:#fff3"></div>
+<img class="sh" src="https://nakagawasanchi.github.io/buzz-dori/assets/img/shuri_point.png" alt="">
+<div class="bubble">三脚を高くして、真上から。フライパンが画面の真ん中に来ればOK！</div>
+<div class="rec"></div></div><div class="cap">3. 撮影：しゅりさんが一言ガイド</div></div>
+
+</div></section>
+
+<section><h2>配色（案）</h2><p>
+<span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:#e8688a;vertical-align:middle"></span> ローズ（アクセント・ボタン）
+<span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:#f9d5df;vertical-align:middle"></span> ブラッシュ（チップ・背景）
+<span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:#ffb59a;vertical-align:middle"></span> ピーチ（差し色）
+<span style="display:inline-block;width:22px;height:22px;border-radius:50%;background:#7a3b57;vertical-align:middle"></span> プラム（文字の強調）<br>
+白いカードに淡い影、角丸大きめ。フォントは太すぎないゴシック。インスタのような余白多めの構成です。</p></section>
+
+<section><h2>確認したいこと</h2><p>
+1. このローズ系の方向でよいですか？（もう少し甘く／大人っぽく、などの調整もできます）<br>
+2. 実写サムネの画像はHiggsfieldで作りたいので、Higgsfieldの生成ツールを許可いただければ、キッチンの5カット分（寄り／俯瞰／横／つなぎ／引き）をモックに差し込みます。</p></section>
+</body></html>

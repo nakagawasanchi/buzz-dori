@@ -1,0 +1,76 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>バズ撮りカメラ UI案 v2</title>
+<style>
+body{margin:0;background:#fafafa;font-family:-apple-system,"Hiragino Sans",sans-serif;color:#111}
+h1{font-size:20px;margin:20px 16px 4px}p.lead{margin:0 16px 12px;font-size:13px;color:#666;line-height:1.6}
+section{padding:16px;border-top:1px solid #e5e5e5}section h2{font-size:16px;margin:0 0 4px}section>p{font-size:13px;line-height:1.7;margin:0 0 12px}
+.row{display:flex;gap:16px;overflow-x:auto;padding-bottom:8px}
+.ph{flex:0 0 200px;width:200px;height:410px;background:#fff;border:6px solid #111;border-radius:28px;position:relative;overflow:hidden;font-size:11px}
+.cap{width:200px;font-size:11px;text-align:center;margin-top:5px;color:#666}
+.h{padding:12px 12px 4px;font-size:18px;font-weight:700}
+.sub{padding:0 12px;color:#888;font-size:11px}
+.search{margin:8px 12px;background:#f1f1f1;border-radius:10px;padding:8px 10px;color:#999}
+.chips{padding:0 8px;white-space:nowrap;overflow:hidden}
+.chip{display:inline-block;border:1px solid #ddd;border-radius:14px;padding:4px 9px;margin:2px;font-size:10px}
+.chip.on{background:#111;color:#fff;border-color:#111}
+.scard{margin:8px 12px}
+.strip{display:flex;gap:2px;border-radius:8px;overflow:hidden}
+.strip i{flex:1;height:64px;background:linear-gradient(135deg,#ddd,#f3f3f3);display:flex;align-items:flex-end;justify-content:center;font-style:normal;font-size:8px;color:#777;padding-bottom:2px}
+.strip i.f{background:repeating-linear-gradient(45deg,#eee,#eee 4px,#f8f8f8 4px,#f8f8f8 8px)}
+.t{font-weight:700;margin-top:4px;font-size:12px}.m{color:#888;font-size:10px}
+.tab{position:absolute;bottom:0;left:0;right:0;height:42px;border-top:1px solid #eee;background:#fff;display:flex;justify-content:space-around;align-items:center;font-size:10px;color:#999}
+.tab b{color:#111}
+.hero{margin:6px 12px;height:130px;border-radius:12px;background:linear-gradient(135deg,#ccc,#eee);display:flex;align-items:center;justify-content:center;color:#888}
+.cut{display:flex;gap:8px;margin:6px 12px;align-items:center}
+.cut .th{flex:0 0 52px;height:66px;border-radius:8px;background:linear-gradient(135deg,#ddd,#f3f3f3)}
+.cut .th.f{background:repeating-linear-gradient(45deg,#eee,#eee 4px,#f8f8f8 4px,#f8f8f8 8px)}
+.tag{display:inline-block;background:#111;color:#fff;border-radius:6px;padding:1px 6px;font-size:9px;margin-right:4px}
+.tag.o{background:#fff;color:#c0392b;border:1px solid #c0392b}
+.btn{background:#111;color:#fff;border-radius:22px;padding:10px;text-align:center;font-weight:700;margin:0 12px;position:absolute;bottom:50px;left:0;right:0}
+.rec{position:absolute;bottom:14px;left:50%;margin-left:-22px;width:44px;height:44px;border-radius:50%;border:4px solid #fff;background:#e33}
+.dark{background:#1a1a1a;color:#fff}
+.note{background:#fff8e1;border-radius:8px;padding:8px;margin:6px 12px;font-size:10px;line-height:1.5}
+</style></head><body>
+<h1>UI案 v2：「1シーンをこんなに分けるんだ」に気づく入口</h1>
+<p class="lead">ヒアリング反映：ペルソナ＝30代の働くママ（月5万円を目指すインスタ副業・撮影初心者）／三脚で自宅／1回1シーン4〜6カット／インスタ風の洗練（くすみ廃止、しゅりさんイラストは使用）／一番の課題は「探す」。<br>
+軸：<b>入口の時点で「このシーンは5カットに分かれる」が見える</b>。</p>
+
+<section><h2>全体の流れ（3タブ）</h2><p>さがす　→　シーン詳細（カット一覧＋つないだ完成見本）　→　撮影（カット順に自動進行）。<br>カードのサムネ帯が主役：横に並ぶ小さな画が「カット数」と「アングルの違い」を一目で見せます。斜線の画は「つなぎ用（なくてもいいが入れると良いカット）」です。</p>
+<div class="row">
+
+<div><div class="ph"><div class="h">さがす</div><div class="search">モノ・場面で探す（例：フライパン、朝の支度）</div>
+<div class="chips"><span class="chip on">すべて</span><span class="chip">キッチン</span><span class="chip">洗面所</span><span class="chip">玄関</span><span class="chip">リビング</span></div>
+<div class="scard"><div class="strip"><i>寄り</i><i>俯瞰</i><i>横</i><i class="f">つなぎ</i><i>引き</i></div><div class="t">フライ返し・おたま</div><div class="m">キッチン　5カット　約12秒</div></div>
+<div class="scard"><div class="strip"><i>寄り</i><i>横</i><i class="f">つなぎ</i><i>俯瞰</i></div><div class="t">お皿・器</div><div class="m">ダイニング　4カット</div></div>
+<div class="tab"><b>さがす</b><span>撮る</span><span>撮影済み</span></div></div><div class="cap">1. 探す：カードにカットの並びが見える</div></div>
+
+<div><div class="ph"><div class="h">‹</div><div class="hero">つないだ完成見本 ▶</div>
+<div class="h" style="font-size:15px;padding-top:2px">フライ返し・おたま</div><div class="sub">5カットで1シーン。同じ場面をアングルを変えて撮り分けます</div>
+<div class="cut"><div class="th"></div><div><span class="tag">寄り</span>引き出しから取る<div class="m">2秒</div></div></div>
+<div class="cut"><div class="th"></div><div><span class="tag">俯瞰</span>フライパンで返す<div class="m">3秒</div></div></div>
+<div class="cut"><div class="th f"></div><div><span class="tag o">つなぎ</span>湯気のアップ<div class="m">1秒　入れるとプロっぽい</div></div></div>
+<div class="btn">このシーンを撮る</div></div><div class="cap">2. シーン詳細：カットの理由が分かる</div></div>
+
+<div><div class="ph dark"><div style="padding:10px 12px;display:flex;justify-content:space-between"><span>2 / 5　俯瞰</span><span>0:03</span></div>
+<div style="position:absolute;top:48px;left:12px;right:12px;height:250px;border:2px dashed #fff6;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff7;text-align:center">構図ガイド<br>（イラストの線）</div>
+<div style="position:absolute;top:56px;right:18px;width:54px;height:80px;border-radius:8px;background:#fff3"></div>
+<div style="position:absolute;bottom:72px;left:12px;right:12px;text-align:center">スマホは三脚で高い位置から。<br>フライパンで返す手元</div>
+<div class="rec"></div></div><div class="cap">3. 撮影：見本の小窓＋ガイド、カット順に自動進行</div></div>
+
+</div></section>
+
+<section><h2>「探す」を良くする3つの仕掛け</h2><p>
+1. <b>場面で探す</b>：モノの名前だけでなく「朝の支度」「ごはんを作る」「くつろぐ」など暮らしの場面でも探せる（検索語が思いつかない人向け）。<br>
+2. <b>場所チップ</b>：キッチン／洗面所…で一発絞り込み。<br>
+3. <b>おすすめ・最近・撮影済み</b>：最初に「今日の1シーン」を1枚だけ大きく出し、迷ったらそれを撮れば良い状態にする。</p>
+<div class="row"><div><div class="ph"><div class="h">さがす</div><div class="sub">今日のおすすめ</div>
+<div class="scard"><div class="strip" style="height:100px"><i style="height:100px">寄り</i><i style="height:100px">俯瞰</i><i style="height:100px">横</i></div><div class="t">コーヒーを淹れる</div><div class="m">ダイニング　4カット　初めてでも簡単</div></div>
+<div class="sub" style="margin-top:8px">場面から探す</div><div class="chips"><span class="chip">朝の支度</span><span class="chip">ごはん</span><span class="chip">片付け</span><span class="chip">くつろぎ</span></div>
+<div class="tab"><b>さがす</b><span>撮る</span><span>撮影済み</span></div></div><div class="cap">迷ったらこの1枚から</div></div></div></section>
+
+<section><h2>これで変わること／確認したいこと</h2><p>
+変わること：一覧が「文字の羅列」から「カットの並びが見えるカード」になり、探した時点で「分けて撮る」発想に触れられます。つなぎ用カットは斜線で区別し、理由を一言添えます。<br>
+確認したいこと：<br>
+(1) 「つなぎ用カット」は、今のカット割データ（data.json）に区別がありません。各シーンに入れる前提で、カット割の段階でラベルを足してよいですか？<br>
+(2) 色は白黒ベースで、アクセントはしゅりさんアイコンの色を1色だけ使う想定です。よいですか？</p></section>
+</body></html>

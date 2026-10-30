@@ -1,1793 +1,2270 @@
 {
-  "places": [
+ "places": [
+  {
+   "id": "kitchen",
+   "name": "キッチン"
+  },
+  {
+   "id": "dining",
+   "name": "ダイニング"
+  },
+  {
+   "id": "living",
+   "name": "リビング"
+  },
+  {
+   "id": "washroom",
+   "name": "洗面所・お風呂"
+  },
+  {
+   "id": "bedroom",
+   "name": "寝室"
+  },
+  {
+   "id": "entrance",
+   "name": "玄関"
+  },
+  {
+   "id": "kids",
+   "name": "子ども部屋"
+  },
+  {
+   "id": "work",
+   "name": "ワークスペース"
+  },
+  {
+   "id": "other",
+   "name": "ベランダ・その他"
+  }
+ ],
+ "groups": [
+  {
+   "id": "k01",
+   "place": "kitchen",
+   "placeName": "キッチン",
+   "name": "持って使う調理ツール",
+   "motion": "引き出しから取る → フライパンで動かす手元 → 置く",
+   "items": [
+    "フライ返し",
+    "おたま",
+    "菜箸",
+    "木べら"
+   ],
+   "reuse": null,
+   "why": "“持って混ぜる・返す”道具。トングは用途が曖昧なので除外（FB）",
+   "cuts": [
     {
-      "id": "kitchen",
-      "name": "キッチン"
+     "angle": "中",
+     "text": "引き出しを開ける"
     },
     {
-      "id": "dining",
-      "name": "ダイニング"
+     "angle": "寄り",
+     "text": "引き出しから取り出す"
     },
     {
-      "id": "living",
-      "name": "リビング"
+     "angle": "俯瞰",
+     "text": "フライパンの中で混ぜる・返す"
     },
     {
-      "id": "washroom",
-      "name": "洗面所・お風呂"
+     "angle": "横",
+     "text": "フライパンの具材を持ち上げる・つまむ"
     },
     {
-      "id": "bedroom",
-      "name": "寝室"
-    },
-    {
-      "id": "entrance",
-      "name": "玄関"
-    },
-    {
-      "id": "kids",
-      "name": "子ども部屋"
-    },
-    {
-      "id": "work",
-      "name": "ワークスペース"
-    },
-    {
-      "id": "other",
-      "name": "ベランダ・その他"
+     "angle": "中",
+     "text": "使い終わって置く"
     }
-  ],
-  "groups": [
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "k02",
+   "place": "kitchen",
+   "placeName": "キッチン",
+   "name": "切る道具",
+   "motion": "まな板に置く → 切る手元（音） → 切ったものを寄せる",
+   "items": [
+    "包丁",
+    "まな板",
+    "ピーラー"
+   ],
+   "reuse": null,
+   "why": "“切る”動作",
+   "cuts": [
     {
-      "id": "k01",
-      "place": "kitchen",
-      "placeName": "キッチン",
-      "name": "持って使う調理ツール",
-      "motion": "引き出しから取る → フライパンで動かす手元 → 置く",
-      "items": [
-        "フライ返し",
-        "おたま",
-        "菜箸",
-        "木べら"
-      ],
-      "reuse": null,
-      "why": "“持って混ぜる・返す”道具。トングは用途が曖昧なので除外（FB）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "引き出しから取る"
-        },
-        {
-          "angle": "俯瞰",
-          "text": "フライパンで返す/混ぜる手元"
-        },
-        {
-          "angle": "横",
-          "text": "フライパンの料理を木べらで混ぜる"
-        }
-      ],
-      "stills": [
-        "media/k01_c1.jpg",
-        "media/k01_c2.jpg",
-        "media/k01_c3.jpg"
-      ],
-      "videos": [
-        "media/k01_c1.mp4",
-        "media/k01_c2.mp4",
-        "media/k01_c3.mp4"
-      ]
+     "angle": "俯瞰",
+     "text": "まな板に置く"
     },
     {
-      "id": "k02",
-      "place": "kitchen",
-      "placeName": "キッチン",
-      "name": "切る道具",
-      "motion": "まな板に置く → 切る手元（音） → 切ったものを寄せる",
-      "items": [
-        "包丁",
-        "まな板",
-        "ピーラー"
-      ],
-      "reuse": null,
-      "why": "“切る”動作",
-      "cuts": [
-        {
-          "angle": "俯瞰",
-          "text": "まな板に置く"
-        },
-        {
-          "angle": "寄り",
-          "text": "切る手元（音）"
-        },
-        {
-          "angle": "俯瞰",
-          "text": "切ったものを寄せる"
-        }
-      ],
-      "stills": [
-        "media/k02_c1.jpg",
-        "media/k02_c2.jpg",
-        "media/k02_c3.jpg"
-      ],
-      "videos": [
-        "media/k02_c1.mp4",
-        "media/k02_c2.mp4",
-        "media/k02_c3.mp4"
-      ]
+     "angle": "寄り",
+     "text": "切る手元（正面）"
     },
     {
-      "id": "k03",
-      "place": "kitchen",
-      "placeName": "キッチン",
-      "name": "フライパン・鍋",
-      "motion": "IHコンロに置く → スイッチを入れる → 蓋を開けて湯気",
-      "items": [
-        "フライパン",
-        "片手鍋",
-        "両手鍋",
-        "卵焼き器"
-      ],
-      "reuse": null,
-      "why": "“火にかける”動作。※動画はIHコンロで（FB）",
-      "cuts": [
-        {
-          "angle": "中",
-          "text": "IHに置く"
-        },
-        {
-          "angle": "寄り",
-          "text": "スイッチON（表示灯）"
-        },
-        {
-          "angle": "横",
-          "text": "蓋を開けて湯気"
-        }
-      ],
-      "stills": [
-        "media/k03_c1.jpg",
-        "media/k03_c2.jpg",
-        "media/k03_c3.jpg"
-      ],
-      "videos": [
-        "media/k03_c1.mp4",
-        "media/k03_c2.mp4",
-        "media/k03_c3.mp4"
-      ]
+     "angle": "横",
+     "text": "切る手元（別アングル・包丁の動き）"
     },
     {
-      "id": "k04",
-      "place": "kitchen",
-      "placeName": "キッチン",
-      "name": "お皿・器",
-      "motion": "棚から取る → 盛り付ける → テーブルに置く",
-      "items": [
-        "平皿",
-        "深皿",
-        "茶碗",
-        "汁椀",
-        "豆皿"
-      ],
-      "reuse": null,
-      "why": "“盛る・置く”動作",
-      "cuts": [
-        {
-          "angle": "中",
-          "text": "棚から取る"
-        },
-        {
-          "angle": "俯瞰",
-          "text": "盛り付ける"
-        },
-        {
-          "angle": "横",
-          "text": "テーブルに置く"
-        }
-      ],
-      "stills": [
-        "media/k04_c1.jpg",
-        "media/k04_c2.jpg",
-        "media/k04_c3.jpg"
-      ],
-      "videos": [
-        "media/k04_c1.mp4",
-        "media/k04_c2.mp4",
-        "media/k04_c3.mp4"
-      ]
-    },
-    {
-      "id": "k05",
-      "place": "kitchen",
-      "placeName": "キッチン",
-      "name": "グラス・マグ",
-      "motion": "注ぐ → 持ち上げる → 飲む",
-      "items": [
-        "マグカップ",
-        "グラス"
-      ],
-      "reuse": "pour-drink",
-      "why": "家で使う飲み物の器。既存「飲み物を注ぐ」を流用",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "注ぐ"
-        },
-        {
-          "angle": "中",
-          "text": "持ち上げる"
-        },
-        {
-          "angle": "寄り",
-          "text": "飲む"
-        }
-      ],
-      "stills": [
-        "media/k05_c1.jpg",
-        "media/k05_c2.jpg",
-        "media/k05_c3.jpg"
-      ],
-      "videos": [
-        "media/k05_c1.mp4",
-        "media/k05_c2.mp4",
-        "media/k05_c3.mp4"
-      ]
-    },
-    {
-      "id": "k05b",
-      "place": "kitchen",
-      "placeName": "キッチン",
-      "name": "水筒・タンブラー",
-      "motion": "注ぐ → 蓋を閉める → 持って出る",
-      "items": [
-        "水筒",
-        "タンブラー"
-      ],
-      "reuse": null,
-      "why": "持ち歩き系はグラス・マグと別（FB）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "注ぐ"
-        },
-        {
-          "angle": "寄り",
-          "text": "蓋を閉める"
-        },
-        {
-          "angle": "引き",
-          "text": "玄関で持って出る"
-        }
-      ],
-      "stills": [
-        "media/k05b_c1.jpg",
-        "media/k05b_c2.jpg",
-        "media/k05b_c3.jpg"
-      ],
-      "videos": [
-        "media/k05b_c1.mp4",
-        "media/k05b_c2.mp4",
-        "media/k05b_c3.mp4"
-      ]
-    },
-    {
-      "id": "k06",
-      "place": "kitchen",
-      "placeName": "キッチン",
-      "name": "カトラリー",
-      "motion": "並べる → 手に取る → 食べる",
-      "items": [
-        "箸",
-        "スプーン・フォーク",
-        "箸置き"
-      ],
-      "reuse": null,
-      "why": "“並べる・食べる”動作",
-      "cuts": [
-        {
-          "angle": "俯瞰",
-          "text": "並べる"
-        },
-        {
-          "angle": "寄り",
-          "text": "手に取る"
-        },
-        {
-          "angle": "中",
-          "text": "食べる"
-        }
-      ],
-      "stills": [
-        "media/k06_c1.jpg",
-        "media/k06_c2.jpg",
-        "media/k06_c3.jpg"
-      ],
-      "videos": [
-        "media/k06_c1.mp4",
-        "media/k06_c2.mp4",
-        "media/k06_c3.mp4"
-      ]
-    },
-    {
-      "id": "k07",
-      "place": "kitchen",
-      "placeName": "キッチン",
-      "name": "保存容器",
-      "motion": "詰める → 蓋を閉める → 冷蔵庫に入れる",
-      "items": [
-        "保存容器",
-        "保存瓶",
-        "ラップ・ジップ袋"
-      ],
-      "reuse": null,
-      "why": "“詰めてしまう”動作",
-      "cuts": [
-        {
-          "angle": "俯瞰",
-          "text": "詰める"
-        },
-        {
-          "angle": "寄り",
-          "text": "蓋を閉める"
-        },
-        {
-          "angle": "中",
-          "text": "冷蔵庫に入れる"
-        }
-      ],
-      "stills": [
-        "media/k07_c1.jpg",
-        "media/k07_c2.jpg",
-        "media/k07_c3.jpg"
-      ],
-      "videos": [
-        "media/k07_c1.mp4",
-        "media/k07_c2.mp4",
-        "media/k07_c3.mp4"
-      ]
-    },
-    {
-      "id": "k08",
-      "place": "kitchen",
-      "placeName": "キッチン",
-      "name": "調味料",
-      "motion": "棚から取る → 振りかける手元 → 戻す",
-      "items": [
-        "醤油差し・油ボトル",
-        "スパイス瓶"
-      ],
-      "reuse": null,
-      "why": "“かける”動作",
-      "cuts": [
-        {
-          "angle": "中",
-          "text": "棚から取る"
-        },
-        {
-          "angle": "寄り",
-          "text": "振りかける手元"
-        },
-        {
-          "angle": "中",
-          "text": "戻す"
-        }
-      ],
-      "stills": [
-        "media/k08_c1.jpg",
-        "media/k08_c2.jpg",
-        "media/k08_c3.jpg"
-      ],
-      "videos": [
-        "media/k08_c1.mp4",
-        "media/k08_c2.mp4",
-        "media/k08_c3.mp4"
-      ]
-    },
-    {
-      "id": "k09",
-      "place": "kitchen",
-      "placeName": "キッチン",
-      "name": "キッチン家電",
-      "motion": "ボタンを押す → 動作中（湯気・光） → 取り出す",
-      "items": [
-        "炊飯器",
-        "電気ケトル",
-        "トースター",
-        "電子レンジ"
-      ],
-      "reuse": null,
-      "why": "“スイッチを入れて待つ”家電",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "ボタンを押す"
-        },
-        {
-          "angle": "寄り",
-          "text": "動作中（湯気/光）"
-        },
-        {
-          "angle": "中",
-          "text": "取り出す"
-        }
-      ],
-      "stills": [
-        "media/k09_c1.jpg",
-        "media/k09_c2.jpg",
-        "media/k09_c3.jpg"
-      ],
-      "videos": [
-        "media/k09_c1.mp4",
-        "media/k09_c2.mp4",
-        "media/k09_c3.mp4"
-      ]
-    },
-    {
-      "id": "k10",
-      "place": "kitchen",
-      "placeName": "キッチン",
-      "name": "シンクまわり",
-      "motion": "洗う → 泡 → すすいで水切りかごへ",
-      "items": [
-        "スポンジ",
-        "食器用洗剤",
-        "水切りかご",
-        "ふきん"
-      ],
-      "reuse": "wash-dishes",
-      "why": "既存「食器を洗う」を発展",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "洗う"
-        },
-        {
-          "angle": "寄り",
-          "text": "泡"
-        },
-        {
-          "angle": "中",
-          "text": "水切りかごへ（wash-dishes発展）"
-        }
-      ],
-      "stills": [
-        "media/k10_c1.jpg",
-        "media/k10_c2.jpg",
-        "media/k10_c3.jpg"
-      ],
-      "videos": [
-        "media/k10_c1.mp4",
-        "media/k10_c2.mp4",
-        "media/k10_c3.mp4"
-      ]
-    },
-    {
-      "id": "k11",
-      "place": "kitchen",
-      "placeName": "キッチン",
-      "name": "キッチン収納",
-      "motion": "引き出しを開ける → 整った中身 → 閉める",
-      "items": [
-        "引き出し仕切り",
-        "収納ボックス",
-        "マグネットフック"
-      ],
-      "reuse": "drawer5",
-      "why": "既存「引き出しを開ける」5カットを流用",
-      "cuts": [
-        {
-          "angle": "中",
-          "text": "引き出しを開ける"
-        },
-        {
-          "angle": "俯瞰",
-          "text": "整った中身"
-        },
-        {
-          "angle": "中",
-          "text": "閉める"
-        }
-      ],
-      "stills": [
-        "media/k11_c1.jpg",
-        "media/k11_c2.jpg",
-        "media/k11_c3.jpg"
-      ],
-      "videos": [
-        "media/k11_c1.mp4",
-        "media/k11_c2.mp4",
-        "media/k11_c3.mp4"
-      ]
-    },
-    {
-      "id": "d01",
-      "place": "dining",
-      "placeName": "ダイニング",
-      "name": "テーブル小物",
-      "motion": "敷く → 器を置く → 引きで全体",
-      "items": [
-        "ランチョンマット",
-        "コースター"
-      ],
-      "reuse": null,
-      "why": "“敷いて整える”動作",
-      "cuts": [
-        {
-          "angle": "俯瞰",
-          "text": "敷く"
-        },
-        {
-          "angle": "俯瞰",
-          "text": "器を置く"
-        },
-        {
-          "angle": "引き",
-          "text": "全体"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "d02",
-      "place": "dining",
-      "placeName": "ダイニング",
-      "name": "お茶・コーヒー",
-      "motion": "淹れる → 注ぐ → 香りを楽しむ",
-      "items": [
-        "ティーポット・急須",
-        "コーヒードリッパー"
-      ],
-      "reuse": "coffee-morning",
-      "why": "既存「朝のコーヒーを淹れる」を流用",
-      "cuts": [],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "d03",
-      "place": "dining",
-      "placeName": "ダイニング",
-      "name": "子どもの食事グッズ",
-      "motion": "準備する → 子どもが食べる → 片付ける",
-      "items": [
-        "子ども用食器",
-        "ストローマグ",
-        "お食事エプロン"
-      ],
-      "reuse": null,
-      "why": "“子どもに使わせる”動作。※動画には子どもを写す（FB）",
-      "cuts": [
-        {
-          "angle": "中",
-          "text": "準備する"
-        },
-        {
-          "angle": "中",
-          "text": "子どもが食べる"
-        },
-        {
-          "angle": "寄り",
-          "text": "片付ける"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "l01",
-      "place": "living",
-      "placeName": "リビング",
-      "name": "ソファまわり",
-      "motion": "座る → くつろぐ → 引きで全体",
-      "items": [
-        "ソファ",
-        "クッション",
-        "ブランケット",
-        "ラグ"
-      ],
-      "reuse": "scene",
-      "why": "既存「椅子に座る」4カットを流用",
-      "cuts": [],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "l02",
-      "place": "living",
-      "placeName": "リビング",
-      "name": "照明",
-      "motion": "スイッチを押す → 灯る瞬間 → 引きで部屋全体",
-      "items": [
-        "フロアランプ",
-        "テーブルランプ",
-        "キャンドル"
-      ],
-      "reuse": null,
-      "why": "“灯す”動作",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "スイッチを押す"
-        },
-        {
-          "angle": "中",
-          "text": "灯る瞬間"
-        },
-        {
-          "angle": "引き",
-          "text": "部屋全体"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "l03",
-      "place": "living",
-      "placeName": "リビング",
-      "name": "植物・花",
-      "motion": "葉・花に寄る → 置き場所を整える → 引き",
-      "items": [
-        "観葉植物",
-        "花瓶（花を生ける）"
-      ],
-      "reuse": null,
-      "why": "ジョウロは除外（FB）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "葉/花"
-        },
-        {
-          "angle": "中",
-          "text": "置き場所を整える"
-        },
-        {
-          "angle": "引き",
-          "text": "全体"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "l04",
-      "place": "living",
-      "placeName": "リビング",
-      "name": "本・雑誌",
-      "motion": "手に取る → 開く → 読む",
-      "items": [
-        "本",
-        "雑誌"
-      ],
-      "reuse": null,
-      "why": "“取って開く”動作",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "手に取る"
-        },
-        {
-          "angle": "俯瞰",
-          "text": "開く"
-        },
-        {
-          "angle": "中",
-          "text": "読む"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "l04b",
-      "place": "living",
-      "placeName": "リビング",
-      "name": "本棚",
-      "motion": "棚の前に立つ → 1冊抜く → 整った棚の引き",
-      "items": [
-        "本棚"
-      ],
-      "reuse": null,
-      "why": "収納家具は中身と別（FB）",
-      "cuts": [
-        {
-          "angle": "引き",
-          "text": "棚の前に立つ"
-        },
-        {
-          "angle": "中",
-          "text": "1冊抜く"
-        },
-        {
-          "angle": "引き",
-          "text": "整った棚"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "l05",
-      "place": "living",
-      "placeName": "リビング",
-      "name": "ボタン操作のある雑貨",
-      "motion": "ボタンを押す → 表示が変わる・香る → 引き",
-      "items": [
-        "置き時計",
-        "ディフューザー"
-      ],
-      "reuse": null,
-      "why": "ボタン操作がある雑貨（FB・ディフューザーも操作ありで確定）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "ボタンを押す"
-        },
-        {
-          "angle": "寄り",
-          "text": "表示/香り（ミスト）"
-        },
-        {
-          "angle": "引き",
-          "text": "置いた全体"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "l05b",
-      "place": "living",
-      "placeName": "リビング",
-      "name": "置き画の雑貨（操作なし）",
-      "motion": "置く → 寄り → 引き",
-      "items": [
-        "写真立て"
-      ],
-      "reuse": null,
-      "why": "操作のない“置き画”型（FB）",
-      "cuts": [
-        {
-          "angle": "引き",
-          "text": "置く"
-        },
-        {
-          "angle": "",
-          "text": "寄り"
-        },
-        {
-          "angle": "",
-          "text": "引き"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "l06",
-      "place": "living",
-      "placeName": "リビング",
-      "name": "リビング収納",
-      "motion": "開ける → しまう → 閉める",
-      "items": [
-        "バスケット・カゴ",
-        "収納ボックス",
-        "キャビネット"
-      ],
-      "reuse": "store-away",
-      "why": "既存「収納にしまう」を流用",
-      "cuts": [],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "l07",
-      "place": "living",
-      "placeName": "リビング",
-      "name": "掃除家電",
-      "motion": "スイッチを入れる → 動作 → ビフォーアフター",
-      "items": [
-        "掃除機"
-      ],
-      "reuse": "beforeafter",
-      "why": "ボタン操作のある掃除道具（FB）",
-      "cuts": [
-        {
-          "angle": "引き",
-          "text": "ビフォー"
-        },
-        {
-          "angle": "中",
-          "text": "スイッチ→動作"
-        },
-        {
-          "angle": "引き",
-          "text": "アフター"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "l07b",
-      "place": "living",
-      "placeName": "リビング",
-      "name": "手で使う掃除道具",
-      "motion": "使う手元 → ビフォー → アフター",
-      "items": [
-        "フロアワイパー",
-        "コロコロ",
-        "ハンディモップ"
-      ],
-      "reuse": "beforeafter",
-      "why": "ボタン操作のない掃除道具（FB）",
-      "cuts": [
-        {
-          "angle": "引き",
-          "text": "ビフォー"
-        },
-        {
-          "angle": "寄り",
-          "text": "使う手元"
-        },
-        {
-          "angle": "引き",
-          "text": "アフター"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w01",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "洗面の消耗品",
-      "motion": "出す → 使う → 泡・質感に寄る",
-      "items": [
-        "ハンドソープ",
-        "歯磨き粉"
-      ],
-      "reuse": "wash-hands",
-      "why": "中身を使い切る消耗品（FB・要確認）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "出す"
-        },
-        {
-          "angle": "寄り",
-          "text": "使う"
-        },
-        {
-          "angle": "寄り",
-          "text": "泡/質感"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w01b",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "洗面の用具",
-      "motion": "手に取る → 使う → 戻す",
-      "items": [
-        "歯ブラシ",
-        "うがいコップ"
-      ],
-      "reuse": null,
-      "why": "繰り返し使う道具（FB・要確認）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "手に取る"
-        },
-        {
-          "angle": "中",
-          "text": "使う"
-        },
-        {
-          "angle": "寄り",
-          "text": "戻す"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w02",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "スキンケア・コスメ",
-      "motion": "出す → 塗る → 質感に寄る",
-      "items": [
-        "化粧水・乳液",
-        "クリーム",
-        "日焼け止め"
-      ],
-      "reuse": "skincare",
-      "why": "既存「スキンケア」を流用",
-      "cuts": [],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w02b",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "ポーチ",
-      "motion": "置く → 開く → 中身を出す",
-      "items": [
-        "ポーチ"
-      ],
-      "reuse": "pouch-mess",
-      "why": "既存「ポーチがごちゃごちゃ」を流用。独立（FB）",
-      "cuts": [],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w03",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "ヘア家電",
-      "motion": "スイッチを入れる → 使う → 仕上がり",
-      "items": [
-        "ドライヤー",
-        "ヘアアイロン"
-      ],
-      "reuse": null,
-      "why": "スイッチあり（FB）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "スイッチON"
-        },
-        {
-          "angle": "中",
-          "text": "使う"
-        },
-        {
-          "angle": "中",
-          "text": "仕上がり"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w03b",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "ヘアブラシ",
-      "motion": "手に取る → とかす → 仕上がり",
-      "items": [
-        "ヘアブラシ"
-      ],
-      "reuse": null,
-      "why": "スイッチなし（FB）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "手に取る"
-        },
-        {
-          "angle": "中",
-          "text": "とかす"
-        },
-        {
-          "angle": "中",
-          "text": "仕上がり"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w04",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "タオル",
-      "motion": "たたむ → 重ねる → 引き",
-      "items": [
-        "フェイスタオル",
-        "バスタオル"
-      ],
-      "reuse": "laundry-fold",
-      "why": "既存「洗濯物をたたむ」を流用",
-      "cuts": [],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w05",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "シャンプー・ボディソープ",
-      "motion": "手に取る → 押す → 泡",
-      "items": [
-        "シャンプー・ボディソープ"
-      ],
-      "reuse": null,
-      "why": "独立（FB）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "手に取る"
-        },
-        {
-          "angle": "寄り",
-          "text": "押す"
-        },
-        {
-          "angle": "寄り",
-          "text": "泡"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w05b",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "詰め替えボトル",
-      "motion": "詰め替える → ラベル → 並べた引き",
-      "items": [
-        "詰め替えボトル"
-      ],
-      "reuse": null,
-      "why": "独立（FB）",
-      "cuts": [
-        {
-          "angle": "俯瞰",
-          "text": "詰め替える"
-        },
-        {
-          "angle": "寄り",
-          "text": "ラベル"
-        },
-        {
-          "angle": "引き",
-          "text": "並べた全体"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w05c",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "バスマット",
-      "motion": "敷く → 足を乗せる → 引き",
-      "items": [
-        "バスマット"
-      ],
-      "reuse": null,
-      "why": "独立（FB）",
-      "cuts": [
-        {
-          "angle": "俯瞰",
-          "text": "敷く"
-        },
-        {
-          "angle": "横",
-          "text": "足を乗せる"
-        },
-        {
-          "angle": "引き",
-          "text": "全体"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w06",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "洗濯機",
-      "motion": "入れる → スイッチ → 回る",
-      "items": [
-        "洗濯機"
-      ],
-      "reuse": null,
-      "why": "独立（FB）",
-      "cuts": [
-        {
-          "angle": "中",
-          "text": "入れる"
-        },
-        {
-          "angle": "寄り",
-          "text": "スイッチ"
-        },
-        {
-          "angle": "寄り",
-          "text": "回る"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w06b",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "洗剤・柔軟剤",
-      "motion": "計る → 注ぐ → 蓋を閉める",
-      "items": [
-        "洗剤・柔軟剤"
-      ],
-      "reuse": null,
-      "why": "独立（FB）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "計る"
-        },
-        {
-          "angle": "寄り",
-          "text": "注ぐ"
-        },
-        {
-          "angle": "寄り",
-          "text": "蓋を閉める"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w06c",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "洗濯用品",
-      "motion": "ネットに入れる → ハンガーに掛ける → 干す",
-      "items": [
-        "ハンガー",
-        "洗濯ネット"
-      ],
-      "reuse": "hang-laundry",
-      "why": "独立（FB）。既存「洗濯物を干す」を発展",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "ネットに入れる"
-        },
-        {
-          "angle": "中",
-          "text": "ハンガーに掛ける"
-        },
-        {
-          "angle": "引き",
-          "text": "干す（hang-laundry発展）"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "w07",
-      "place": "washroom",
-      "placeName": "洗面所・お風呂",
-      "name": "トイレ消耗品",
-      "motion": "補充する → 整った状態",
-      "items": [
-        "トイレットペーパー",
-        "トイレブラシ"
-      ],
-      "reuse": null,
-      "why": "洗面所収納は除外（FB）",
-      "cuts": [
-        {
-          "angle": "中",
-          "text": "補充する"
-        },
-        {
-          "angle": "引き",
-          "text": "整った状態"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "b01",
-      "place": "bedroom",
-      "placeName": "寝室",
-      "name": "寝具",
-      "motion": "整える → ビフォー → アフター",
-      "items": [
-        "ベッド",
-        "枕",
-        "シーツ・カバー"
-      ],
-      "reuse": "make-bed",
-      "why": "既存「ベッドを整える」を流用",
-      "cuts": [],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "b02",
-      "place": "bedroom",
-      "placeName": "寝室",
-      "name": "寝室家電",
-      "motion": "スイッチを押す → 動作 → 引き",
-      "items": [
-        "加湿器",
-        "ナイトランプ",
-        "目覚まし時計"
-      ],
-      "reuse": null,
-      "why": "“スイッチを入れる”家電",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "スイッチ"
-        },
-        {
-          "angle": "寄り",
-          "text": "動作"
-        },
-        {
-          "angle": "引き",
-          "text": "部屋"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "b03",
-      "place": "bedroom",
-      "placeName": "寝室",
-      "name": "衣類収納グッズ",
-      "motion": "ケースを開ける → 整った中身 → 閉める",
-      "items": [
-        "衣装ケース",
-        "ハンガー"
-      ],
-      "reuse": null,
-      "why": "クローゼットそのものは対象外（FB）",
-      "cuts": [
-        {
-          "angle": "中",
-          "text": "ケースを開ける"
-        },
-        {
-          "angle": "俯瞰",
-          "text": "整った中身"
-        },
-        {
-          "angle": "中",
-          "text": "閉める"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "b04",
-      "place": "bedroom",
-      "placeName": "寝室",
-      "name": "衣類をたたむ",
-      "motion": "たたむ → 重ねる → しまう",
-      "items": [
-        "Tシャツ・ニット",
-        "靴下",
-        "子ども服"
-      ],
-      "reuse": "laundry-fold",
-      "why": "タオルと同じ“たたむ”動作だがサイズ感が別",
-      "cuts": [
-        {
-          "angle": "俯瞰",
-          "text": "たたむ"
-        },
-        {
-          "angle": "俯瞰",
-          "text": "重ねる"
-        },
-        {
-          "angle": "中",
-          "text": "しまう"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "b05",
-      "place": "bedroom",
-      "placeName": "寝室",
-      "name": "コート",
-      "motion": "掛ける → 手に取る → 羽織る",
-      "items": [
-        "コート"
-      ],
-      "reuse": null,
-      "why": "独立（FB）",
-      "cuts": [
-        {
-          "angle": "中",
-          "text": "掛ける"
-        },
-        {
-          "angle": "寄り",
-          "text": "手に取る"
-        },
-        {
-          "angle": "中",
-          "text": "羽織る"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "b05b",
-      "place": "bedroom",
-      "placeName": "寝室",
-      "name": "カバン",
-      "motion": "置く → 開けて中身 → 持って出る",
-      "items": [
-        "バッグ",
-        "ランドセル"
-      ],
-      "reuse": null,
-      "why": "カバン類はひと括り（FB）",
-      "cuts": [
-        {
-          "angle": "中",
-          "text": "置く"
-        },
-        {
-          "angle": "俯瞰",
-          "text": "開けて中身"
-        },
-        {
-          "angle": "引き",
-          "text": "持って出る"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "b05d",
-      "place": "bedroom",
-      "placeName": "寝室",
-      "name": "防災バッグ",
-      "motion": "置き場所から取る → 開けて中身を並べる → 背負う",
-      "items": [
-        "防災バッグ"
-      ],
-      "reuse": null,
-      "why": "独立（FB確定）",
-      "cuts": [
-        {
-          "angle": "引き",
-          "text": "置き場所から取る"
-        },
-        {
-          "angle": "俯瞰",
-          "text": "中身を並べる"
-        },
-        {
-          "angle": "中",
-          "text": "背負う"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "b05c",
-      "place": "bedroom",
-      "placeName": "寝室",
-      "name": "帽子",
-      "motion": "手に取る → かぶる → 鏡で確認",
-      "items": [
-        "帽子"
-      ],
-      "reuse": null,
-      "why": "独立（FB）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "手に取る"
-        },
-        {
-          "angle": "中",
-          "text": "かぶる"
-        },
-        {
-          "angle": "寄り",
-          "text": "鏡で確認"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "e01",
-      "place": "entrance",
-      "placeName": "玄関",
-      "name": "靴",
-      "motion": "並べる → 履く → 出発",
-      "items": [
-        "スニーカー",
-        "パンプス",
-        "子ども靴"
-      ],
-      "reuse": "arrange-shoes",
-      "why": "既存「靴をそろえる」を流用",
-      "cuts": [],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "e02",
-      "place": "entrance",
-      "placeName": "玄関",
-      "name": "玄関小物",
-      "motion": "手に取る → 出かける",
-      "items": [
-        "鍵・キーフック",
-        "傘・傘立て",
-        "玄関マット"
-      ],
-      "reuse": null,
-      "why": "“出かける前”の動作",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "手に取る"
-        },
-        {
-          "angle": "中",
-          "text": "出かける"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "c01",
-      "place": "kids",
-      "placeName": "子ども部屋",
-      "name": "おもちゃ収納",
-      "motion": "散らかり → 片付け → 整った状態",
-      "items": [
-        "おもちゃ箱",
-        "絵本棚"
-      ],
-      "reuse": "beforeafter",
-      "why": "入れ物は中身と別（FB）",
-      "cuts": [
-        {
-          "angle": "引き",
-          "text": "散らかり"
-        },
-        {
-          "angle": "中",
-          "text": "片付け"
-        },
-        {
-          "angle": "引き",
-          "text": "整った状態"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "c01b",
-      "place": "kids",
-      "placeName": "子ども部屋",
-      "name": "おもちゃ",
-      "motion": "手に取る → 遊ぶ → 寄り",
-      "items": [
-        "ぬいぐるみ",
-        "絵本"
-      ],
-      "reuse": null,
-      "why": "おもちゃそのもの（FB）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "手に取る"
-        },
-        {
-          "angle": "中",
-          "text": "遊ぶ（子ども）"
-        },
-        {
-          "angle": "",
-          "text": "寄り"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "c02",
-      "place": "kids",
-      "placeName": "子ども部屋",
-      "name": "学習机",
-      "motion": "座る → 広げる → 引き",
-      "items": [
-        "学習机"
-      ],
-      "reuse": null,
-      "why": "家具は筆記用具と別（FB）",
-      "cuts": [
-        {
-          "angle": "中",
-          "text": "座る"
-        },
-        {
-          "angle": "俯瞰",
-          "text": "広げる"
-        },
-        {
-          "angle": "",
-          "text": "引き"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "c03",
-      "place": "kids",
-      "placeName": "子ども部屋",
-      "name": "ベビー消耗品",
-      "motion": "取り出す → 使う → 片付ける",
-      "items": [
-        "おむつ・おしりふき"
-      ],
-      "reuse": null,
-      "why": "消耗品系（FB）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "取り出す"
-        },
-        {
-          "angle": "中",
-          "text": "使う"
-        },
-        {
-          "angle": "寄り",
-          "text": "片付ける"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "c03b",
-      "place": "kids",
-      "placeName": "子ども部屋",
-      "name": "哺乳瓶",
-      "motion": "作る → 飲ませる → 洗う",
-      "items": [
-        "哺乳瓶"
-      ],
-      "reuse": null,
-      "why": "キッチン系（FB）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "作る"
-        },
-        {
-          "angle": "中",
-          "text": "飲ませる"
-        },
-        {
-          "angle": "寄り",
-          "text": "洗う"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "c03c",
-      "place": "kids",
-      "placeName": "子ども部屋",
-      "name": "ベビー用具",
-      "motion": "装着する → 抱く → 引き",
-      "items": [
-        "抱っこ紐"
-      ],
-      "reuse": null,
-      "why": "用具（FB）",
-      "cuts": [
-        {
-          "angle": "中",
-          "text": "装着する"
-        },
-        {
-          "angle": "中",
-          "text": "抱く"
-        },
-        {
-          "angle": "",
-          "text": "引き"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "o01",
-      "place": "work",
-      "placeName": "ワークスペース",
-      "name": "デスク",
-      "motion": "座る → 作業 → 引き",
-      "items": [
-        "デスク"
-      ],
-      "reuse": "desk-rest",
-      "why": "家具（FB・要確認）",
-      "cuts": [],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "o01b",
-      "place": "work",
-      "placeName": "ワークスペース",
-      "name": "デスク家電",
-      "motion": "スイッチを入れる → 点く・映る → 作業",
-      "items": [
-        "デスクライト",
-        "モニター"
-      ],
-      "reuse": null,
-      "why": "スイッチあり（FB・要確認）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "スイッチ"
-        },
-        {
-          "angle": "寄り",
-          "text": "点く/映る"
-        },
-        {
-          "angle": "中",
-          "text": "作業"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "o02",
-      "place": "work",
-      "placeName": "ワークスペース",
-      "name": "文房具",
-      "motion": "取る → 書く → 置く",
-      "items": [
-        "ペン",
-        "鉛筆・色鉛筆",
-        "ノート",
-        "はさみ・テープ"
-      ],
-      "reuse": null,
-      "why": "筆記用具は子ども部屋からもここへ（FB）",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "取る"
-        },
-        {
-          "angle": "俯瞰",
-          "text": "書く"
-        },
-        {
-          "angle": "寄り",
-          "text": "置く"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "o03",
-      "place": "work",
-      "placeName": "ワークスペース",
-      "name": "ガジェット",
-      "motion": "繋ぐ → 光る → 使う",
-      "items": [
-        "スマホ・充電器",
-        "イヤホン",
-        "ノートPC"
-      ],
-      "reuse": null,
-      "why": "“充電・接続”動作",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "繋ぐ"
-        },
-        {
-          "angle": "寄り",
-          "text": "光る"
-        },
-        {
-          "angle": "中",
-          "text": "使う"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "x01",
-      "place": "other",
-      "placeName": "ベランダ・その他",
-      "name": "ベランダ",
-      "motion": "干す → 引きで全体",
-      "items": [
-        "物干し竿",
-        "プランター"
-      ],
-      "reuse": "hang-laundry",
-      "why": "洗濯と重なるが屋外の光が別",
-      "cuts": [
-        {
-          "angle": "中",
-          "text": "干す"
-        },
-        {
-          "angle": "引き",
-          "text": "全体"
-        }
-      ],
-      "stills": [],
-      "videos": []
-    },
-    {
-      "id": "x02",
-      "place": "other",
-      "placeName": "ベランダ・その他",
-      "name": "季節家電",
-      "motion": "スイッチを押す → 動作 → 引き",
-      "items": [
-        "扇風機・サーキュレーター",
-        "ヒーター"
-      ],
-      "reuse": null,
-      "why": "“スイッチを入れる”家電",
-      "cuts": [
-        {
-          "angle": "寄り",
-          "text": "スイッチ"
-        },
-        {
-          "angle": "中",
-          "text": "動作"
-        },
-        {
-          "angle": "",
-          "text": "引き"
-        }
-      ],
-      "stills": [],
-      "videos": []
+     "angle": "俯瞰",
+     "text": "切ったものを寄せる"
     }
-  ],
-  "itemCount": 134,
-  "generated": "2026-10-29",
-  "version": "v2確定"
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "k03",
+   "place": "kitchen",
+   "placeName": "キッチン",
+   "name": "フライパン・鍋",
+   "motion": "IHコンロに置く → スイッチを入れる → 蓋を開けて湯気",
+   "items": [
+    "フライパン",
+    "片手鍋",
+    "両手鍋",
+    "卵焼き器"
+   ],
+   "reuse": null,
+   "why": "“火にかける”動作。※動画はIHコンロで（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "コンロ下の大きめ引き出しから取り出す"
+    },
+    {
+     "angle": "中",
+     "text": "IHに置く"
+    },
+    {
+     "angle": "寄り",
+     "text": "スイッチON（表示灯）"
+    },
+    {
+     "angle": "寄り",
+     "text": "具材を入れる"
+    },
+    {
+     "angle": "横",
+     "text": "蓋を開けて湯気"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "k04",
+   "place": "kitchen",
+   "placeName": "キッチン",
+   "name": "お皿・器",
+   "motion": "棚から取る → 盛り付ける → テーブルに置く",
+   "items": [
+    "平皿",
+    "深皿",
+    "茶碗",
+    "汁椀",
+    "豆皿"
+   ],
+   "reuse": null,
+   "why": "“盛る・置く”動作",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "棚から取る"
+    },
+    {
+     "angle": "中",
+     "text": "キッチンに空のまま置く"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "盛り付ける"
+    },
+    {
+     "angle": "アップ",
+     "text": "テーブルに置く（かなりアップ）"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "k05",
+   "place": "kitchen",
+   "placeName": "キッチン",
+   "name": "グラス・マグ",
+   "motion": "注ぐ → 持ち上げる → 飲む",
+   "items": [
+    "マグカップ",
+    "グラス"
+   ],
+   "reuse": "pour-drink",
+   "why": "家で使う飲み物の器。既存「飲み物を注ぐ」を流用",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "キッチンに置く"
+    },
+    {
+     "angle": "寄り",
+     "text": "注ぎ始める"
+    },
+    {
+     "angle": "アップ",
+     "text": "半分以上液体が入る（別アングル）"
+    },
+    {
+     "angle": "中",
+     "text": "リビングの椅子で飲む"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "k05b",
+   "place": "kitchen",
+   "placeName": "キッチン",
+   "name": "水筒・タンブラー",
+   "motion": "注ぐ → 蓋を閉める → 持って出る",
+   "items": [
+    "水筒",
+    "タンブラー"
+   ],
+   "reuse": null,
+   "why": "持ち歩き系はグラス・マグと別（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "キッチンに置く"
+    },
+    {
+     "angle": "寄り",
+     "text": "注ぎ始める"
+    },
+    {
+     "angle": "アップ",
+     "text": "半分以上液体が入る（別アングル）"
+    },
+    {
+     "angle": "寄り",
+     "text": "蓋を閉める"
+    },
+    {
+     "angle": "中",
+     "text": "バッグに入れる"
+    },
+    {
+     "angle": "中",
+     "text": "外出先の椅子に座って蓋を開ける"
+    },
+    {
+     "angle": "中",
+     "text": "外出先の椅子で飲む"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "k06",
+   "place": "kitchen",
+   "placeName": "キッチン",
+   "name": "カトラリー",
+   "motion": "並べる → 手に取る → 食べる",
+   "items": [
+    "箸",
+    "スプーン・フォーク",
+    "箸置き"
+   ],
+   "reuse": null,
+   "why": "“並べる・食べる”動作",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "引き出しから取り出す"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "テーブルに並べる"
+    },
+    {
+     "angle": "寄り",
+     "text": "手に取る"
+    },
+    {
+     "angle": "中",
+     "text": "食べる"
+    },
+    {
+     "angle": "アップ",
+     "text": "使い終わって置く"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "k07",
+   "place": "kitchen",
+   "placeName": "キッチン",
+   "name": "保存容器",
+   "motion": "詰める → 蓋を閉める → 冷蔵庫に入れる",
+   "items": [
+    "保存容器",
+    "保存瓶",
+    "ラップ・ジップ袋"
+   ],
+   "reuse": null,
+   "why": "“詰めてしまう”動作",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "戸棚から容器を取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "空のまま置く"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "詰める"
+    },
+    {
+     "angle": "寄り",
+     "text": "蓋を閉める"
+    },
+    {
+     "angle": "中",
+     "text": "冷蔵庫に入れる"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "k08",
+   "place": "kitchen",
+   "placeName": "キッチン",
+   "name": "調味料",
+   "motion": "棚から取る → 振りかける手元 → 戻す",
+   "items": [
+    "醤油差し・油ボトル",
+    "スパイス瓶"
+   ],
+   "reuse": null,
+   "why": "“かける”動作",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "棚から取る"
+    },
+    {
+     "angle": "寄り",
+     "text": "蓋を開ける"
+    },
+    {
+     "angle": "アップ",
+     "text": "振りかける手元（別アングル）"
+    },
+    {
+     "angle": "中",
+     "text": "戻す"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "k09",
+   "place": "kitchen",
+   "placeName": "キッチン",
+   "name": "キッチン家電",
+   "motion": "ボタンを押す → 動作中（湯気・光） → 取り出す",
+   "items": [
+    "炊飯器",
+    "電気ケトル",
+    "トースター",
+    "電子レンジ"
+   ],
+   "reuse": null,
+   "why": "“スイッチを入れて待つ”家電",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "家電の前に立つ（庫内を開ける）"
+    },
+    {
+     "angle": "寄り",
+     "text": "中に入れる"
+    },
+    {
+     "angle": "寄り",
+     "text": "ボタンを押す"
+    },
+    {
+     "angle": "アップ",
+     "text": "動作中（湯気・光）"
+    },
+    {
+     "angle": "中",
+     "text": "取り出す"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "k10",
+   "place": "kitchen",
+   "placeName": "キッチン",
+   "name": "シンクまわり",
+   "motion": "洗う → 泡 → すすいで水切りかごへ",
+   "items": [
+    "スポンジ",
+    "食器用洗剤",
+    "水切りかご",
+    "ふきん"
+   ],
+   "reuse": "wash-dishes",
+   "why": "既存「食器を洗う」を発展",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "シンクに食器を置く"
+    },
+    {
+     "angle": "寄り",
+     "text": "スポンジに洗剤をつける"
+    },
+    {
+     "angle": "アップ",
+     "text": "泡で洗う"
+    },
+    {
+     "angle": "寄り",
+     "text": "すすぐ"
+    },
+    {
+     "angle": "中",
+     "text": "水切りかごへ"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "k11",
+   "place": "kitchen",
+   "placeName": "キッチン",
+   "name": "キッチン収納",
+   "motion": "引き出しを開ける → 整った中身 → 閉める",
+   "items": [
+    "引き出し仕切り",
+    "収納ボックス",
+    "マグネットフック"
+   ],
+   "reuse": "drawer5",
+   "why": "既存「引き出しを開ける」5カットを流用",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "引き出しを開ける"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "整った中身"
+    },
+    {
+     "angle": "寄り",
+     "text": "1つ取り出す"
+    },
+    {
+     "angle": "中",
+     "text": "元に戻して閉める"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "d01",
+   "place": "dining",
+   "placeName": "ダイニング",
+   "name": "テーブル小物",
+   "motion": "敷く → 器を置く → 引きで全体",
+   "items": [
+    "ランチョンマット",
+    "コースター"
+   ],
+   "reuse": null,
+   "why": "“敷いて整える”動作",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "しまってある場所から取り出す"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "敷く"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "器を置く"
+    },
+    {
+     "angle": "アップ",
+     "text": "コースターにグラスを置く"
+    },
+    {
+     "angle": "引き",
+     "text": "全体"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "d02",
+   "place": "dining",
+   "placeName": "ダイニング",
+   "name": "お茶・コーヒー",
+   "motion": "淹れる → 注ぐ → 香りを楽しむ",
+   "items": [
+    "ティーポット・急須",
+    "コーヒードリッパー"
+   ],
+   "reuse": "coffee-morning",
+   "why": "既存「朝のコーヒーを淹れる」を流用",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "棚から道具を取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "粉・茶葉を入れる"
+    },
+    {
+     "angle": "アップ",
+     "text": "お湯を注ぐ（別アングル）"
+    },
+    {
+     "angle": "寄り",
+     "text": "カップに注ぐ"
+    },
+    {
+     "angle": "中",
+     "text": "リビングの椅子で飲む"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "d03",
+   "place": "dining",
+   "placeName": "ダイニング",
+   "name": "子どもの食事グッズ",
+   "motion": "準備する → 子どもが食べる → 片付ける",
+   "items": [
+    "子ども用食器",
+    "ストローマグ",
+    "お食事エプロン"
+   ],
+   "reuse": null,
+   "why": "“子どもに使わせる”動作。※動画には子どもを写す（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "棚から子ども用食器を取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "空のままテーブルに置く"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "盛り付ける"
+    },
+    {
+     "angle": "中",
+     "text": "子どもがエプロンをつけて食べる"
+    },
+    {
+     "angle": "アップ",
+     "text": "食べる口元"
+    },
+    {
+     "angle": "中",
+     "text": "片付ける"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "l01",
+   "place": "living",
+   "placeName": "リビング",
+   "name": "ソファまわり",
+   "motion": "座る → くつろぐ → 引きで全体",
+   "items": [
+    "ソファ",
+    "クッション",
+    "ブランケット",
+    "ラグ"
+   ],
+   "reuse": "scene",
+   "why": "既存「椅子に座る」4カットを流用",
+   "cuts": [
+    {
+     "angle": "引き",
+     "text": "空のソファ"
+    },
+    {
+     "angle": "中",
+     "text": "座る"
+    },
+    {
+     "angle": "寄り",
+     "text": "クッションを置く"
+    },
+    {
+     "angle": "中",
+     "text": "ブランケットをかける"
+    },
+    {
+     "angle": "引き",
+     "text": "くつろぐ全体"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "l02",
+   "place": "living",
+   "placeName": "リビング",
+   "name": "照明",
+   "motion": "スイッチを押す → 灯る瞬間 → 引きで部屋全体",
+   "items": [
+    "フロアランプ",
+    "テーブルランプ",
+    "キャンドル"
+   ],
+   "reuse": null,
+   "why": "“灯す”動作",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "置き場所の全体（消灯）"
+    },
+    {
+     "angle": "寄り",
+     "text": "スイッチを押す"
+    },
+    {
+     "angle": "アップ",
+     "text": "灯る瞬間"
+    },
+    {
+     "angle": "引き",
+     "text": "部屋全体が変わる"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "l03",
+   "place": "living",
+   "placeName": "リビング",
+   "name": "植物・花",
+   "motion": "葉・花に寄る → 置き場所を整える → 引き",
+   "items": [
+    "観葉植物",
+    "花瓶（花を生ける）"
+   ],
+   "reuse": null,
+   "why": "ジョウロは除外（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "置き場所の全体"
+    },
+    {
+     "angle": "寄り",
+     "text": "葉・花に寄る"
+    },
+    {
+     "angle": "中",
+     "text": "水をやる・花を生ける"
+    },
+    {
+     "angle": "アップ",
+     "text": "別アングルで質感"
+    },
+    {
+     "angle": "引き",
+     "text": "整えた全体"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "l04",
+   "place": "living",
+   "placeName": "リビング",
+   "name": "本・雑誌",
+   "motion": "手に取る → 開く → 読む",
+   "items": [
+    "本",
+    "雑誌"
+   ],
+   "reuse": null,
+   "why": "“取って開く”動作",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "本棚から取る"
+    },
+    {
+     "angle": "寄り",
+     "text": "手に取る"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "開く"
+    },
+    {
+     "angle": "中",
+     "text": "ソファで読む"
+    },
+    {
+     "angle": "寄り",
+     "text": "しおりを挟んで閉じる"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "l04b",
+   "place": "living",
+   "placeName": "リビング",
+   "name": "本棚",
+   "motion": "棚の前に立つ → 1冊抜く → 整った棚の引き",
+   "items": [
+    "本棚"
+   ],
+   "reuse": null,
+   "why": "収納家具は中身と別（FB）",
+   "cuts": [
+    {
+     "angle": "引き",
+     "text": "棚の前に立つ"
+    },
+    {
+     "angle": "中",
+     "text": "1冊抜く"
+    },
+    {
+     "angle": "寄り",
+     "text": "別の本を並べ替える"
+    },
+    {
+     "angle": "引き",
+     "text": "整った棚"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "l05",
+   "place": "living",
+   "placeName": "リビング",
+   "name": "ボタン操作のある雑貨",
+   "motion": "ボタンを押す → 表示が変わる・香る → 引き",
+   "items": [
+    "置き時計",
+    "ディフューザー"
+   ],
+   "reuse": null,
+   "why": "ボタン操作がある雑貨（FB・ディフューザーも操作ありで確定）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "置き場所"
+    },
+    {
+     "angle": "寄り",
+     "text": "ボタンを押す"
+    },
+    {
+     "angle": "アップ",
+     "text": "表示・香り（ミスト）"
+    },
+    {
+     "angle": "引き",
+     "text": "置いた全体"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "l05b",
+   "place": "living",
+   "placeName": "リビング",
+   "name": "置き画の雑貨（操作なし）",
+   "motion": "置く → 寄り → 引き",
+   "items": [
+    "写真立て"
+   ],
+   "reuse": null,
+   "why": "操作のない“置き画”型（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "箱・しまってある場所から取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "置く"
+    },
+    {
+     "angle": "アップ",
+     "text": "置いた雑貨に寄る"
+    },
+    {
+     "angle": "引き",
+     "text": "部屋に馴染んだ全体"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "l06",
+   "place": "living",
+   "placeName": "リビング",
+   "name": "リビング収納",
+   "motion": "開ける → しまう → 閉める",
+   "items": [
+    "バスケット・カゴ",
+    "収納ボックス",
+    "キャビネット"
+   ],
+   "reuse": "store-away",
+   "why": "既存「収納にしまう」を流用",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "リビングの散らかり"
+    },
+    {
+     "angle": "中",
+     "text": "収納を開ける"
+    },
+    {
+     "angle": "寄り",
+     "text": "物を入れる"
+    },
+    {
+     "angle": "中",
+     "text": "閉める"
+    },
+    {
+     "angle": "引き",
+     "text": "整った部屋"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "l07",
+   "place": "living",
+   "placeName": "リビング",
+   "name": "掃除家電",
+   "motion": "スイッチを入れる → 動作 → ビフォーアフター",
+   "items": [
+    "掃除機"
+   ],
+   "reuse": "beforeafter",
+   "why": "ボタン操作のある掃除道具（FB）",
+   "cuts": [
+    {
+     "angle": "引き",
+     "text": "ビフォー（床の汚れ）"
+    },
+    {
+     "angle": "中",
+     "text": "しまってある場所から出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "スイッチを入れる"
+    },
+    {
+     "angle": "中",
+     "text": "掃除する"
+    },
+    {
+     "angle": "アップ",
+     "text": "ヘッド部分に吸い込まれる（別アングル）"
+    },
+    {
+     "angle": "引き",
+     "text": "アフター"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "l07b",
+   "place": "living",
+   "placeName": "リビング",
+   "name": "手で使う掃除道具",
+   "motion": "使う手元 → ビフォー → アフター",
+   "items": [
+    "フロアワイパー",
+    "コロコロ",
+    "ハンディモップ"
+   ],
+   "reuse": "beforeafter",
+   "why": "ボタン操作のない掃除道具（FB）",
+   "cuts": [
+    {
+     "angle": "引き",
+     "text": "ビフォー"
+    },
+    {
+     "angle": "中",
+     "text": "しまってある場所から出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "使う手元"
+    },
+    {
+     "angle": "アップ",
+     "text": "ゴミが取れる（別アングル）"
+    },
+    {
+     "angle": "引き",
+     "text": "アフター"
+    },
+    {
+     "angle": "中",
+     "text": "元の場所に戻す"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w01",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "洗面の消耗品",
+   "motion": "出す → 使う → 泡・質感に寄る",
+   "items": [
+    "ハンドソープ",
+    "歯磨き粉"
+   ],
+   "reuse": "wash-hands",
+   "why": "中身を使い切る消耗品（FB・要確認）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "洗面台の収納から出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "手に出す・歯ブラシにのせる"
+    },
+    {
+     "angle": "アップ",
+     "text": "泡・質感（別アングル）"
+    },
+    {
+     "angle": "寄り",
+     "text": "使い終わって置く"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w01b",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "洗面の用具",
+   "motion": "手に取る → 使う → 戻す",
+   "items": [
+    "歯ブラシ",
+    "うがいコップ"
+   ],
+   "reuse": null,
+   "why": "繰り返し使う道具（FB・要確認）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "洗面台の定位置から取る"
+    },
+    {
+     "angle": "寄り",
+     "text": "使う（水をつける・口に入れる）"
+    },
+    {
+     "angle": "中",
+     "text": "使う全体（別アングル）"
+    },
+    {
+     "angle": "寄り",
+     "text": "洗って戻す"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w02",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "スキンケア・コスメ",
+   "motion": "出す → 塗る → 質感に寄る",
+   "items": [
+    "化粧水・乳液",
+    "クリーム",
+    "日焼け止め"
+   ],
+   "reuse": "skincare",
+   "why": "既存「スキンケア」を流用",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "収納から取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "手に出す"
+    },
+    {
+     "angle": "アップ",
+     "text": "肌に塗る（別アングル）"
+    },
+    {
+     "angle": "アップ",
+     "text": "質感"
+    },
+    {
+     "angle": "寄り",
+     "text": "蓋を閉めて置く"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w02b",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "ポーチ",
+   "motion": "置く → 開く → 中身を出す",
+   "items": [
+    "ポーチ"
+   ],
+   "reuse": "pouch-mess",
+   "why": "既存「ポーチがごちゃごちゃ」を流用。独立（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "カバンから取り出して置く"
+    },
+    {
+     "angle": "寄り",
+     "text": "ファスナーを開ける"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "中身を出す"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "整えて並べる"
+    },
+    {
+     "angle": "中",
+     "text": "しまって閉める"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w03",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "ヘア家電",
+   "motion": "スイッチを入れる → 使う → 仕上がり",
+   "items": [
+    "ドライヤー",
+    "ヘアアイロン"
+   ],
+   "reuse": null,
+   "why": "スイッチあり（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "収納から取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "スイッチON"
+    },
+    {
+     "angle": "中",
+     "text": "髪に使う"
+    },
+    {
+     "angle": "アップ",
+     "text": "風・熱の別アングル"
+    },
+    {
+     "angle": "中",
+     "text": "仕上がり"
+    },
+    {
+     "angle": "寄り",
+     "text": "コードをまとめてしまう"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w03b",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "ヘアブラシ",
+   "motion": "手に取る → とかす → 仕上がり",
+   "items": [
+    "ヘアブラシ"
+   ],
+   "reuse": null,
+   "why": "スイッチなし（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "引き出しから取る"
+    },
+    {
+     "angle": "寄り",
+     "text": "とかし始める"
+    },
+    {
+     "angle": "アップ",
+     "text": "とかす手元（別アングル）"
+    },
+    {
+     "angle": "中",
+     "text": "仕上がり"
+    },
+    {
+     "angle": "寄り",
+     "text": "置く"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w04",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "タオル",
+   "motion": "たたむ → 重ねる → 引き",
+   "items": [
+    "フェイスタオル",
+    "バスタオル"
+   ],
+   "reuse": "laundry-fold",
+   "why": "既存「洗濯物をたたむ」を流用",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "洗濯物から取り出す"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "広げてたたむ"
+    },
+    {
+     "angle": "アップ",
+     "text": "たたむ手元（別アングル）"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "重ねる"
+    },
+    {
+     "angle": "中",
+     "text": "棚にしまう"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w05",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "シャンプー・ボディソープ",
+   "motion": "手に取る → 押す → 泡",
+   "items": [
+    "シャンプー・ボディソープ"
+   ],
+   "reuse": null,
+   "why": "独立（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "浴室の定位置の全体"
+    },
+    {
+     "angle": "寄り",
+     "text": "手に取る"
+    },
+    {
+     "angle": "寄り",
+     "text": "押す"
+    },
+    {
+     "angle": "アップ",
+     "text": "泡（別アングル）"
+    },
+    {
+     "angle": "寄り",
+     "text": "洗って戻す"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w05b",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "詰め替えボトル",
+   "motion": "詰め替える → ラベル → 並べた引き",
+   "items": [
+    "詰め替えボトル"
+   ],
+   "reuse": null,
+   "why": "独立（FB）",
+   "cuts": [
+    {
+     "angle": "俯瞰",
+     "text": "空のボトルを置く"
+    },
+    {
+     "angle": "寄り",
+     "text": "詰め替え始める"
+    },
+    {
+     "angle": "アップ",
+     "text": "半分以上入る（別アングル）"
+    },
+    {
+     "angle": "寄り",
+     "text": "蓋を閉めてラベル"
+    },
+    {
+     "angle": "引き",
+     "text": "並べた全体"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w05c",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "バスマット",
+   "motion": "敷く → 足を乗せる → 引き",
+   "items": [
+    "バスマット"
+   ],
+   "reuse": null,
+   "why": "独立（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "収納から取り出す"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "敷く"
+    },
+    {
+     "angle": "横",
+     "text": "足を乗せる"
+    },
+    {
+     "angle": "アップ",
+     "text": "足元の質感"
+    },
+    {
+     "angle": "引き",
+     "text": "全体"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w06",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "洗濯機",
+   "motion": "入れる → スイッチ → 回る",
+   "items": [
+    "洗濯機"
+   ],
+   "reuse": null,
+   "why": "独立（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "洗濯物をかごから出す"
+    },
+    {
+     "angle": "中",
+     "text": "洗濯機に入れる"
+    },
+    {
+     "angle": "寄り",
+     "text": "扉を閉める・スイッチ"
+    },
+    {
+     "angle": "アップ",
+     "text": "回る（別アングル）"
+    },
+    {
+     "angle": "中",
+     "text": "終わって取り出す"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w06b",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "洗剤・柔軟剤",
+   "motion": "計る → 注ぐ → 蓋を閉める",
+   "items": [
+    "洗剤・柔軟剤"
+   ],
+   "reuse": null,
+   "why": "独立（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "棚から取る"
+    },
+    {
+     "angle": "寄り",
+     "text": "蓋を開けて計る"
+    },
+    {
+     "angle": "アップ",
+     "text": "注ぐ（別アングル）"
+    },
+    {
+     "angle": "寄り",
+     "text": "洗濯機にセット"
+    },
+    {
+     "angle": "寄り",
+     "text": "蓋を閉めて戻す"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w06c",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "洗濯用品",
+   "motion": "ネットに入れる → ハンガーに掛ける → 干す",
+   "items": [
+    "ハンガー",
+    "洗濯ネット"
+   ],
+   "reuse": "hang-laundry",
+   "why": "独立（FB）。既存「洗濯物を干す」を発展",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "収納から取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "ネットに入れる"
+    },
+    {
+     "angle": "中",
+     "text": "ハンガーに掛ける"
+    },
+    {
+     "angle": "引き",
+     "text": "干す"
+    },
+    {
+     "angle": "アップ",
+     "text": "干した洗濯物（別アングル）"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "w07",
+   "place": "washroom",
+   "placeName": "洗面所・お風呂",
+   "name": "トイレ消耗品",
+   "motion": "補充する → 整った状態",
+   "items": [
+    "トイレットペーパー",
+    "トイレブラシ"
+   ],
+   "reuse": null,
+   "why": "洗面所収納は除外（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "収納から取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "補充する"
+    },
+    {
+     "angle": "アップ",
+     "text": "セットした状態（別アングル）"
+    },
+    {
+     "angle": "引き",
+     "text": "整った状態"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "b01",
+   "place": "bedroom",
+   "placeName": "寝室",
+   "name": "寝具",
+   "motion": "整える → ビフォー → アフター",
+   "items": [
+    "ベッド",
+    "枕",
+    "シーツ・カバー"
+   ],
+   "reuse": "make-bed",
+   "why": "既存「ベッドを整える」を流用",
+   "cuts": [
+    {
+     "angle": "引き",
+     "text": "ビフォー（乱れたベッド）"
+    },
+    {
+     "angle": "中",
+     "text": "シーツを広げる"
+    },
+    {
+     "angle": "寄り",
+     "text": "枕を置く"
+    },
+    {
+     "angle": "アップ",
+     "text": "カバーをかける（別アングル）"
+    },
+    {
+     "angle": "引き",
+     "text": "アフター"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "b02",
+   "place": "bedroom",
+   "placeName": "寝室",
+   "name": "寝室家電",
+   "motion": "スイッチを押す → 動作 → 引き",
+   "items": [
+    "加湿器",
+    "ナイトランプ",
+    "目覚まし時計"
+   ],
+   "reuse": null,
+   "why": "“スイッチを入れる”家電",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "置き場所"
+    },
+    {
+     "angle": "寄り",
+     "text": "スイッチを押す"
+    },
+    {
+     "angle": "アップ",
+     "text": "動作（ミスト・光）"
+    },
+    {
+     "angle": "引き",
+     "text": "部屋全体"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "b03",
+   "place": "bedroom",
+   "placeName": "寝室",
+   "name": "衣類収納グッズ",
+   "motion": "ケースを開ける → 整った中身 → 閉める",
+   "items": [
+    "衣装ケース",
+    "ハンガー"
+   ],
+   "reuse": null,
+   "why": "クローゼットそのものは対象外（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "ケースを開ける"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "整った中身"
+    },
+    {
+     "angle": "寄り",
+     "text": "1つ取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "しまう"
+    },
+    {
+     "angle": "中",
+     "text": "閉める"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "b04",
+   "place": "bedroom",
+   "placeName": "寝室",
+   "name": "衣類をたたむ",
+   "motion": "たたむ → 重ねる → しまう",
+   "items": [
+    "Tシャツ・ニット",
+    "靴下",
+    "子ども服"
+   ],
+   "reuse": "laundry-fold",
+   "why": "タオルと同じ“たたむ”動作だがサイズ感が別",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "洗濯物の山から取る"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "たたむ"
+    },
+    {
+     "angle": "アップ",
+     "text": "たたむ手元（別アングル）"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "重ねる"
+    },
+    {
+     "angle": "中",
+     "text": "引き出しにしまう"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "b05",
+   "place": "bedroom",
+   "placeName": "寝室",
+   "name": "コート",
+   "motion": "掛ける → 手に取る → 羽織る",
+   "items": [
+    "コート"
+   ],
+   "reuse": null,
+   "why": "独立（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "ハンガーから取る"
+    },
+    {
+     "angle": "寄り",
+     "text": "手に取る"
+    },
+    {
+     "angle": "中",
+     "text": "羽織る"
+    },
+    {
+     "angle": "アップ",
+     "text": "ボタン・ファスナーを閉める（別アングル）"
+    },
+    {
+     "angle": "中",
+     "text": "玄関で全身"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "b05b",
+   "place": "bedroom",
+   "placeName": "寝室",
+   "name": "カバン",
+   "motion": "置く → 開けて中身 → 持って出る",
+   "items": [
+    "バッグ",
+    "ランドセル"
+   ],
+   "reuse": null,
+   "why": "カバン類はひと括り（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "定位置から取る"
+    },
+    {
+     "angle": "寄り",
+     "text": "ファスナーを開ける"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "中身を入れる"
+    },
+    {
+     "angle": "寄り",
+     "text": "閉める"
+    },
+    {
+     "angle": "引き",
+     "text": "持って出る"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "b05d",
+   "place": "bedroom",
+   "placeName": "寝室",
+   "name": "防災バッグ",
+   "motion": "置き場所から取る → 開けて中身を並べる → 背負う",
+   "items": [
+    "防災バッグ"
+   ],
+   "reuse": null,
+   "why": "独立（FB確定）",
+   "cuts": [
+    {
+     "angle": "引き",
+     "text": "置き場所から取る"
+    },
+    {
+     "angle": "中",
+     "text": "床に置いて開ける"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "中身を並べる"
+    },
+    {
+     "angle": "寄り",
+     "text": "1つ手に取る"
+    },
+    {
+     "angle": "中",
+     "text": "背負う"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "b05c",
+   "place": "bedroom",
+   "placeName": "寝室",
+   "name": "帽子",
+   "motion": "手に取る → かぶる → 鏡で確認",
+   "items": [
+    "帽子"
+   ],
+   "reuse": null,
+   "why": "独立（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "置き場所から取る"
+    },
+    {
+     "angle": "寄り",
+     "text": "手に取る"
+    },
+    {
+     "angle": "中",
+     "text": "かぶる"
+    },
+    {
+     "angle": "寄り",
+     "text": "鏡で確認"
+    },
+    {
+     "angle": "中",
+     "text": "外出する"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "e01",
+   "place": "entrance",
+   "placeName": "玄関",
+   "name": "靴",
+   "motion": "並べる → 履く → 出発",
+   "items": [
+    "スニーカー",
+    "パンプス",
+    "子ども靴"
+   ],
+   "reuse": "arrange-shoes",
+   "why": "既存「靴をそろえる」を流用",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "靴箱から取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "玄関に並べる"
+    },
+    {
+     "angle": "中",
+     "text": "履く"
+    },
+    {
+     "angle": "アップ",
+     "text": "かかとを整える（別アングル）"
+    },
+    {
+     "angle": "引き",
+     "text": "出発"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "e02",
+   "place": "entrance",
+   "placeName": "玄関",
+   "name": "玄関小物",
+   "motion": "手に取る → 出かける",
+   "items": [
+    "鍵・キーフック",
+    "傘・傘立て",
+    "玄関マット"
+   ],
+   "reuse": null,
+   "why": "“出かける前”の動作",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "定位置の全体"
+    },
+    {
+     "angle": "寄り",
+     "text": "手に取る"
+    },
+    {
+     "angle": "中",
+     "text": "使う（鍵を掛ける・傘を差す）"
+    },
+    {
+     "angle": "引き",
+     "text": "出かける"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "c01",
+   "place": "kids",
+   "placeName": "子ども部屋",
+   "name": "おもちゃ収納",
+   "motion": "散らかり → 片付け → 整った状態",
+   "items": [
+    "おもちゃ箱",
+    "絵本棚"
+   ],
+   "reuse": "beforeafter",
+   "why": "入れ物は中身と別（FB）",
+   "cuts": [
+    {
+     "angle": "引き",
+     "text": "散らかり"
+    },
+    {
+     "angle": "中",
+     "text": "おもちゃを手に取る"
+    },
+    {
+     "angle": "寄り",
+     "text": "箱に入れる"
+    },
+    {
+     "angle": "アップ",
+     "text": "片付けていく（別アングル）"
+    },
+    {
+     "angle": "引き",
+     "text": "整った状態"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "c01b",
+   "place": "kids",
+   "placeName": "子ども部屋",
+   "name": "おもちゃ",
+   "motion": "手に取る → 遊ぶ → 寄り",
+   "items": [
+    "ぬいぐるみ",
+    "絵本"
+   ],
+   "reuse": null,
+   "why": "おもちゃそのもの（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "おもちゃ箱から取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "手に取る"
+    },
+    {
+     "angle": "中",
+     "text": "子どもが遊ぶ"
+    },
+    {
+     "angle": "アップ",
+     "text": "遊ぶ手元（別アングル）"
+    },
+    {
+     "angle": "中",
+     "text": "片付ける"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "c02",
+   "place": "kids",
+   "placeName": "子ども部屋",
+   "name": "学習机",
+   "motion": "座る → 広げる → 引き",
+   "items": [
+    "学習机"
+   ],
+   "reuse": null,
+   "why": "家具は筆記用具と別（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "椅子に座る"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "ノートと筆記用具を広げる"
+    },
+    {
+     "angle": "アップ",
+     "text": "書く手元（別アングル）"
+    },
+    {
+     "angle": "引き",
+     "text": "机の全体"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "c03",
+   "place": "kids",
+   "placeName": "子ども部屋",
+   "name": "ベビー消耗品",
+   "motion": "取り出す → 使う → 片付ける",
+   "items": [
+    "おむつ・おしりふき"
+   ],
+   "reuse": null,
+   "why": "消耗品系（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "収納から取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "開ける"
+    },
+    {
+     "angle": "中",
+     "text": "使う（子どもあり）"
+    },
+    {
+     "angle": "アップ",
+     "text": "使う手元（別アングル）"
+    },
+    {
+     "angle": "寄り",
+     "text": "片付ける"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "c03b",
+   "place": "kids",
+   "placeName": "子ども部屋",
+   "name": "哺乳瓶",
+   "motion": "作る → 飲ませる → 洗う",
+   "items": [
+    "哺乳瓶"
+   ],
+   "reuse": null,
+   "why": "キッチン系（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "棚から取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "粉ミルクを入れる"
+    },
+    {
+     "angle": "アップ",
+     "text": "お湯を注ぐ（別アングル）"
+    },
+    {
+     "angle": "寄り",
+     "text": "振って混ぜる"
+    },
+    {
+     "angle": "中",
+     "text": "飲ませる"
+    },
+    {
+     "angle": "寄り",
+     "text": "洗う"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "c03c",
+   "place": "kids",
+   "placeName": "子ども部屋",
+   "name": "ベビー用具",
+   "motion": "装着する → 抱く → 引き",
+   "items": [
+    "抱っこ紐"
+   ],
+   "reuse": null,
+   "why": "用具（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "定位置から取る"
+    },
+    {
+     "angle": "中",
+     "text": "装着する"
+    },
+    {
+     "angle": "アップ",
+     "text": "バックルを留める（別アングル）"
+    },
+    {
+     "angle": "中",
+     "text": "赤ちゃんを入れる"
+    },
+    {
+     "angle": "引き",
+     "text": "抱っこして歩く"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "o01",
+   "place": "work",
+   "placeName": "ワークスペース",
+   "name": "デスク",
+   "motion": "座る → 作業 → 引き",
+   "items": [
+    "デスク"
+   ],
+   "reuse": "desk-rest",
+   "why": "家具（FB・要確認）",
+   "cuts": [
+    {
+     "angle": "引き",
+     "text": "空のデスク"
+    },
+    {
+     "angle": "中",
+     "text": "座る"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "物を広げる"
+    },
+    {
+     "angle": "アップ",
+     "text": "作業する手元（別アングル）"
+    },
+    {
+     "angle": "引き",
+     "text": "作業中の全体"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "o01b",
+   "place": "work",
+   "placeName": "ワークスペース",
+   "name": "デスク家電",
+   "motion": "スイッチを入れる → 点く・映る → 作業",
+   "items": [
+    "デスクライト",
+    "モニター"
+   ],
+   "reuse": null,
+   "why": "スイッチあり（FB・要確認）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "デスクの全体（消灯）"
+    },
+    {
+     "angle": "寄り",
+     "text": "スイッチON"
+    },
+    {
+     "angle": "アップ",
+     "text": "点く・映る（別アングル）"
+    },
+    {
+     "angle": "中",
+     "text": "作業する"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "o02",
+   "place": "work",
+   "placeName": "ワークスペース",
+   "name": "文房具",
+   "motion": "取る → 書く → 置く",
+   "items": [
+    "ペン",
+    "鉛筆・色鉛筆",
+    "ノート",
+    "はさみ・テープ"
+   ],
+   "reuse": null,
+   "why": "筆記用具は子ども部屋からもここへ（FB）",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "引き出しから取る"
+    },
+    {
+     "angle": "寄り",
+     "text": "手に取る"
+    },
+    {
+     "angle": "俯瞰",
+     "text": "書く"
+    },
+    {
+     "angle": "アップ",
+     "text": "書く手元（別アングル）"
+    },
+    {
+     "angle": "寄り",
+     "text": "置く・しまう"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "o03",
+   "place": "work",
+   "placeName": "ワークスペース",
+   "name": "ガジェット",
+   "motion": "繋ぐ → 光る → 使う",
+   "items": [
+    "スマホ・充電器",
+    "イヤホン",
+    "ノートPC"
+   ],
+   "reuse": null,
+   "why": "“充電・接続”動作",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "バッグ・引き出しから取り出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "繋ぐ"
+    },
+    {
+     "angle": "アップ",
+     "text": "光る（別アングル）"
+    },
+    {
+     "angle": "中",
+     "text": "使う"
+    },
+    {
+     "angle": "寄り",
+     "text": "外してしまう"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "x01",
+   "place": "other",
+   "placeName": "ベランダ・その他",
+   "name": "ベランダ",
+   "motion": "干す → 引きで全体",
+   "items": [
+    "物干し竿",
+    "プランター"
+   ],
+   "reuse": "hang-laundry",
+   "why": "洗濯と重なるが屋外の光が別",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "洗濯かごを持ってベランダへ"
+    },
+    {
+     "angle": "中",
+     "text": "干す"
+    },
+    {
+     "angle": "アップ",
+     "text": "干す手元（別アングル）"
+    },
+    {
+     "angle": "引き",
+     "text": "全体"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  },
+  {
+   "id": "x02",
+   "place": "other",
+   "placeName": "ベランダ・その他",
+   "name": "季節家電",
+   "motion": "スイッチを押す → 動作 → 引き",
+   "items": [
+    "扇風機・サーキュレーター",
+    "ヒーター"
+   ],
+   "reuse": null,
+   "why": "“スイッチを入れる”家電",
+   "cuts": [
+    {
+     "angle": "中",
+     "text": "しまってある場所から出す"
+    },
+    {
+     "angle": "寄り",
+     "text": "スイッチを押す"
+    },
+    {
+     "angle": "アップ",
+     "text": "動作（別アングル）"
+    },
+    {
+     "angle": "引き",
+     "text": "部屋全体"
+    }
+   ],
+   "stills": [],
+   "videos": []
+  }
+ ],
+ "itemCount": 134,
+ "generated": "2026-10-30",
+ "version": "v2確定"
 }

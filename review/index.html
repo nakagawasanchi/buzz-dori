@@ -69,7 +69,7 @@ section.place>h2 small{font-family:var(--body);font-weight:400;color:var(--muted
 .chipi{border:1px solid var(--line);background:var(--chip);color:var(--chip-fg);border-radius:999px;padding:4px 11px;font:inherit;font-size:13.5px;cursor:pointer;line-height:1.3}
 .chipi[aria-pressed="true"]{text-decoration:line-through;color:var(--muted);background:transparent}
 .cuts{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
-.card.media .cuts{grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.card.media .cuts{grid-template-columns:repeat(auto-fill,minmax(min(150px,100%),1fr));gap:10px}
 .uctl{display:grid;gap:6px;margin-top:8px}
 .uctl[data-status="ok"] textarea{border-color:var(--ok)} .uctl[data-status="fix"] textarea{border-color:var(--fix)}
 .seg.sm button{padding:5px 9px;font-size:12.5px}

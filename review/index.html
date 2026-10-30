@@ -85,7 +85,7 @@ section.place>h2 small{font-family:var(--body);font-weight:400;color:var(--muted
 .seg button[data-v="drop"][aria-pressed="true"]{background:var(--drop)}
 .saved{font-size:12px;color:var(--muted);min-width:4em}
 .by{font-size:11px;color:var(--muted)}
-textarea{width:100%;min-width:0;border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:10px;padding:8px 10px;font:inherit;font-size:14px;resize:vertical;min-height:40px}
+textarea{width:100%;min-width:0;border:1px solid var(--line);background:transparent;color:var(--fg);border-radius:10px;padding:8px 10px;font:inherit;font-size:14px;resize:vertical;min-height:120px}
 textarea::placeholder{color:var(--muted)}
 footer{padding-block:26px 0;font-size:12.5px;color:var(--muted)}
 </style>
@@ -208,7 +208,7 @@ function card(stage, g){
   for (const [v,label] of Object.entries(STATUS)){ const b=el('button',{type:'button','data-v':v,'aria-pressed':String(st.status===v),text:label}); b.addEventListener('click',()=>{ if(needWho()) return; const nv = state[stage][g.id]?.status===v ? '' : v; for (const x of seg.children) x.setAttribute('aria-pressed',String(x.dataset.v===nv)); c.dataset.status=nv; save(stage,g.id,{status:nv}); }); seg.append(b); }
   const by = st.by ? el('span',{class:'by',text:`${st.by}・${(st.at||'').slice(5,16).replace('T',' ')}`}) : el('span',{class:'by'});
   c.append(el('div',{class:'ctl'}, seg, el('span',{class:'saved',id:'s-'+g.id,text:''}), by));
-  const ta = el('textarea',{id:'c-'+g.id,rows:'1',placeholder:STAGES[stage].ph}); ta.value = st.comment||'';
+  const ta = el('textarea',{id:'c-'+g.id,rows:'4',placeholder:STAGES[stage].ph}); ta.value = st.comment||'';
   let t; ta.addEventListener('input',()=>{ if(needWho()) return; clearTimeout(t); t=setTimeout(()=>save(stage,g.id,{comment:ta.value}),700); });
   c.append(ta);
   return c;

@@ -9,7 +9,7 @@
 
 ## 判定の保存先
 Supabase（tracingmap プロジェクト）の既存テーブル `buzzdori_feedback`（page, body, created_at）を流用。
-- `page = review:<stage>:<gid>`（stage は items / cuts / stills / videos）
+- `page = review:<stage>:<gid>`（stage は items / cuts / stills / videos）。**stills / videos は1枚・1本ずつ判定で `<gid>` = `<グループ>_c<N>`**（例 `review:stills:k01_c3`。N は data.json の stills/videos 配列の位置＝カット番号）
 - `body = {"status":"ok|fix|drop|","comment":"…","dropped":["外したアイテム"],"by":"中川|しゅり|claude"}`
 - 追記のみ・**同じ page の最新行が有効**。URL/anon key は `../index.html` と同じ
 

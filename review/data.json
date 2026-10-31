@@ -82,11 +82,11 @@
     "media/k01_c5.jpg"
    ],
    "videos": [
-    "media/k01_c1.mp4",
-    "media/k01_c2.mp4",
+    "media/k01_c1.mp4?v=20261101",
+    "media/k01_c2.mp4?v=20261101",
     "media/k01_c3.mp4",
     "media/k01_c4.mp4",
-    "media/k01_c5.mp4"
+    "media/k01_c5.mp4?v=20261101"
    ]
   },
   {
@@ -127,10 +127,10 @@
     "media/k02_c4.jpg"
    ],
    "videos": [
-    "media/k02_c1.mp4",
+    "media/k02_c1.mp4?v=20261101",
     "media/k02_c2.mp4",
     "media/k02_c3.mp4",
-    "media/k02_c4.mp4"
+    "media/k02_c4.mp4?v=20261101"
    ]
   },
   {
@@ -177,11 +177,11 @@
     "media/k03_c5.jpg"
    ],
    "videos": [
-    "media/k03_c1.mp4",
-    "media/k03_c2.mp4",
-    "media/k03_c3.mp4",
+    "media/k03_c1.mp4?v=20261101",
+    "media/k03_c2.mp4?v=20261101",
+    "media/k03_c3.mp4?v=20261101",
     "media/k03_c4.mp4",
-    "media/k03_c5.mp4"
+    "media/k03_c5.mp4?v=20261101"
    ]
   },
   {
@@ -224,9 +224,9 @@
     "media/k04_c4.jpg"
    ],
    "videos": [
-    "media/k04_c1.mp4",
-    "media/k04_c2.mp4",
-    "media/k04_c3.mp4",
+    "media/k04_c1.mp4?v=20261101",
+    "media/k04_c2.mp4?v=20261101",
+    "media/k04_c3.mp4?v=20261101",
     "media/k04_c4.mp4"
    ]
   },
@@ -267,7 +267,7 @@
     "media/k05_c4.jpg"
    ],
    "videos": [
-    "media/k05_c1.mp4",
+    "media/k05_c1.mp4?v=20261101",
     "media/k05_c2.mp4",
     "media/k05_c3.mp4",
     "media/k05_c4.mp4"
@@ -2327,6 +2327,6 @@
   }
  ],
  "itemCount": 134,
- "generated": "2026-10-30",
+ "generated": "2026-11-01",
  "version": "v2確定"
 }

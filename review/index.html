@@ -114,7 +114,7 @@ const STAGES = {
 };
 const STATUS = {ok:"OK", fix:"要修正", drop:"不要"};
 let DATA = null; const state = {items:{}, cuts:{}, stills:{}, videos:{}};
-let who = ''; try { who = localStorage.getItem('bz_who') || ''; } catch {}
+let who = 'しゅり'; try { who = localStorage.getItem('bz_who') || 'しゅり'; } catch {}
 const $ = (s, r=document) => r.querySelector(s);
 const el = (t, a={}, ...k) => { const e=document.createElement(t); for (const [n,v] of Object.entries(a)) { if (n==='text') e.textContent=v; else if (n==='html') e.innerHTML=v; else e.setAttribute(n,v);} for (const c of k) e.append(c); return e; };
 const route = () => { const h=(location.hash||'').replace('#',''); return STAGES[h] ? h : 'top'; };

@@ -35,6 +35,12 @@ h1{font-family:var(--display);font-weight:700;font-size:26px;margin:0 0 4px;lett
 .pill b{font-weight:700}
 .pill.ok{background:var(--ok-bg)} .pill.fix{background:var(--fix-bg)} .pill.drop{background:var(--drop-bg)}
 .note{margin-top:12px;padding:10px 12px;border-radius:10px;background:var(--fix-bg);font-size:13px}
+.extras{margin-top:16px;display:flex}
+.step.extra{flex:1 1 auto;border-style:dashed}
+.step .sub{margin:0;font-size:12.5px;color:var(--muted)}
+.card.bgm .meta{font-size:12px;color:var(--muted)}
+.card.bgm audio{width:100%;max-width:100%}
+.bgmlist{grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr))}
 .flow{display:flex;align-items:stretch;gap:6px;margin-top:22px}
 .flow .arrow{align-self:center;color:var(--muted);font-size:22px;flex:none;line-height:1}
 .step{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 12px;text-decoration:none;color:var(--fg);box-shadow:var(--shadow)}
@@ -110,10 +116,11 @@ const STAGES = {
   items:  {no:'1', title:'アイテム編集', desc:'家の中にあるもの候補。グループ（＝1本の動画で代表する括り）ごとに OK／要修正／不要。アイテム名タップで外す', ph:'コメント（分け方・足したいもの・動画の動きなど）'},
   cuts:   {no:'2', title:'カット割', desc:'グループごとのカット案（固定カメラ・カットごとに別撮り・3カット基本）。OKになったものから静止画→動画へ進む', ph:'修正指示（アングル・動き・カット数・順番など）'},
   stills: {no:'3', title:'静止画', desc:'各カットの構図確認用の静止画（Higgsfield生成）。1枚ずつ OK／要修正／不要とコメント。OKの静止画から動画化する', ph:'修正指示（構図・背景・モノの見え方など）'},
+  bgm:    {no:'BGM', title:'BGM作成', extra:true, desc:'動画のBGM候補（Audio Studio で生成・小節ぴったりでループ）。1曲ずつ聴いて、採用ならOK、手直しなら要修正（どう変えたいか）、使わないなら不要', ph:'コメント（雰囲気・テンポ・楽器・使いたい場面など）'},
   videos: {no:'4', title:'動画', desc:'カットごとの実写風サンプル動画（Higgsfield生成）。1本ずつ OK／要修正／不要とコメント。OKでアプリに掲載', ph:'修正指示（動き・速さ・つなぎなど）'},
 };
 const STATUS = {ok:"OK", fix:"要修正", drop:"不要"};
-let DATA = null; const state = {items:{}, cuts:{}, stills:{}, videos:{}};
+let DATA = null; const state = {items:{}, cuts:{}, stills:{}, videos:{}, bgm:{}};
 let who = 'しゅり'; try { who = localStorage.getItem('bz_who') || 'しゅり'; } catch {}
 const $ = (s, r=document) => r.querySelector(s);
 const el = (t, a={}, ...k) => { const e=document.createElement(t); for (const [n,v] of Object.entries(a)) { if (n==='text') e.textContent=v; else if (n==='html') e.innerHTML=v; else e.setAttribute(n,v);} for (const c of k) e.append(c); return e; };
@@ -121,7 +128,7 @@ const route = () => { const h=(location.hash||'').replace('#',''); return STAGES
 function toast(msg){ let t=document.getElementById('toast'); if(!t){ t=el('div',{id:'toast',role:'status'}); document.body.append(t);} t.textContent=msg; t.classList.add('on'); clearTimeout(toast._t); toast._t=setTimeout(()=>t.classList.remove('on'),2600); }
 function needWho(){ if (who) return false; toast('先に上の「レビューする人」で名前を選んでください'); const w=document.querySelector('.who'); if (w){ w.scrollIntoView({behavior:'smooth',block:'center'}); w.classList.add('flash'); setTimeout(()=>w.classList.remove('flash'),1600);} return true; }
 const MEDIA = {stills:'枚', videos:'本'};
-const unitKeys = (key) => MEDIA[key] ? DATA.groups.flatMap(g => (g[key]||[]).map((m,i)=> m ? `${g.id}_c${i+1}` : null).filter(Boolean)) : DATA.groups.map(g=>g.id);
+const unitKeys = (key) => key==='bgm' ? (DATA.bgm||[]).map(b=>b.id) : MEDIA[key] ? DATA.groups.flatMap(g => (g[key]||[]).map((m,i)=> m ? `${g.id}_c${i+1}` : null).filter(Boolean)) : DATA.groups.map(g=>g.id);
 const counts = (key) => { const ks = unitKeys(key); const n = v => ks.filter(k => (state[key][k]||{}).status===v).length; return {ok:n('ok'), fix:n('fix'), drop:n('drop'), total:ks.length}; };
 const H = {apikey:SUPABASE_KEY, Authorization:'Bearer '+SUPABASE_KEY, 'Content-Type':'application/json'};
 
@@ -154,7 +161,7 @@ function render(){
   for (const n of ['中川','しゅり']) { const b=el('button',{type:'button','aria-pressed':String(who===n),text:n}); b.addEventListener('click',()=>{ who=n; try{localStorage.setItem('bz_who',n);}catch{}; render(); }); whoBar.append(b); }
   if (r==='top'){
     hdr.append(el('h1',{text:'FBダッシュボード'}), el('p',{class:'lead',text:`${DATA.groups.length}グループ／${DATA.itemCount}アイテム（${DATA.version}）`}), whoBar);
-    const flow = el('div',{class:'flow'}); const keys = Object.keys(STAGES);
+    const flow = el('div',{class:'flow'}); const keys = Object.keys(STAGES).filter(k=>!STAGES[k].extra);
     keys.forEach((k, i) => {
       const s = STAGES[k], c = counts(k), rest = c.total-c.ok-c.fix-c.drop;
       const a = el('a',{class:'step',href:'#'+k}, el('div',{class:'no',text:'STEP '+s.no}), el('h2',{text:s.title}));
@@ -163,10 +170,35 @@ function render(){
       flow.append(a); if (i < keys.length-1) flow.append(el('div',{class:'arrow','aria-hidden':'true',text:'→'}));
     });
     main.append(flow);
+    for (const k of Object.keys(STAGES).filter(k=>STAGES[k].extra)){
+      const s = STAGES[k], c = counts(k), rest = c.total-c.ok-c.fix-c.drop;
+      const a = el('a',{class:'step extra',href:'#'+k}, el('div',{class:'no',text:'SOUND'}), el('h2',{text:s.title}), el('p',{class:'sub',text:`${c.total}曲の候補から採用を決める`}));
+      const bar = el('div',{class:'bar'}); for (const [v,n] of [['ok',c.ok],['fix',c.fix],['drop',c.drop]]) if (n) bar.append(el('i',{class:v,style:`width:${c.total? n/c.total*100 : 0}%`}));
+      a.append(bar, el('div',{class:'prog'}, el('span',{class:'ok',html:`採用<b>${c.ok}</b>`}), el('span',{class:'fix',html:`要修正<b>${c.fix}</b>`}), el('span',{class:'drop',html:`不要<b>${c.drop}</b>`}), el('span',{html:`未判定<b>${rest}</b>`})));
+      main.append(el('div',{class:'extras'}, a));
+    }
     foot.textContent='';
     return;
   }
   const s = STAGES[r];
+  if (r==='bgm'){
+    tabs.hidden = true;
+    hdr.append(el('p',{class:'crumb',html:'<a href="#">FBダッシュボード</a> › BGM作成'}), el('h1',{text:s.title}), el('p',{class:'lead',text:s.desc}), whoBar, el('div',{class:'sum',id:'sum'}));
+    const list = el('div',{class:'cards bgmlist'});
+    for (const b of (DATA.bgm||[])){
+      const st = state.bgm[b.id] || {};
+      const c = el('article',{class:'card bgm',id:'g-'+b.id});
+      c.append(el('div',{class:'head'}, el('span',{class:'gid',text:b.id}), el('h3',{class:'gname',text:b.title}), el('span',{class:'meta',text:`${b.bpm} BPM・${b.bars}小節・${Math.round(b.seconds)}秒ループ`})));
+      const au = el('audio',{controls:'',loop:'',preload:'none',src:b.file});
+      au.addEventListener('play',()=>{ for (const o of document.querySelectorAll('audio')) if (o!==au) o.pause(); });
+      c.append(au, unitCtl('bgm', b.id));
+      list.append(c);
+    }
+    if (!(DATA.bgm||[]).length) main.append(el('p',{class:'lead',text:'BGMの候補はまだありません。'}));
+    main.append(list);
+    foot.textContent = '再生ボタンでループ再生します（他の曲を再生すると前の曲は止まります）。音量はすべて動画向け（-16 LUFS）にそろえてあります。';
+    summary(); return;
+  }
   hdr.append(el('p',{class:'crumb',html:'<a href="#">FBダッシュボード</a> › STEP '+s.no}), el('h1',{text:s.title}), el('p',{class:'lead',text:s.desc}), whoBar, el('div',{class:'sum',id:'sum'}));
   if (!who) hdr.append(el('div',{class:'note',text:'先に「レビューする人」を選んでください（誰の判定か記録されます）。'}));
   tabs.append(el('button',{class:'tab',role:'tab','aria-selected':'true',text:'すべて','data-p':'all'}));
@@ -238,7 +270,7 @@ function summary(){
   const r=route(); if (r==='top') return; const s=$('#sum'); if(!s) return; s.textContent='';
   const c=counts(r);
   const dropped = r==='items' ? Object.values(state.items).reduce((a,x)=>a+(x.dropped||[]).length,0) : 0;
-  s.append(el('span',{class:'pill',html: MEDIA[r] ? `<b>${c.total}</b> ${MEDIA[r]}（生成済み）` : `<b>${DATA.groups.length}</b> グループ`}));
+  s.append(el('span',{class:'pill',html: r==='bgm' ? `<b>${c.total}</b> 曲` : MEDIA[r] ? `<b>${c.total}</b> ${MEDIA[r]}（生成済み）` : `<b>${DATA.groups.length}</b> グループ`}));
   if (r==='items') s.append(el('span',{class:'pill',html:`<b>${DATA.itemCount - dropped}</b> アイテム`}));
   s.append(el('span',{class:'pill ok',html:`OK <b>${c.ok}</b>`}), el('span',{class:'pill fix',html:`要修正 <b>${c.fix}</b>`}), el('span',{class:'pill drop',html:`不要 <b>${c.drop}</b>`}), el('span',{class:'pill',html:`未判定 <b>${c.total-c.ok-c.fix-c.drop}</b>`}));
 }

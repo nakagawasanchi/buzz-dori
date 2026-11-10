@@ -2327,6 +2327,208 @@
   }
  ],
  "itemCount": 134,
- "generated": "2026-11-01",
- "version": "v2確定"
+ "generated": "2026-11-10",
+ "version": "v2確定",
+ "bgm": [
+  {
+   "id": "b01",
+   "title": "アコギ・ほっこり",
+   "bpm": 92,
+   "bars": 12,
+   "seconds": 31.304,
+   "seed": 490267250,
+   "prompt": "Warm fingerpicked acoustic guitar with soft shaker, cozy morning mood, major key",
+   "file": "media/bgm/b01.m4a"
+  },
+  {
+   "id": "b02",
+   "title": "アコギ・軽快ストローク",
+   "bpm": 108,
+   "bars": 12,
+   "seconds": 26.667,
+   "seed": 2060920355,
+   "prompt": "Bright strummed acoustic guitar with light hand claps and tambourine, cheerful and fresh",
+   "file": "media/bgm/b02.m4a"
+  },
+  {
+   "id": "b03",
+   "title": "ピアノ・やさしい",
+   "bpm": 80,
+   "bars": 8,
+   "seconds": 24.0,
+   "seed": 2092499022,
+   "prompt": "Gentle solo felt piano, soft and warm, calm everyday mood",
+   "file": "media/bgm/b03.m4a"
+  },
+  {
+   "id": "b04",
+   "title": "ピアノ・ポップ",
+   "bpm": 100,
+   "bars": 12,
+   "seconds": 28.8,
+   "seed": 2105572302,
+   "prompt": "Light pop piano with soft bass and brushed drums, positive and tidy",
+   "file": "media/bgm/b04.m4a"
+  },
+  {
+   "id": "b05",
+   "title": "ウクレレ・のんびり",
+   "bpm": 96,
+   "bars": 12,
+   "seconds": 30.0,
+   "seed": 232709134,
+   "prompt": "Relaxed ukulele with light glockenspiel and soft percussion, sunny and playful",
+   "file": "media/bgm/b05.m4a"
+  },
+  {
+   "id": "b06",
+   "title": "Lo-fi・ゆったり",
+   "bpm": 78,
+   "bars": 8,
+   "seconds": 24.615,
+   "seed": 326641247,
+   "prompt": "Chill lo-fi hip hop beat with mellow Rhodes keys and vinyl texture, relaxed",
+   "file": "media/bgm/b06.m4a"
+  },
+  {
+   "id": "b07",
+   "title": "Lo-fi・おしゃれ",
+   "bpm": 86,
+   "bars": 12,
+   "seconds": 33.488,
+   "seed": 1745580053,
+   "prompt": "Smooth lo-fi beat with jazzy guitar chords and soft bass, stylish cafe mood",
+   "file": "media/bgm/b07.m4a"
+  },
+  {
+   "id": "b08",
+   "title": "カフェジャズ",
+   "bpm": 104,
+   "bars": 12,
+   "seconds": 27.692,
+   "seed": 403274316,
+   "prompt": "Light cafe jazz trio, brushed drums, upright bass, warm piano, elegant and calm",
+   "file": "media/bgm/b08.m4a"
+  },
+  {
+   "id": "b09",
+   "title": "ボサノバ",
+   "bpm": 120,
+   "bars": 16,
+   "seconds": 32.0,
+   "seed": 1822033407,
+   "prompt": "Soft bossa nova with nylon guitar, light percussion and gentle flute, breezy",
+   "file": "media/bgm/b09.m4a"
+  },
+  {
+   "id": "b10",
+   "title": "シティポップ風",
+   "bpm": 112,
+   "bars": 12,
+   "seconds": 25.714,
+   "seed": 1805353475,
+   "prompt": "Light city pop groove with clean electric guitar, smooth bass and soft synth pads, airy",
+   "file": "media/bgm/b10.m4a"
+  },
+  {
+   "id": "b11",
+   "title": "チルハウス",
+   "bpm": 118,
+   "bars": 12,
+   "seconds": 24.407,
+   "seed": 1146678034,
+   "prompt": "Soft chill house with warm pads, light four-on-the-floor kick, plucky synth, clean and modern",
+   "file": "media/bgm/b11.m4a"
+  },
+  {
+   "id": "b12",
+   "title": "フューチャーポップ・明るい",
+   "bpm": 124,
+   "bars": 16,
+   "seconds": 30.968,
+   "seed": 1570387775,
+   "prompt": "Bright minimal future pop with plucked synths and light claps, sparkling and upbeat",
+   "file": "media/bgm/b12.m4a"
+  },
+  {
+   "id": "b13",
+   "title": "北欧ミニマル",
+   "bpm": 90,
+   "bars": 12,
+   "seconds": 32.0,
+   "seed": 452013565,
+   "prompt": "Minimal Scandinavian style with marimba, soft piano and light pizzicato strings, clean and airy",
+   "file": "media/bgm/b13.m4a"
+  },
+  {
+   "id": "b14",
+   "title": "グロッケン・かわいい",
+   "bpm": 110,
+   "bars": 12,
+   "seconds": 26.182,
+   "seed": 1530403142,
+   "prompt": "Cute playful music with glockenspiel, pizzicato strings and light percussion, cheerful",
+   "file": "media/bgm/b14.m4a"
+  },
+  {
+   "id": "b15",
+   "title": "アンビエント・朝",
+   "bpm": 72,
+   "bars": 8,
+   "seconds": 26.667,
+   "seed": 1699717330,
+   "prompt": "Soft ambient morning music with warm pads, gentle piano notes and light chimes, peaceful",
+   "file": "media/bgm/b15.m4a"
+  },
+  {
+   "id": "b16",
+   "title": "ローファイ・ギター",
+   "bpm": 84,
+   "bars": 8,
+   "seconds": 22.857,
+   "seed": 2043076879,
+   "prompt": "Lo-fi acoustic guitar loop with soft beat and warm tape texture, nostalgic and cozy",
+   "file": "media/bgm/b16.m4a"
+  },
+  {
+   "id": "b17",
+   "title": "ファンク・ライト",
+   "bpm": 106,
+   "bars": 12,
+   "seconds": 27.17,
+   "seed": 274457740,
+   "prompt": "Light clean funk with muted guitar, slap-free soft bass and tight drums, tidy and groovy",
+   "file": "media/bgm/b17.m4a"
+  },
+  {
+   "id": "b18",
+   "title": "シネマティック・やさしい",
+   "bpm": 76,
+   "bars": 8,
+   "seconds": 25.263,
+   "seed": 2035719768,
+   "prompt": "Gentle cinematic underscore with soft strings and piano, warm and hopeful",
+   "file": "media/bgm/b18.m4a"
+  },
+  {
+   "id": "b19",
+   "title": "トロピカル・ゆるい",
+   "bpm": 100,
+   "bars": 12,
+   "seconds": 28.8,
+   "seed": 2000320163,
+   "prompt": "Laid-back tropical pop with steel drums, soft marimba and light beat, summery",
+   "file": "media/bgm/b19.m4a"
+  },
+  {
+   "id": "b20",
+   "title": "ポップ・ポジティブ",
+   "bpm": 116,
+   "bars": 12,
+   "seconds": 24.828,
+   "seed": 1886590243,
+   "prompt": "Feel-good light pop with acoustic guitar, piano and hand claps, positive and simple",
+   "file": "media/bgm/b20.m4a"
+  }
+ ]
 }

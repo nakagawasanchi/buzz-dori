@@ -82,11 +82,11 @@
         "media/k01_c5.jpg"
       ],
       "videos": [
-        "media/k01_c1.mp4?v=20261101",
-        "media/k01_c2.mp4?v=20261101",
-        "media/k01_c3.mp4",
+        "media/k01_c1.mp4?v=20261113",
+        "media/k01_c2.mp4?v=20261113",
+        "media/k01_c3.mp4?v=20261113",
         "media/k01_c4.mp4",
-        "media/k01_c5.mp4?v=20261101"
+        "media/k01_c5.mp4?v=20261113"
       ]
     },
     {
@@ -111,12 +111,12 @@
           "text": "まな板に置く"
         },
         {
-          "angle": "寄り",
-          "text": "シンクと平行にまな板を置き、切る手元（正面）"
-        },
-        {
           "angle": "横",
           "text": "切る手元（別アングル・包丁の動き）"
+        },
+        {
+          "angle": "寄り",
+          "text": "シンクと平行にまな板を置き、切る手元（正面）"
         },
         {
           "angle": "俯瞰",
@@ -138,13 +138,13 @@
       "stills": [
         "media/k02_c1.jpg",
         "media/k02_c2.jpg?v=20261113",
-        "media/k02_c3.jpg",
+        "media/k02_c3.jpg?v=20261113",
         "media/k02_c4.jpg"
       ],
       "videos": [
         "media/k02_c1.mp4?v=20261101",
-        "media/k02_c2.mp4",
-        "media/k02_c3.mp4",
+        "media/k02_c2.mp4?v=20261113",
+        "media/k02_c3.mp4?v=20261113",
         "media/k02_c4.mp4?v=20261101"
       ]
     },
@@ -187,8 +187,8 @@
         "media/k03_c4.jpg?v=20261113"
       ],
       "videos": [
-        "",
-        "",
+        "media/k03_c1.mp4?v=20261113",
+        "media/k03_c2.mp4?v=20261113",
         "media/k03_c3.mp4?v=20261113",
         "media/k03_c4.mp4?v=20261113"
       ]
@@ -244,8 +244,8 @@
       ],
       "videos": [
         "media/k04_c1.mp4?v=20261101",
-        "",
-        "",
+        "media/k04_c2.mp4?v=20261113",
+        "media/k04_c3.mp4?v=20261113",
         "",
         "media/k04_c5.mp4?v=20261113"
       ]

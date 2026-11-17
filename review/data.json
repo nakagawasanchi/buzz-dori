@@ -173,30 +173,24 @@
         },
         {
           "angle": "中",
-          "text": "引き出しの中からフライパンを手に取り、取り出そうとする"
+          "text": "引き出しの中からフライパンを手に取り、取り出す（取り出す動作だけ）"
         },
         {
           "angle": "中",
-          "text": "IHに置く"
-        },
-        {
-          "angle": "寄り",
-          "text": "スイッチON（表示灯）"
+          "text": "IHにフライパンを置く（女性は動かず、フライパンだけ置く）"
         }
       ],
       "stills": [
         "media/k03_c1.jpg?v=20261113",
         "media/k03_c2.jpg?v=20261117",
         "media/k03_c3.jpg?v=20261113b",
-        "media/k03_c4.jpg?v=20261113b",
-        "media/k03_c5.jpg?v=20261113b"
+        "media/k03_c4.jpg?v=20261113b"
       ],
       "videos": [
         "media/k03_c1.mp4?v=20261113",
         "media/k03_c2.mp4?v=20261117",
-        "media/k03_c3.mp4?v=20261113b",
-        "media/k03_c4.mp4?v=20261113b",
-        "media/k03_c5.mp4?v=20261113b"
+        "media/k03_c3.mp4?v=20261117b",
+        "media/k03_c4.mp4?v=20261117b"
       ]
     },
     {
@@ -242,14 +236,14 @@
         "media/k04_c2.jpg?v=20261117",
         "media/k04_c3.jpg?v=20261113",
         "media/k04_c4.jpg?v=20261113",
-        ""
+        "media/k04_c5.jpg?v=20261117b"
       ],
       "videos": [
         "media/k04_c1.mp4?v=20261117",
         "media/k04_c2.mp4?v=20261117",
         "media/k04_c3.mp4?v=20261113",
-        "",
-        ""
+        "media/k04_c4.mp4?v=20261117b",
+        "media/k04_c5.mp4?v=20261117b"
       ]
     },
     {
